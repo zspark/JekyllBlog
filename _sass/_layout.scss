@@ -213,7 +213,16 @@ b,strong {
         background-color:#e7e7e7;
         border:0px none;
     }
+    h1 {
+        font-size: 2.25em;
+        border-bottom:1px solid #DDDDDD;
+        line-height:1.5;
+        margin-top:$spacing-unit;
 
+        @include media-query($on-laptop) {
+            font-size: 28px;
+        }
+    }
     h2 {
         font-size: 1.75em;
         border-bottom:1px solid #DDDDDD;
@@ -226,16 +235,16 @@ b,strong {
     }
 
     h3 {
-        font-size: 26px;
- margin-bottom: 13px;
- margin-top:13px;
+        font-size: 1.3em;
+        margin-bottom: 13px;
+        margin-top:13px;
         @include media-query($on-laptop) {
             font-size: 22px;
         }
     }
 
     h4 {
-        font-size: 20px;
+        font-size: 1.3em;
         margin-top:11px;
          margin-bottom: 11px;
         @include media-query($on-laptop) {
@@ -251,4 +260,31 @@ b,strong {
             font-size: 18px;
         }
     }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,th {
+  padding: 0;
+}
+
+.wrapper th {
+  font-weight: bold;
+}
+
+.wrapper th,.wrapper td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.wrapper tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.wrapper tr:nth-child(2n) {
+  background-color: #f8f8f8;
 }

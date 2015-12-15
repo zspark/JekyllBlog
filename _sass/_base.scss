@@ -21,6 +21,7 @@ body {
     color: $text-color;
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
+//    Font-size:63%;
 }
 
 
@@ -36,8 +37,6 @@ ul, ol, dl, figure,
     margin-top:0px;
 }
 
-
-
 /**
  * Images
  */
@@ -45,8 +44,6 @@ img {
     max-width: 100%;
     vertical-align: middle;
 }
-
-
 
 /**
  * Figures
@@ -58,8 +55,6 @@ figure > img {
 figcaption {
     font-size: $small-font-size;
 }
-
-
 
 /**
  * Lists
@@ -90,7 +85,7 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-    color: $brand-color;
+    color: #0000FF  ;
     text-decoration: none;
 
     &:visited {

@@ -2,7 +2,7 @@
 title: z_Spark's notes
 email: z_Spark@163.com
 description: "任何正常智商的成熟人类个体都能无障碍理解人类全部的智慧。火花日志，记录职业生涯中的技术学习与心得，网站基于Jekyll搭建，感谢Jekyll，ruby，MathJax，github等全球开源组织。"
-baseurl: "/jekyll" # the subpath of your site, e.g. /blog/
+baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://www.zspark.net" # the base hostname & protocol for your site
 github_username:  zSpark
 #paginate: 3
