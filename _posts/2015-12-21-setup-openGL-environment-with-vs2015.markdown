@@ -12,7 +12,7 @@ tags: [计算机图形学 computer-graphics cg CG]
 
 *今天是洋人的圣诞节，不喜热闹的在下接茬复习计图。这是一个偏章，简单提供下相关文件与搭建步骤。*
 
-{{site.blank}}这里不写一堆一堆的如何指导大家搭建环境，网上多的是（google查看），我主要提供下自己搭建的最顺利的一个版本。视频参考[这里][vedio1]，来自youtube需要翻墙，大家多多担待。标题是《How to Set up OpenGL and GLUT in Visual Studio (C++)》作者使用的是vs2013，我搭建是vs2015绝对保证可以运行。里面作者提供的下载资料估计也需要翻墙吧（我是直接在翻墙后下载的），为了国人方便，特别在未经原作者允许的情况下放入我的服务器提供下载。
+{{site.blank}}这里不写一堆一堆的如何指导大家搭建环境，网上多的是（google查看），我主要提供下自己搭建的最顺利的一个版本。视频参考[这里][vedio1]，来自youtube需要翻墙，大家多多担待。标题是《How to Set up OpenGL and GLUT in Visual Studio (C++)》作者使用的是vs2013，我搭建是vs2015绝对保证可以运行。里面作者提供的下载资料估计也需要翻墙吧（我是直接在翻墙后下载的，所有不知道不翻墙的话行不行。），为了国人方便，特别在未经原作者允许的情况下放入我的服务器提供下载。
 
 压缩包目录结构：
 
@@ -51,7 +51,7 @@ tags: [计算机图形学 computer-graphics cg CG]
 	* freeglut.dll
 	* glew32.dll
 
-*****************
+-------------------
 
 [本站下载][d1]
 
@@ -80,9 +80,9 @@ tags: [计算机图形学 computer-graphics cg CG]
 
 ==EOF==
 
-[d1]:{{site.basepath}}/{{site.assetsurl}}Glew and Glut.zip
+[d1]:{{site.basepath}}{{site.assetspath}}Glew and Glut.zip
 [d2]:http://download635.mediafire.com/aflwmwgl1vvg/cmlnr0pj0pyha5d/Glew+and+Glut.zip
 
 [vedio1]:https://www.youtube.com/watch?v=8p76pJsUP44
-[img_1]:{{site.basepath}}/img/coordination/image_coor1.jpg
-[img_2]:{{site.basepath}}/img/coordination/image_coor2.jpg
+[img_1]:{{site.basepath}}{{site.imgpath}}image_coor1.jpg
+[img_2]:{{site.basepath}}{{site.imgpath}}image_coor2.jpg

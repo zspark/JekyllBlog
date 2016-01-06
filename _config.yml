@@ -6,7 +6,7 @@ baseurl: # the subpath of your site, e.g. /blog/
 url: "http://www.zspark.net" # the base hostname & protocol for your site
 github_username:  zSpark
 basepath: /  
-assetsurl: assets/
+assetspath: assets/
 imgpath: img/
 swfpath: swf/
 blank: "&nbsp; &nbsp; "
