@@ -17,21 +17,21 @@ tags: [collision-detection Computer algorithm convex-hull gift-wrapping]
 
 >在一个实数向量空间V中，对于给定集合X，所有包含X的凸集的交集S被称为X的凸包。（来自：[百度百科][1]）
 
-&#160; &#160; &#160; &#160;上面概念就是说：凸包是凸集的子集，且是包含集合X的最小的子集；按照坊间通俗的话来说就是把所有的点用橡皮筋圈起来，橡皮筋形成的那个凸多边形就是这些个点集的凸包。
+{{site.blank}}上面概念就是说：凸包是凸集的子集，且是包含集合X的最小的子集；按照坊间通俗的话来说就是把所有的点用橡皮筋圈起来，橡皮筋形成的那个凸多边形就是这些个点集的凸包。
 
 ![hull][img1] 图 1（图片来源：百度百科）
 
-&#160; &#160; &#160; &#160;这样的直观解释不能说不对，但显然不太考究，他会将读者的理解集中在“橡皮筋”之上，认为那个多边形的边就是凸包的实体。但是我们从概念上理解的话明显实体还要包括里面的东西（最小的凸集）。故此凸包是整个面而不仅仅是边；
+{{site.blank}}这样的直观解释不能说不对，但显然不太考究，他会将读者的理解集中在“橡皮筋”之上，认为那个多边形的边就是凸包的实体。但是我们从概念上理解的话明显实体还要包括里面的东西（最小的凸集）。故此凸包是整个面而不仅仅是边；
 
 
 ##凸包的应用##
 
-&#160; &#160; &#160; &#160;凸包是计算几何中基本的概念，既是基本概念其应用自然不是具体的，主要看使用者对凸包的理解。最常见的应用比如使用凸包去计算围绕树林的篱笆墙的最短距离，深入一些的话比如在《探求二维凸包及其应用》（徐瑞广，余志伟.中国矿业大学(北京）资源学院（100083））论文中作者提到用凸包区分两个点集是否可能被一条直接分开，再比如铸造新合金问题，乍看第与凸包没有关系，但作者还是巧妙的应用了凸包知识进行了计算。
+{{site.blank}}凸包是计算几何中基本的概念，既是基本概念其应用自然不是具体的，主要看使用者对凸包的理解。最常见的应用比如使用凸包去计算围绕树林的篱笆墙的最短距离，深入一些的话比如在《探求二维凸包及其应用》（徐瑞广，余志伟.中国矿业大学(北京）资源学院（100083））论文中作者提到用凸包区分两个点集是否可能被一条直接分开，再比如铸造新合金问题，乍看第与凸包没有关系，但作者还是巧妙的应用了凸包知识进行了计算。
 
 
 这里简单说下凸包在CD`collision detection`中的应用。
 
-&#160; &#160; &#160; &#160;一个物理碰撞引擎驱动的肯定不止是简单的规则图形，而对于不规则图形，我们一般使用图形的顶点去定义它。对于三角形，三个顶点可以任意顺序（注1），但是顶点数量大于3的话，他们就必须要有一定的顺序，否则不但不能计算正确的表面法线方向，而且不能正确计算面积等属性。如图2所示，点集顺序按字母顺序。
+{{site.blank}}一个物理碰撞引擎驱动的肯定不止是简单的规则图形，而对于不规则图形，我们一般使用图形的顶点去定义它。对于三角形，三个顶点可以任意顺序（注1），但是顶点数量大于3的话，他们就必须要有一定的顺序，否则不但不能计算正确的表面法线方向，而且不能正确计算面积等属性。如图2所示，点集顺序按字母顺序。
 
 ![Img][img2]
 图 2
@@ -41,7 +41,7 @@ tags: [collision-detection Computer algorithm convex-hull gift-wrapping]
 
 ##算法理论##
 
-&#160; &#160; &#160; &#160;凸包算法有好多种，比如卷包裹算法`gift wrapping algorithm`、格雷厄姆扫描算法`Graham-scan algorithm`、快包算法`Quick hull algorithm`等。
+{{site.blank}}凸包算法有好多种，比如卷包裹算法`gift wrapping algorithm`、格雷厄姆扫描算法`Graham-scan algorithm`、快包算法`Quick hull algorithm`等。
 
 #####卷包裹算法#####
 
@@ -61,7 +61,7 @@ tags: [collision-detection Computer algorithm convex-hull gift-wrapping]
 ![Img][img7]
 图 5
 
-&#160; &#160; &#160; &#160;这里有个问题需要说明的是，图5中点I，A，E好像在同一条直线上。当然感觉可能是未必准确，但如果他们确实共线的话，这就需要我们自己决定点A的去留了，一般情况下点A是去掉的，因为他就是线段IE上的一个普通点而已，就算碰撞解决，也是与IE做线段碰撞，并非与点A做点参与的碰撞。有时候我们为了提高性能，做一些取舍计算，假如点I、A、E不公线，但是角IAE（A是顶点）大于一定的阈值，几乎为180度，这个时候完全可以近似为他们共线，从而省去一部分计算量。
+{{site.blank}}这里有个问题需要说明的是，图5中点I，A，E好像在同一条直线上。当然感觉可能是未必准确，但如果他们确实共线的话，这就需要我们自己决定点A的去留了，一般情况下点A是去掉的，因为他就是线段IE上的一个普通点而已，就算碰撞解决，也是与IE做线段碰撞，并非与点A做点参与的碰撞。有时候我们为了提高性能，做一些取舍计算，假如点I、A、E不公线，但是角IAE（A是顶点）大于一定的阈值，几乎为180度，这个时候完全可以近似为他们共线，从而省去一部分计算量。
 
 
 
@@ -125,9 +125,9 @@ public static function handle(pointSet:Array,hullPointSet:Array):Boolean{
 
 ####算法分析####
 
-&#160; &#160; &#160; &#160;从上面算法中可以看出，整个过程至少包含嵌套的2次循环。外圈while循环用来判断本次do逻辑里面计算出来的极点是否为第一个极点；而do中的for循环主要是遍历所有顶点，如此一来Gift-wrapping算法的时间复杂度便是$$O(n*l)$$，其中n是凸包极点数量，l是点集数量。
+{{site.blank}}从上面算法中可以看出，整个过程至少包含嵌套的2次循环。外圈while循环用来判断本次do逻辑里面计算出来的极点是否为第一个极点；而do中的for循环主要是遍历所有顶点，如此一来Gift-wrapping算法的时间复杂度便是$$O(n*l)$$，其中n是凸包极点数量，l是点集数量。
 
-&#160; &#160; &#160; &#160;进一步分析可知如果点集中的点全部在凸包上（比如圆），那么算法时间复杂度便是最大$$O(n^2)$$,所以卷包裹算法不适合计算极点密集型点集；
+{{site.blank}}进一步分析可知如果点集中的点全部在凸包上（比如圆），那么算法时间复杂度便是最大$$O(n^2)$$,所以卷包裹算法不适合计算极点密集型点集；
 
 
 ##注解##
@@ -151,11 +151,11 @@ public static function handle(pointSet:Array,hullPointSet:Array):Boolean{
 [url3]:https://en.wikipedia.org/wiki/Gift_wrapping_algorithm
 
 [1]:http://baike.baidu.com/link?url=JfJ3gxnoHHDwkuvF8bBh3uoJ_Y2L0q_BmRthgtt8RsHwiq1UAXbd8EV3wxYt4RNW3V14FDnsg7i301dVrb-qyq
-[img1]:{{site.baseurl}}/img/convex-hull/image1.jpg "img1"
-[img2]:{{site.baseurl}}/img/convex-hull/image2.jpg "img2"
-[img4]:{{site.baseurl}}/img/convex-hull/image4.jpg "img4"
-[img7]:{{site.baseurl}}/img/convex-hull/image7.jpg "img7"
-[img6]:{{site.baseurl}}/img/convex-hull/image6.jpg "img6"
+[img1]:{{site.basepath}}/img/convex-hull/image1.jpg "img1"
+[img2]:{{site.basepath}}/img/convex-hull/image2.jpg "img2"
+[img4]:{{site.basepath}}/img/convex-hull/image4.jpg "img4"
+[img7]:{{site.basepath}}/img/convex-hull/image7.jpg "img7"
+[img6]:{{site.basepath}}/img/convex-hull/image6.jpg "img6"
 
 ==TBC==
 

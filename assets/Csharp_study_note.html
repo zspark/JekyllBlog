@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>C#&#20837;&#38376;&#32463;&#20856;&#31532;&#20116;&#29256;</title>
+<style type="text/css">
+    li { list-style: none;  margin: 0; }
+    p { margin: 0; }
+    span.foldopened { color: white; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: visible;
+    cursor:pointer; }
+
+
+    span.foldclosed { color: #666666; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: hidden;
+    cursor:pointer; }
+
+    span.foldspecial { color: #666666; font-size: xx-small; border-style: none solid solid none;
+    border-color: #CCCCCC; border-width: 1; font-family: sans-serif; padding: 0em 0.1em 0em 0.1em; background: #e0e0e0;
+    cursor:pointer; }
+
+    span.l { color: red; font-weight: bold; }
+
+    a.mapnode:link {text-decoration: none; color: black; }
+    a.mapnode:visited {text-decoration: none; color: black; }
+    a.mapnode:active {text-decoration: none; color: black; }
+    a.mapnode:hover {text-decoration: none; color: black; background: #eeeee0; }
+
+</style>
+<!-- ^ Position is not set to relative / absolute here because of Mozilla -->
+</head>
+<body>
+
+<script type="text/javascript">
+   // Here we implement folding. It works fine with MSIE5.5, MSIE6.0 and
+   // Mozilla 0.9.6.
+
+   if (document.layers) {
+      //Netscape 4 specific code
+      pre = 'document.';
+      post = ''; }
+   if (document.getElementById) {
+      //Netscape 6 specific code
+      pre = 'document.getElementById("';
+      post = '").style'; }
+   if (document.all) {
+      //IE4+ specific code
+      pre = 'document.all.';
+      post = '.style'; }
+
+function layer_exists(layer) {
+   try {
+      eval(pre + layer + post);
+      return true; }
+   catch (error) {
+      return false; }}
+
+function show_layer(layer) {
+   eval(pre + layer + post).position = 'relative'; 
+   eval(pre + layer + post).visibility = 'visible'; }
+
+function hide_layer(layer) {
+   eval(pre + layer + post).visibility = 'hidden';
+   eval(pre + layer + post).position = 'absolute'; }
+
+function hide_folder(folder) {
+    hide_folding_layer(folder)
+    show_layer('show'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function show_folder(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_layer('show'+folder+'_'+i); }
+}
+function show_folder_completely(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+
+
+function hide_folding_layer(folder) {
+   var i;
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folding_layer(folder+'_'+i); }
+
+   hide_layer('hide'+folder);
+   hide_layer('show'+folder);
+   hide_layer('fold'+folder);
+
+   scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function fold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folder(folder+'_'+i); }
+}
+
+function unfold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+</script>
+<SPAN class="foldspecial" onclick="fold_document()">All +</SPAN>
+<SPAN class="foldspecial" onclick="unfold_document()">All -</SPAN>
+&#xa;    <p>&#xa;      C#&#x5165;&#x95e8;&#x7ecf;&#x5178;&#x7b2c;&#x4e94;&#x7248;&#xa;    </p>&#xa;  
+<ul><li><span id="show1_1" class="foldclosed" onClick="show_folder('1_1')" style="POSITION: absolute">+</span> <span id="hide1_1" class="foldopened" onClick="hide_folder('1_1')">-</span>
+&#xa;    <p>&#xa;      using System.Diagnostics&#xa;    </p>&#xa;  
+<ul id="fold1_1" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      Debug.WriteLine();&#xa;    </p>&#xa;    <p>&#xa;      Trace.WriteLine();&#xa;    </p>&#xa;  
+</li>
+</ul><p><span id="show1_2" class="foldclosed" onClick="show_folder('1_2')" style="POSITION: absolute">+</span> <span id="hide1_2" class="foldopened" onClick="hide_folder('1_2')">-</span>
+System.Collactions.Generic
+<ul id="fold1_2" style="POSITION: relative; VISIBILITY: visible;"><li>&#27867;&#22411;&#30456;&#20851;&#21253;
+
+</li>
+
+</ul><p><span id="show1_3" class="foldclosed" onClick="show_folder('1_3')" style="POSITION: absolute">+</span> <span id="hide1_3" class="foldopened" onClick="hide_folder('1_3')">-</span>
+&#31867;&#22411;
+<ul id="fold1_3" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_3_1" class="foldclosed" onClick="show_folder('1_3_1')" style="POSITION: absolute">+</span> <span id="hide1_3_1" class="foldopened" onClick="hide_folder('1_3_1')">-</span>
+string
+<ul id="fold1_3_1" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      ToCharArray()&#xa;    </p>&#xa;    <p>&#xa;      Trim()&#xa;    </p>&#xa;    <p>&#xa;      ToLower()&#xa;    </p>&#xa;  
+</li>
+</ul>
+</li>
+<li><span id="show1_3_2" class="foldclosed" onClick="show_folder('1_3_2')" style="POSITION: absolute">+</span> <span id="hide1_3_2" class="foldopened" onClick="hide_folder('1_3_2')">-</span>
+&#25968;&#32452;
+<ul id="fold1_3_2" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_3_2_1" class="foldclosed" onClick="show_folder('1_3_2_1')" style="POSITION: absolute">+</span> <span id="hide1_3_2_1" class="foldopened" onClick="hide_folder('1_3_2_1')">-</span>
+&#30697;&#24418;&#25968;&#32452;
+<ul id="fold1_3_2_1" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      int [,,]&#30003;&#26126;&#19968;&#20010;&#19977;&#32500;&#25968;&#32452;&#65292;&#35775;&#38382;&#30340;&#26102;&#20505;&#20063;&#26159;a[1,1,1]&#xa;    </p>&#xa;  
+</li>
+</ul>
+</li>
+<li><span id="show1_3_2_2" class="foldclosed" onClick="show_folder('1_3_2_2')" style="POSITION: absolute">+</span> <span id="hide1_3_2_2" class="foldopened" onClick="hide_folder('1_3_2_2')">-</span>
+&#38191;&#40831;&#25968;&#32452;
+<ul id="fold1_3_2_2" style="POSITION: relative; VISIBILITY: visible;"><li>int [][]
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_3_3" class="foldclosed" onClick="show_folder('1_3_3')" style="POSITION: absolute">+</span> <span id="hide1_3_3" class="foldopened" onClick="hide_folder('1_3_3')">-</span>
+StringBuilder
+<ul id="fold1_3_3" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      Append&#xa;    </p>&#xa;    <p>&#xa;      AppendFormat&#xa;    </p>&#xa;  
+</li>
+</ul>
+</li>
+
+</ul><p><span id="show1_4" class="foldclosed" onClick="show_folder('1_4')" style="POSITION: absolute">+</span> <span id="hide1_4" class="foldopened" onClick="hide_folder('1_4')">-</span>
+Class
+<ul id="fold1_4" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      &#19968;&#20010;&#31867;&#21482;&#33021;&#26377;&#19968;&#20010;&#38745;&#24577;&#26500;&#36896;&#20989;&#25968;&#65292;&#xa;    </p>&#xa;    <p>&#xa;      &#35813;&#20989;&#25968;&#19981;&#33021;&#26377;&#35775;&#38382;&#20462;&#39280;&#31526;&#65292;&#19981;&#33021;&#24102;&#21442;&#25968;&#65292;&#20063;&#19981;&#33021;&#34987;&#29992;&#25143;&#30452;&#25509;&#35843;&#29992;&#12290;&#20294;&#20182;&#20250;&#22312;&#20197;&#19979;&#24773;&#20917;&#34987;&#38544;&#24335;&#35843;&#29992;&#65306;&#xa;    </p>&#xa;    <p>&#xa;      a&#12289;&#24403;&#21253;&#21547;&#38745;&#24577;&#26500;&#36896;&#20989;&#25968;&#30340;&#31867;&#23454;&#20363;&#34987;&#39318;&#27425;&#21019;&#24314;&#26102;&#65307;&#xa;    </p>&#xa;    <p>&#xa;      b&#12289;&#24403;&#20351;&#29992;&#21253;&#21547;&#38745;&#24577;&#26500;&#36896;&#20989;&#25968;&#30340;&#31867;&#30340;&#20854;&#20182;&#38745;&#24577;&#21464;&#37327;&#26102;&#65307;&#xa;    </p>&#xa;  
+<p>&#32467;&#26500;&#31867;&#22411;&#26159;&#20540;&#31867;&#22411;
+&#xa;    <p>&#xa;      class myClass{&#xa;    </p>&#xa;    <p>&#xa;      &#xa0;//personal code;&#xa;    </p>&#xa;    <p>&#xa;      }&#xa;    </p>&#xa;    <p>&#xa;      &#xa;    </p>&#xa;    <p>&#xa;      &#x9ed8;&#x8ba4;&#x662f;internal&#x8bbf;&#x95ee;&#x4fee;&#x9970;&#x7b26;&#xff0c;&#x53ef;&#x4ee5;&#x4f7f;&#x7528;public&#xff1b;&#xa;    </p>&#xa;    <p>&#xa;      &#x7c7b;&#x7684;&#x4fee;&#x9970;&#x7b26;&#x8fd8;&#x53ef;&#x4ee5;&#x7528;abstract&#x6216;&#x8005;sealed&#xff08;&#x76f8;&#x5f53;&#x4e8e;final&#xff09;&#xff1b;&#xa;    </p>&#xa;    <p>&#xa;      public class A &#xff1a;B&#xff0c;IC&#xff0c;ID&#xa;    </p>&#xa;  
+<span style="color: #ff0000;">&#xa;    <p>&#xa;      &#32534;&#35793;&#22120;&#19981;&#20801;&#35768;&#27966;&#29983;&#31867;&#30340;&#21487;&#35775;&#38382;&#24615;&#39640;&#20110;&#22522;&#31867;&#65307;&#xa;    </p>&#xa;  </span>
+&#xa;    <p>&#xa;      &#26500;&#36896;&#20989;&#25968;&#21021;&#22987;&#21270;&#22120;&#xa;    </p>&#xa;    <p>&#xa;      public a(int i,int j):base(i){}&#xa;    </p>&#xa;    <p>&#xa;      base&#20851;&#38190;&#23383;&#26159;&#25351;&#22312;&#23454;&#20363;&#21270;&#36807;&#31243;&#20013;&#20351;&#29992;&#25351;&#23450;&#30340;&#22522;&#31867;&#26500;&#36896;&#20989;&#25968;&#65307;&#xa;    </p>&#xa;    <p>&#xa;      public a(int i,int j):this(i){}&#xa;    </p>&#xa;  
+<p>readonly&#65292;static,const,
+&#xa;    <p>&#xa;      get,set&#22359;&#xa;    </p>&#xa;    <p>&#xa;      private int myInt;&#xa;    </p>&#xa;    <p>&#xa;      public int MyInt{&#xa;    </p>&#xa;    <p>&#xa;      get{&#xa;    </p>&#xa;    <p>&#xa;      return myInt;}&#xa;    </p>&#xa;    <p>&#xa;      protected set{&#xa;    </p>&#xa;    <p>&#xa;      myInt=value;}&#xa;    </p>&#xa;    <p>&#xa;      }&#xa;    </p>&#xa;  
+&#xa;    <p>&#xa;      &#31867;&#30340;&#23884;&#20837;&#65292;&#27880;&#24847;&#35775;&#38382;&#20462;&#39280;&#31526;&#65307;&#xa;    </p>&#xa;  
+&#xa;    <p>&#xa;      interface IMyInterface{&#xa;    </p>&#xa;    <p>&#xa;      &#160;&#160;&#160;int myInt{get;set;}&#xa;    </p>&#xa;    <p>&#xa;      }&#xa;    </p>&#xa;  
+</li>
+</ul><p><span id="show1_5" class="foldclosed" onClick="show_folder('1_5')" style="POSITION: absolute">+</span> <span id="hide1_5" class="foldopened" onClick="hide_folder('1_5')">-</span>
+exception
+<ul id="fold1_5" style="POSITION: relative; VISIBILITY: visible;"><li>ArgumentException
+
+</li>
+<li>InvalidOperationException
+
+</li>
+
+</ul><p><span id="show1_6" class="foldclosed" onClick="show_folder('1_6')" style="POSITION: absolute">+</span> <span id="hide1_6" class="foldopened" onClick="hide_folder('1_6')">-</span>
+&#27867;&#22411;
+<ul id="fold1_6" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      &#21327;&#21464;&#65306;covariance&#xa;    </p>&#xa;    <p>&#xa;      &#25239;&#21464;&#65306;contravariance&#xa;    </p>&#xa;  
+<p><span id="show1_6_1" class="foldclosed" onClick="show_folder('1_6_1')" style="POSITION: absolute">+</span> <span id="hide1_6_1" class="foldopened" onClick="hide_folder('1_6_1')">-</span>
+System.nullable&lt;T&gt;
+<ul id="fold1_6_1" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      e.g.&#xa;    </p>&#xa;    <p>&#xa;      System.nullable&lt;int&gt;&#21487;&#20197;&#31616;&#20889;&#20026;int?&#xa;    </p>&#xa;    <p>&#xa;      &#25152;&#20197;&#23450;&#20041;&#19968;&#20010;System.nullable&lt;int&gt;&#30340;&#27867;&#22411;&#23454;&#20363;&#30340;&#35805;&#65292;&#21487;&#20197;&#65306;&#xa;    </p>&#xa;    <p>&#xa;      int? nullint;&#xa;    </p>&#xa;    <p>&#xa;      &#21487;&#20197;&#20351;&#29992;value&#26469;&#35775;&#38382;nullint&#30340;&#20540;&#65307;&#xa;    </p>&#xa;  
+</li>
+</ul>&#xa;    <p>&#xa;      &#31354;&#25509;&#21512;&#36816;&#31639;&#31526;&#65288;&#27880;&#24847;&#27721;&#23383;&#8220;&#25509;&#21512;&#8221;&#65289;&#65306;??&#xa;    </p>&#xa;    <p>&#xa;      a??b;&#xa;    </p>&#xa;    <p>&#xa;      &#31561;&#20110;&#65306;&#xa;    </p>&#xa;    <p>&#xa;      a==null?b:a;&#xa;    </p>&#xa;  
+<p>&#35201;&#21019;&#24314;&#27867;&#22411;&#31867;&#22411;&#65292;&#38656;&#35201;&#26126;&#30830;&#23427;&#26159;&#24341;&#29992;&#31867;&#22411;&#36824;&#26159;&#20540;&#31867;&#22411;
+<p>default
+</li>
+</ul><p><span id="show1_7" class="foldclosed" onClick="show_folder('1_7')" style="POSITION: absolute">+</span> <span id="hide1_7" class="foldopened" onClick="hide_folder('1_7')">-</span>
+Console
+<ul id="fold1_7" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      Console.ReadKey()&#xa;    </p>&#xa;    <p>&#xa;      Console.WriteLine()&#xa;    </p>&#xa;  
+</li>
+</ul><p><span id="show1_8" class="foldclosed" onClick="show_folder('1_8')" style="POSITION: absolute">+</span> <span id="hide1_8" class="foldopened" onClick="hide_folder('1_8')">-</span>
+Convert
+<ul id="fold1_8" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      ToDouble&#xa;    </p>&#xa;    <p>&#xa;      ToInt&#xa;    </p>&#xa;    <p>&#xa;      ToFloat&#xa;    </p>&#xa;  
+</li>
+</ul><p><span id="show1_9" class="foldclosed" onClick="show_folder('1_9')" style="POSITION: absolute">+</span> <span id="hide1_9" class="foldopened" onClick="hide_folder('1_9')">-</span>
+&#39030;&#32423;&#20989;&#25968;
+<ul id="fold1_9" style="POSITION: relative; VISIBILITY: visible;"><li>checked,unchecked
+
+</li>
+
+</ul><p><span id="show1_10" class="foldclosed" onClick="show_folder('1_10')" style="POSITION: absolute">+</span> <span id="hide1_10" class="foldopened" onClick="hide_folder('1_10')">-</span>
+Function
+<ul id="fold1_10" style="POSITION: relative; VISIBILITY: visible;"><li>static void main(float f){}
+
+</li>
+<li>&#21442;&#25968;&#25968;&#32452;params
+
+</li>
+<li><span id="show1_10_1" class="foldclosed" onClick="show_folder('1_10_1')" style="POSITION: absolute">+</span> <span id="hide1_10_1" class="foldopened" onClick="hide_folder('1_10_1')">-</span>
+&#24341;&#29992;&#21442;&#25968;ref
+<ul id="fold1_10_1" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      1&#12289;&#24341;&#29992;&#21442;&#25968;&#22312;&#22806;&#37096;&#19981;&#33021;&#20026;const&#20462;&#39280;&#65307;&#xa;    </p>&#xa;    <p>&#xa;      2&#12289;&#24341;&#29992;&#21442;&#25968;&#22312;&#22806;&#37096;&#24517;&#39035;&#21021;&#22987;&#21270;&#65307;&#xa;    </p>&#xa;    <p>&#xa;      3&#12289;&#35843;&#29992;&#30340;&#26102;&#20505;&#36824;&#35201;&#21152;&#19978;ref&#20851;&#38190;&#35789;&#65307;&#xa;    </p>&#xa;  
+</li>
+</ul>
+</li>
+<li>&#36755;&#20986;&#21442;&#25968;&#65306;out&#21442;&#25968;&#65292;&#22312;&#32473;&#20989;&#25968;&#36755;&#20837;&#26102;&#24517;&#39035;&#27809;&#26377;&#21021;&#22987;&#21270;
+
+</li>
+
+</ul>&#xa;    <p>&#xa;      &#22996;&#25176;&#65306;&#20854;&#23454;&#23601;&#26159;C&#20013;&#30340;&#23545;&#29305;&#27530;&#31867;&#22411;&#30340;&#23439;&#23450;&#20041;&#xa;    </p>&#xa;    <p>&#xa;      delegate float delegateName(float,int,int,boolean);&#xa;    </p>&#xa;    <p>&#xa;      &#20351;&#29992;&#65306;&#xa;    </p>&#xa;    <p>&#xa;      delegateName myDelegate;&#xa;    </p>&#xa;    <p>&#xa;      myDelegate=new delegateName(xxx);&#xa;    </p>&#xa;    <p>&#xa;      or:&#xa;    </p>&#xa;    <p>&#xa;      myDelegate=xxx;&#xa;    </p>&#xa;    <p>&#xa;      (xxx&#20026;&#20989;&#25968;&#21517;);&#xa;    </p>&#xa;  
+<p><span id="show1_11" class="foldclosed" onClick="show_folder('1_11')" style="POSITION: absolute">+</span> <span id="hide1_11" class="foldopened" onClick="hide_folder('1_11')">-</span>
+Object
+<ul id="fold1_11" style="POSITION: relative; VISIBILITY: visible;"><li>MemberWiseClone()
+
+</li>
+
+</ul><p><span id="show1_12" class="foldclosed" onClick="show_folder('1_12')" style="POSITION: absolute">+</span> <span id="hide1_12" class="foldopened" onClick="hide_folder('1_12')">-</span>
+&#20811;&#38534;
+<ul id="fold1_12" style="POSITION: relative; VISIBILITY: visible;"><li>&#27973;&#34920;&#20811;&#38534;&#65288;shallowClone&#65289;
+
+</li>
+<li><span id="show1_12_1" class="foldclosed" onClick="show_folder('1_12_1')" style="POSITION: absolute">+</span> <span id="hide1_12_1" class="foldopened" onClick="hide_folder('1_12_1')">-</span>
+&#28145;&#20811;&#38534;&#65288;deepClone&#65289;
+<ul id="fold1_12_1" style="POSITION: relative; VISIBILITY: visible;"><li>&#xa;    <p>&#xa;      &#x5b9e;&#x73b0;&#x539f;&#x751f;ICloneable&#x63a5;&#x53e3;&#x91cc;&#x9762;&#x7684;clone&#x51fd;&#x6570;&#xff0c;&#x5177;&#x4f53;&#x5b9e;&#x73b0;&#x9700;&#x8981;&#x81ea;&#x5df1;&#x5199;&#x3002;P259&#x6df1;&#x590d;&#x5236;.&#xa;    </p>&#xa;  
+</li>
+</ul>
+</li>
+
+</ul><p>SEH&#65288;structured exception handling)
+<p>boxing unboxing
+</li>
+</ul><SCRIPT type="text/javascript">
+fold_document();
+</SCRIPT>
+</body>
+</html>

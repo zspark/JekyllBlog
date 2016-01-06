@@ -181,7 +181,6 @@ b,strong {
 
 .post-link {
     display: block;
-    font-size: 18px;
 }
 
 
@@ -194,7 +193,7 @@ b,strong {
 }
 
 .post-title {
-    font-size: 42px;
+    font-size: 2.25em;
     letter-spacing: -1px;
     line-height: 1;
 
@@ -214,9 +213,9 @@ b,strong {
         border:0px none;
     }
     h1 {
-        font-size: 2.25em;
-        border-bottom:1px solid #DDDDDD;
-        line-height:1.5;
+        font-size: 2em;
+        border-bottom:3px solid #DDDDDD;
+        line-height:1.6;
         margin-top:$spacing-unit;
 
         @include media-query($on-laptop) {
@@ -235,7 +234,7 @@ b,strong {
     }
 
     h3 {
-        font-size: 1.3em;
+        font-size: 1.5em;
         margin-bottom: 13px;
         margin-top:13px;
         @include media-query($on-laptop) {
