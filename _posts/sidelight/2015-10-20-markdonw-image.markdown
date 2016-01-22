@@ -1,0 +1,1 @@
+---layout: posttitle:  "markdown image"categories: jekyll testpublished: falsetags: [a,b,c,d]---![Alt text]({{site.basepath}}/img/Running_cow.gif "Optional title")![Alt text]({{site.basepath}}/img/me.jpg "This is me")
