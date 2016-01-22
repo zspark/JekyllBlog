@@ -1,5 +1,5 @@
 # Site settings
-title: z_Spark's notes
+title: sparkNotes
 email: z_Spark@163.com
 description: "任何正常智商的成熟人类个体都能无障碍理解人类全部的智慧。火花日志，记录职业生涯中的技术学习与心得，网站基于Jekyll搭建，感谢Jekyll，ruby，MathJax，github等全球开源组织。"
 baseurl: # the subpath of your site, e.g. /blog/
@@ -18,4 +18,19 @@ blank: "&nbsp; &nbsp; "
 openFeed: false
 
 # Build settings
+highlighter: pygments 
 markdown: kramdown
+kramdown:
+  auto_ids: true,
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  enable_coderay: true
+  
+  coderay:
+    coderay_wrap: div
+    coderay_line_numbers: inline
+    coderay_line_numbers_start: 1
+    coderay_tab_width: 4
+    coderay_bold_every: 10
+    coderay_css: style

@@ -1,1 +1,0 @@
----layout: posttitle:  "划线游戏demo"date:   2013-12-23 10:19:15categories: jekyll as3published: truetags: [as3]---工作之余，简单做的一款划线小游戏，仅仅是个demo，在安卓手机上试了下，感觉不错，毕竟用手的其操作方式比鼠标舒服很多。<embed src="{{site.basepath}}/swf/lineBall.swf" wmode="direct" type="application/x-shockwave-flash" width="740" height="500" quality="high" />

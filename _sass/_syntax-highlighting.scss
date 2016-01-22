@@ -2,6 +2,8 @@
  * Syntax highlighting styles
  */
 .highlight {
+    .lineno{-webkit-user-select:none;-moz-user-select:none;-o-user-select:none;}
+    .lineno{color:#bbb;display:inline-block;padding:0 5px;border-right:1px solid #bbb;}
     background: #fff;
     @extend %vertical-rhythm;
 
