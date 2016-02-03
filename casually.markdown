@@ -11,6 +11,11 @@ permalink: /casually/
 Hadamard product(matrices);
 * GLSL中的矩阵是列优先矩阵；
 * GLSL中基本运算需要多加注意小数点，比如float f=1/9;最后的f是0，而不是0.111111，如果写成float=1.0/9.0;结果才是0.111111；有这样写法的朋友可能写过一段时间脚本程序。
+* gl_FragCoord
+* distance();
+
+
+《http://gamedevelopment.tutsplus.com/tutorials/how-to-write-a-smoke-shader--cms-25587》文章中将使用2个FBO，分别存储A、B两个纹理对象，第一次渲染将A的纹理数据经过算计计算后写入B，将B渲染到舞台上，第二次渲染将B的经过算法写入A，再将A渲染到舞台上。如此反复；
 
 ##OpenGL基本渲染管线流程
 
@@ -39,6 +44,7 @@ Hadamard product(matrices);
 * notepad2：notepad是win系统自带的文本编辑器，notepad2是款非常简单的文本编辑器，全部4个文件（一个exe，一个配置ini，2个文本txt），用它来可以替代系统notepad，功能很全，甚至还有语法高亮，保证你会喜欢上他；
 * 7z：压缩软件，开源；
 * krita：非常优秀的涂鸦软件，随心所欲，想画就画，开源；
+* Sumatra PDF：开源pdf阅读软件，非常轻巧；
 
 ##拾零
 

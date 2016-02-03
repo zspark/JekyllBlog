@@ -30,6 +30,15 @@ tags: [计算机图形学 computer-graphics cg CG]
 ###透视投影
 透视投影，可以到[这里][myPostUrl2]查看。
 
+###观察API
+{{site.blank}}观察API就是用简单的方式指定照相机或者眼睛的位置与方位的函数，理论上只要能实现具体指定眼标架即可。书中特意说到了两个常用API：
+
+1. VRP、VPN、VUP：
+	* VRP（view-referecne point）：观察参考点，就是指定眼标架在位置；
+	* VPN（view-plane normal）：观察平面法向量，指定眼标架的z轴；
+	* VUP（view-up vector）：观察正向向量，就是照相机打算观察的区域正向；
+2. LookAt();
+
 ##总结
 {{site.blank}}整个交计图的第四章
 
