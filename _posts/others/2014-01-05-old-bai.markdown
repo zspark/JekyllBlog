@@ -16,7 +16,7 @@ tags: [work]
 
 1. 从[官网][url1]下载Mirage Engine并安装。引擎安装完成后，环境变量中也会出现MIRAGEENGINE变量。
 2. 去github上下载MirageFBPlugin包（在线安装不需要）。
-3. 以管理员身份运行Flash Builder 4，进入help --> Install New Software…
+3. 以管理员身份运行Flash Builder 4.7，进入help --> Install New Software…
 4. 首先需要添加一个新site，点击图中的Add…按钮，进入Add Repository对话框 ![img1][img1]（**建议在安装插件前点击“Available Software Sites”，把下图勾选的两个无用项先删掉**）![img1][img8]
 5. 如果是下载到本地安装，选择图中的Local…按钮，并选择MirageFBPlugin所在的文件夹；如果是在线安装，则拷贝URL地址到Location，在Name框中输入site名，如Mirage，点击OK按钮。![img2][img2]              
 6. 在上面第4项的Work with列表框中选择新添加的site，会出现下图的插件： ![img3][img3]

@@ -1,6 +1,6 @@
 ---
 layout: post_with_wisdom
-title:  "《交互式计算机图形学》复习笔记二"
+title:  "《交互式计算机图形学》复习笔记二-图形学编程"
 date:   2015-12-25
 categories: jekyll CG
 published: true 

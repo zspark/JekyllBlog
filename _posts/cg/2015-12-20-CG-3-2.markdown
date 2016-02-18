@@ -1,6 +1,6 @@
 ---
 layout: post_with_wisdom_mathjax
-title:  "《交互式计算机图形学》复习笔记三（下）"
+title:  "《交互式计算机图形学》复习笔记三-几何变换（下）"
 date:   2016-01-01
 categories: jekyll CG
 published: true

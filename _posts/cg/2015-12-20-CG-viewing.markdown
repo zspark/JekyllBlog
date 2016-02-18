@@ -1,6 +1,6 @@
 ---
 layout: post_with_wisdom_mathjax
-title:  "《交互式计算机图形学》复习笔记四"
+title:  "《交互式计算机图形学》复习笔记四-观察"
 date:   2016-01-13
 categories: jekyll CG
 published: true
