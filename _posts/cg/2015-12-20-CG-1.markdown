@@ -91,26 +91,5 @@ tags: [计算机图形学 computer-graphics cg CG]
 
 {{site.blank}}交计图中第一章重点我觉得就这些东西，它是一个总述的章节，希望能从全盘先给读者一个轮廓，然后带着问题、好奇与目前的初步理解从第二章开始按照上面的顺序往下走，这也是交计图这本书作者Edward Angel多年教学颇为成功的方式。博文有书中的语句也有自己的理解，犯错不要紧，及时改正就好。
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 [qicifangchen_baidu]:http://baike.baidu.com/link?url=XI8RIoMTxQa7NY8MYqHNJhLU7fpd8yDVvS1f8bGWQAQ2cZ1vOmDmq3HuvoxfbvBHfqxLRSTmuu0GbPMdmlz7na
 ==EOF==

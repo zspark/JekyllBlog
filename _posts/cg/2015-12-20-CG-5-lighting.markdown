@@ -4,7 +4,8 @@ title:  "《交互式计算机图形学》复习笔记五-光照"
 date:   2016-01-17
 categories: jekyll CG
 published: true
-excerpt: ""
+excerpt: "介绍计算机图形学中关于光照的基本原理、模型与着色"
+keywords: "cg,lighting,3d,光照,Phong,Blinn-Phong,Gouraud,冯氏,高氏,计算机图形学,computer-graphics,ambient,diffuse,specular"
 wisdom: 如果你以为用户是白痴，那就只有白痴才用它。 —— 李纳斯·托沃兹（Linus Torvalds），LINUX之父
 meta: 
 author: 
@@ -15,14 +16,14 @@ tags: [计算机图形学 computer-graphics cg CG]
 ##光照
 {{site.blank}}光是什么？我们不说些很范的概念，甚至情感方面的，比如“光是抚慰心灵的”。有了光，我们的物体才有了影，“光影”不分家。光有强弱的不同，物体不同表面光的强弱表达出了物体的形。影应该没有强弱（有些影比较淡是因为有环境光或者物体表面的反射光参与了进来），但影的存在表达出了物体的依托，也就是位置关系。
 
-###光照基本原理
+###光照基本组成
 {{site.blank}}我们在计图研究中，经常使用的光有三种：环境光（ambient）、漫射光（diffuse）、镜面光（specular）。
 
 * 环境光：这种光在真实世界中其实是不存在的，但在计图中必须有的原因在于我们非常有必要给物体整体上个最基本的亮度与轮廓，不然在监视器上就是漆黑一片（如果光照不到的地方），想象一个全封闭的房间，墙是纯黑的，里面有一盏灯，于是整个房间昏昏暗暗，但是如果把墙涂成白色，同样的孤灯下马上就觉得明亮许多，这个整体的亮度差，我们姑且就拿来形容是真实世界的“环境光”，究其真实原因还是白墙对灯光的漫射，是种标准的漫射光。
 * 漫射光：漫射光的存在给世界提供了粗略的明暗效果，使得物体出现了基本的形状，想象一下阴天的户外吧，看不见太阳，但外面的东西依然可以辨认，注意观察的话你会发现，这种情况下基本或者根本看不见影子，较远处有2棵树，不熟悉环境的话因为很难判断出孰近孰远。想象到这里你应该能对漫射光有了正确的感性认知。
 * 镜面光：就像激光一样，“直来直去”。照在物体上肯定形成影子，镜面光的存在让物体有了鲜明的明暗效果，同时有了依托（影子，让人正确感知位置关系）。回到上面我们想象的场景中，倘若正是个风和日丽的下午，看一下2棵树的影子与太阳的位置，应该就更有依据判断出它们的远近。
 
-###phong模型
+###Phong模型
 {{site.blank}}我们来简单推导下一个被称为phong（冯）光照模型的公式，三种光的强度分别用L加其英语单词首字母做下标表示。
 
 ####漫射光贡献
@@ -46,7 +47,7 @@ $$F=\frac {1}{a+bd+cd^2}$$
 
 这样写的原因在于不至于将距离光源近的物体明暗差距大，而远的物体差距小。究其根本原因是在于我们真实的世界是各种光源、光线（反射光、折射光、漫射光、散射光等等）复杂叠加的结果，而计图中仅仅将光源想象成一个点，将复杂叠加尽量简单化。
 
-> 用点发光体照明一个场景是真实光照效果的一个简单逼近。摘自《计算机图形学》第三版中文。
+> “用点发光体照明一个场景是真实光照效果的一个简单逼近。” 摘自《计算机图形学》第三版中文。
 
 
 最终的漫射光模型如下：
@@ -84,8 +85,58 @@ $$
 
 跟着公式与上面的图像，我们再次进行说明。第一张子图是只有环境光效果，由于处处存在环境光且强度相同，因此没有明暗的变化，仅仅给物体涂上了一层基础亮度与基本的轮廓，让观察者知道那里有个东西。从图中我们明显看不出其表面的形状，直观感觉像是2个哑铃。第二章子图是仅仅有漫射光的情况，我们看到了物体表面的形，但是阴暗的地方与背景融为一体，因为我们没有给物体涂上基本的亮度。第三张子图是只有镜面光的效果，由于$$\alpha$$设置可能比较高，导致我们只能视觉感知到反射光线明显朝向观察者方向的光亮，其他方向一律剔除，这才形成了图中星星斑点。第四张子图就是前三者的组合，他比第一张、第二张整体明亮，因为亮度叠加了。既能看到整体轮廓，又能看到正对表面的形状，还有高光表达物体表面“光滑”“明亮”的物体特征，这样就算完成了一次较好的渲染。
 
-==TBC==
+###改进了的Phong模型
 
+####反射向量的计算
+向量r是u针对n的反射向量，很明显r是通过先给出u与n后才能计算出来的。从公式1.2中知道想要得到最终镜面光的贡献，必须事先计算r。
+
+![img7][img7]
+
+我们将r平移到以U为起始点的位置，从而得到一个等腰三角形OUU'，其中U'点肯定在向量n所在的直线上。假设
+
+$$
+\mathbf u +\mathbf r=x\mathbf n
+$$
+
+如果我们能得到$$x\mathbf n$$的具体数据就能通过减法得到r。通过观察与数学简单判断得出
+
+$$
+x\mathbf n=2\overrightarrow{OC}\\
+\overrightarrow{OC}=(\mathbf u \cdot \hat {\mathbf n})\hat {\mathbf n}
+$$
+
+于是反射向量的计算公式为：
+$$
+\mathbf r=2(\mathbf u \cdot \hat {\mathbf n})\hat {\mathbf n}-\mathbf u
+$$
+
+####Blinn-Phong模型
+{{site.blank}} 接下来我们继续查看公式1.2。现在我们知道了r的具体数据，那么计算镜面光不是问题。进一步的发展要么就是设计新的光照模型要么就是优化Phong模型。改进的Phong模型就是从优化的角度进行了发展。前辈们通过一个叫半角向量的思想优化了这个模型。
+
+![img8][myPic6]
+
+{{site.blank}}如上图所示，红色向量h就是u与v的所成角的半角向量，其方向是$$\hat{\mathbf u}+\hat{\mathbf v}$$，大小的话一般都使用归一化的向量。可以简单的证明n与h形成的角度是r与v形成角度的一半，如此一来我们可以近似的将$$\mathbf v \mathbf r$$的点积计算写成$$\mathbf n \mathbf h$$的形式。简单分析一下计算r时候的开销：7个乘法运算、5个加法运算。而计算h的开销：3个乘法、4个加法。除了性能上的提升以外，新向量h也会在其他方面有所贡献。
+
+{{site.blank}}通过将rv的运算改成近似的使用nh的形式，我们将此改进的Phong模型称为：Blinn-Phong模型。
+
+
+
+光源的绿色成分对亮度做出的贡献最大，蓝色分量做出的贡献最小。因此RGB光源的亮度一般表示如下：
+luminance=0.299R+0.587G+0.114B
+一种推荐的公式如下：
+luminance=0.2125R+0.7154G+0.0721B
+
+###着色
+{{site.blank}}我们有三种基本的着色方案：
+
+* flat着色：就是一个三角面一种颜色，具体颜色值是要么来自第一个顶点、要么来自最后一个顶点颜色，通过下面OpenGL函数指定：glProvokingVertex(GL_FIRST_VERTEX_CONVENTION)、glProvokingVertex(GL_LAST_VERTEX_CONVENTION);
+* 高氏着色：对光照进行插值的着色方案；
+* 冯氏着色：对法线进行差值的着色方案；
+
+##一些细节思考
+{{site.blank}}在光照模型中，我们对距离的设想仅仅存在于光源到物体的表面，而对物体表面到观察者的距离采取忽略的态度。
+
+==EOF==
 
 
 [myPic1]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_phong_model.jpg "img1"
@@ -93,8 +144,11 @@ $$
 [myPic3]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_phong_shininess.jpg "img3"
 [myPic4]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_phong_3_lights.jpg "img4"
 [myPic5]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_phong_specular_light.jpg "img5"
+[myPic6]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_phong_model_half.jpg "img6"
+[img7]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_reflection.jpg "img7"
 
 [wikiURL1]:https://en.wikipedia.org/wiki/Phong_reflection_model
+[flatShading]:http://blog.csdn.net/xiajun07061225/article/details/7660810
 
 
 

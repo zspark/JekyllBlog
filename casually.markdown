@@ -3,8 +3,14 @@ layout: page
 title: Casually
 permalink: /casually/
 ---
-##
-{% raw %}
+
+OpenGL默认是选择三角形中最后一个顶点的发现、颜色为该三角形的发现与颜色的
+
+##glEnableVertexAttribArray()
+这个函数就是个显存向渲染管线是否可以提交数据的开关，从OpenGL.org来看没有什么特别说明。开启后向渲染管线提交数据，没有数据的话会提交默认值，比如没有颜色的话会提交默认黑色。但入股关闭次开关后，整个数据禁止提交，监视器上不会看见任何东西；
+
+非常需要注意类型，比如三角形顶点的索引用了float型，在glDrawElements函数中就不能使用。我这些习惯应该来源于弱类型语言的习惯，非常需要注意；
+
 ##GLSL编程拾零
 
 * GLSL中的矩阵、向量的+、-、\*、/在一定条件下为分量计算；扩展：
@@ -28,6 +34,7 @@ Hadamard product(matrices);
 |模型|NDC|透视除法后|
 |模型|NDC|执行正投影|
 |模型|窗口坐标系|视口变换后|
+|模型|屏幕坐标系|与窗口坐标系一样，只是缺少深度信息，参见交计图中文第六版217页|
 
 ##我的工具箱
 
@@ -48,6 +55,8 @@ Hadamard product(matrices);
 
 ##拾零
 
+
+
 glCullFace(GL_BACK);
 glEnable(GL_CULL_FACE);
 glEnable(GL_DEPTH_TEST);
@@ -55,7 +64,7 @@ glEnable(GL_LIGHTLING);
 glFrontFace(GL_CCW);
 
 * [这里][3]Mathjax公式语法；
-
+* [这里][5]有GLSL常用函数；
 * [这里][1]有charley_yang的一篇关于C++ typedef的用法小结，对自己有帮助，希望也能帮助到别人。
 * [这里][2]是一篇关于Jekyll的文章，总结还算全面。
 [这里][4]这里有一篇不错的文章，介绍vs中各种路径。
@@ -96,6 +105,7 @@ glFrontFace(GL_CCW);
 [2]:http://higrid.net/c-art-blog_jekyll.htm
 [3]:http://mlworks.cn/posts/introduction-to-mathjax-and-latex-expression/
 [4]:http://blog.csdn.net/lp310018931/article/details/47991759
+[5]:http://blog.csdn.net/hgl868/article/details/7876257
 
 [url1]:http://www.cnblogs.com/sunyubo/archive/2010/09/15/2282123.html
 [url2]:http://vim.wikia.com/wiki/Setting_the_font_in_the_GUI
