@@ -8,19 +8,23 @@ excerpt: ""
 wisdom: 计算机科学就是有关计算机的，正如天文学就是有关望远镜的。—— 艾兹格·迪杰斯特拉（Edsger W. Dijkstra），荷兰计算机科学家，最短路径算法提出者
 meta: 
 author: 
+subImgPath: convex-hull\
 tags: [collision-detection Computer algorithm convex-hull quick-hull]
 ---
+==TBC==
+
 凸包及其算法（一）[点击这里][urlpre]
 
-####`快包算法quick-hull`
-{{site.blank}}看过《实时碰撞检测算法技术》中的快包算法与维基百科中的算法，其中虽有部分出入，但本质一样：都是由内而外，膨胀到点集的边缘；不过这里需要说的是我首先看的《实时碰撞检测算法技术》中的快包算法说为了算法健壮性，需要考虑两点：
+### 快包算法(quick-hull-algorithm)
 
-1. 首次计算逼近四边形计算的时候，需要考虑到其退化情况，比如一个三角形或者一条直线；
+{{site.blank}}看过《实时碰撞检测算法技术》中的快包算法与维基百科中的算法，其中虽有部分出入，但本质一样：都是由内而外，膨胀到点集的边缘。不过《实时碰撞检测算法技术》一书中说为了快包算法健壮性，需要考虑两点：
+
+1. 首次逼近四边形计算的时候，需要考虑到其退化情况，比如一个三角形或者一条直线；
 2. 最远点不止一个的问题；
 
 {{site.blank}}书中说为了考虑到四边形有可能退化的问题，需要算法注意首次逼近构造四边形的退化情况。这条明显过虑了，因为后期当图形被迭代‘充气’的时候，都是计算距离边（三维的话是面）最远的点，如此一来的话，先前的四边形就是画蛇添足，完全可以一开始就仅仅构造一条直线（边），然后向两边“充气”。第二条在我们熟悉了算法之后再看；
 
-我们还是使用前面的点集，来具体看一下快包算法的过程：
+我们还是使用前面的点集，来具体看一下快包算法的过程，点集如下所示。
 
 ![Img][image4] 图 3
 
@@ -36,7 +40,7 @@ tags: [collision-detection Computer algorithm convex-hull quick-hull]
 
 下面就是计算绿色的点，步骤与上面一样。
 
-#####注意点
+#### 注意点
 
 1. 新形成的边（比如h边），它是怎么确定自己寻找的方向是朝向C而不是反方向？
 2. 寻找最远点的过程中，是要遍历点集的，如何减少遍历？
@@ -46,13 +50,12 @@ tags: [collision-detection Computer algorithm convex-hull quick-hull]
 
 现在说下《实时碰撞检测算法技术》提到的第二条。见图6
 
-![Img][image_qh6]
-图 6 
+![Img][image_qh6] 图 6 
 
 {{site.blank}}当我们为某条边（图中是边g）寻找最远点的时候，发现除了点F外还有M，K，L这三个点并驾最远，这时快包算法的策略是取距离这条边（边g）两个顶点（E，H）最近的点，从图中看出，距离E最近的是L，距离H最近的是M，此两者选其一即可。有朋友可能会想到如果点K，L与E的距离一样远怎么办，比如E位于K，L两点的垂直平分线上？
 稍微分析一下就知道这种情况不可能发生，如果有的话当初的点E就不可能被找到，代之的应该是L或者K了。专业点说就是当E，H确定了后，其他所有的点都肯定位于边g的面域中，而非点域。
 
-#####具体实现（AS3）
+#### 具体实现（AS3）
 
 {% highlight as3 %}
 
@@ -60,7 +63,7 @@ tags: [collision-detection Computer algorithm convex-hull quick-hull]
 (暂略)
 
 
-#####算法分析
+#### 算法分析
 快包的时间复杂度最好的情况下是：
 
 $$
@@ -82,30 +85,28 @@ T(n)&=T(n-1)+O(n)\\
 $$
 
 
-#####质疑
+##### 质疑
 {{site.blank}}[这里][url2]有篇关于凸包的博文，其中提到关于快包算法的时间复杂度最快能够达到O(n)的级别，我对此很质疑，快包算法就计算第一条分割线而言，怎么着也要O(n)的时间复杂度，更何况递归才刚刚开始。
 
 
---------------------------------------------------------------------------------------
+### 相关资料：
 
-相关论文、资料：
-
-[维基百科][url_wiki_quickhull]
+[维基百科(https://en.wikipedia.org/wiki/Quickhull)][url_wiki_quickhull]
 
 [http://www.personal.kent.edu/][url1]
 
+==EOF==
 
 [url_wiki_quickhull]:https://en.wikipedia.org/wiki/Quickhull
-[urlpre]:http://www.zspark.net
+[urlpre]:http://www.zspark.net/jekyll/cg/2015/06/25/convex-hull-1.html
 [url1]:http://www.personal.kent.edu/~rmuhamma/Compgeometry/MyCG/ConvexHull/quickHull.htm
 [url2]:http://www.cnblogs.com/Booble/archive/2011/03/10/1980089.html
 
-[image4]:{{site.basepath}}/img/convex-hull/image4.jpg "image4"
-[image_qh4]:{{site.basepath}}/img/convex-hull/image_qh4.jpg "image_qh4"
-[image_qh5]:{{site.basepath}}/img/convex-hull/image_qh5.jpg "image_qh5"
-[image_qh6]:{{site.basepath}}/img/convex-hull/image_qh6.jpg "image_qh6"
+[image4]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image4.jpg "image4"
+[image_qh4]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_qh4.jpg "image_qh4"
+[image_qh5]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_qh5.jpg "image_qh5"
+[image_qh6]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_qh6.jpg "image_qh6"
 
-==TBC==
 
 
 

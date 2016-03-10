@@ -25,7 +25,7 @@ tags: [thoughts]
 * 指定明确的变量类型；动态类对象成员在其寻址内容过程中势必没有静态类对象快，所以尽可能的去用静态类对象代替动态类对象；
 * 集中同一种行为，有助于理解逻辑结构，使思路更加清晰；
 
-{% highlight as3 %}
+{% highlight as3 linenos%}
 clearItems();
 var i:int=0;
 Global.removeAll();
@@ -38,7 +38,7 @@ for(i=0;i<mailList.length;i++){//TODO ...}
 * 如果一个界面中两个UI控件（比如按钮）不可能同时被显示的话，为什么要创建2个然后再隐藏一个？完全可以视当时环境给唯一的控件指定不同的业务逻辑；
 * 常犯的错误：判断布尔型变量，赋值布尔型变量；
 
-{% highlight C++ %}
+{% highlight C++ linenos%}
 bool a=true;
 bool b;
 if(a)b=true;
@@ -47,7 +47,7 @@ else b=false;
 
 * 底层库接口的设计更加偏向于大众化，比如下面三个接口函数，对于库接口的设计而言，明显第三个好。但当接口的设计提高到应用层的时候，封装出来诸如第一、二个函数是没有问题的。这是编程哲学上的思考，没有对与错；
 
-{% highlight as3 %}
+{% highlight as3 linenos%}
 function changeColorToRed():void;
 function changeColorToBlue():void;
 function changeColorTo(color:uint):void;

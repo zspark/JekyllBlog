@@ -1,19 +1,19 @@
 ---
 layout: post_with_wisdom
-title: "立方体纹理"
+title: "OpenGL立方体纹理备忘"
 date:   2016-02-29
 categories: jekyll CG
 published: true
 excerpt: ""
 wisdom: “倘若代码和注释不一致，那么很可能两者都是错的。” —— Norm Schryer
 meta: 
-subImgPath: cg\image\
+subImgPath: cg\
 author: 
 tags: [texture, cubeTexture]
 ---
 尝试给立方体贴纹理，这里小做笔记：
 
-{% highlight c++ %}
+{% highlight c++ linenos%}
 
 //激活指定纹理单元；不写的话默认激活0号纹理单元；
 glActiveTexture(GL_TEXTURE1);
@@ -62,9 +62,15 @@ glUniform1i(samperLocation,1);
 
 {%endhighlight %}
 
-需要注意的是立方体纹理不必设置立方体8个顶点的纹理坐标，只需要将指定的8个顶点在空间中的正常坐标（三维的），通过顶点着色器传递给片元着色器后，正常的使用texture函数采样即可；
+需要注意的是:
 
-{% highlight glsl %}
+1. 立方体纹理不必设置立方体8个顶点的纹理坐标，只需要将指定的8个顶点在空间中的正常坐标（三维的），通过顶点着色器传递给片元着色器后，使用texture函数采样即可；
+2. 给纹理类型填充纹理数据时不要混乱，可以熟记那个横放的十字架图（见下图），交点位置自己确定后，其他5个面顺序也就固定了；
+
+![cube_texture][img_cube_texture] <br>图片来自[维基百科][site_url]
+
+
+{% highlight glsl linenos%}
 //顶点着色器：
 #version 430
 in vec4 vPosition;
@@ -90,3 +96,5 @@ void main(){
 
 ==EOF==
 
+[img_cube_texture]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cube_texture.jpg "cube_texture"
+[site_url]:https://en.wikipedia.org/wiki/Cube_mapping

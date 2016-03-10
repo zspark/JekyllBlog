@@ -6,12 +6,12 @@ permalink: /casually/
 
 OpenGL默认是选择三角形中最后一个顶点的发现、颜色为该三角形的发现与颜色的
 
-##glEnableVertexAttribArray()
+## glEnableVertexAttribArray()
 这个函数就是个显存向渲染管线是否可以提交数据的开关，从OpenGL.org来看没有什么特别说明。开启后向渲染管线提交数据，没有数据的话会提交默认值，比如没有颜色的话会提交默认黑色。但入股关闭次开关后，整个数据禁止提交，监视器上不会看见任何东西；
 
 非常需要注意类型，比如三角形顶点的索引用了float型，在glDrawElements函数中就不能使用。我这些习惯应该来源于弱类型语言的习惯，非常需要注意；
 
-##GLSL编程拾零
+## GLSL编程拾零
 
 * GLSL中的矩阵、向量的+、-、\*、/在一定条件下为分量计算；扩展：
 Hadamard product(matrices);
@@ -23,7 +23,7 @@ Hadamard product(matrices);
 
 《http://gamedevelopment.tutsplus.com/tutorials/how-to-write-a-smoke-shader--cms-25587》文章中将使用2个FBO，分别存储A、B两个纹理对象，第一次渲染将A的纹理数据经过算计计算后写入B，将B渲染到舞台上，第二次渲染将B的经过算法写入A，再将A渲染到舞台上。如此反复；
 
-##OpenGL基本渲染管线流程
+## OpenGL基本渲染管线流程
 
 |元素|所在标架|说明|
 |:----:|:----:|:-----:|
@@ -36,7 +36,7 @@ Hadamard product(matrices);
 |模型|窗口坐标系|视口变换后|
 |模型|屏幕坐标系|与窗口坐标系一样，只是缺少深度信息，参见交计图中文第六版217页|
 
-##我的工具箱
+## 我的工具箱
 
 * picpick：非常优秀的图片简单处理工具，免费；
 * geogebra：2D几何绘图软件，外加简单的3D；
@@ -53,7 +53,7 @@ Hadamard product(matrices);
 * krita：非常优秀的涂鸦软件，随心所欲，想画就画，开源；
 * Sumatra PDF：开源pdf阅读软件，非常轻巧；
 
-##拾零
+## 拾零
 
 
 
@@ -69,13 +69,13 @@ glFrontFace(GL_CCW);
 * [这里][2]是一篇关于Jekyll的文章，总结还算全面。
 [这里][4]这里有一篇不错的文章，介绍vs中各种路径。
 
-##vim
+## vim
 
 * [这里][url2]有个介绍vim字体相关设置的文章；
 * [这里][url1]有个介绍vim录制功能的：
 * 查看光标处到文件头这部分内容的相关信息：g ^G
 
-###NERDTree在\_vimrc中的基本配置
+### NERDTree在\_vimrc中的基本配置
 在 vim 启动的时候默认开启 NERDTree（autocmd 可以缩写为 au）
 
 >autocmd VimEnter * NERDTree
@@ -93,7 +93,7 @@ glFrontFace(GL_CCW);
 >let NERDTreeShowBookmarks=1
 
 
-##Window下的文件连接
+## Window下的文件连接
 这个功能非常好用，我也是之前从linux系统中学来的，就是一个文件如果被好多功能共享的时候，而你又不想或者不能复制多份文件，此时文件连接就非常好用。
 
 在以管理员运行的命令行中输入：mklink /?可以查看mklink的帮助

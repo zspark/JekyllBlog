@@ -10,6 +10,7 @@ meta:
 author: 
 tags: [OpenGL]
 ---
+
 获取当前使用的渲染程序的id，可以用来判断某个渲染程序是不是正在使用；
 GLint currentProgram =0;
 glGetIntegerv(GL_CURRENT_PROGRAM,&currentProgram);

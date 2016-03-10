@@ -1,6 +1,6 @@
 ---
 layout: post_with_wisdom
-title:  "《交互式计算机图形学》复习笔记二-图形学编程"
+title:  "《交互式计算机图形学》复习笔记-图形学编程"
 date:   2015-12-25
 categories: jekyll CG
 published: true 
@@ -12,11 +12,11 @@ subImgPath: cg\cg1\
 tags: [计算机图形学 computer-graphics cg CG]
 ---
 
-##第二章 图形学编程
+## 第二章 图形学编程
 
-{{site.blank}}第二章就是为了写个谢尔并斯基镂垫程序，但是Edward却引发说了一堆东西
+{{site.blank}}第二章就是为了写个谢尔并斯基镂垫程序，但是Edward却引发说了一堆东西，叫一般人可写不出来。
 
-###绘制模式
+### 绘制模式
 
 传统的绘制模式有典型的两种：
 
@@ -25,11 +25,11 @@ tags: [计算机图形学 computer-graphics cg CG]
 
 {{site.blank}}简单分析下这两种方式就会发现：如果需要再次绘制，第一种便需要重新再计算一遍数据；如果数据提交频繁（比如一个物体动来动去），第二种方式就会因内存数据频繁的向GPU提交而成为性能瓶颈。于是OpenGL出现了第三种方案，应该说是前两种方案的折中：**先全部计算出来，完事一个批次提交给显存，而不是把数据依然留存在内存中。**
 
-###点与顶点
+### 点与顶点
 
->在OpenGL中一定区分“点”与“顶点”的含义。“顶点”是空间中的一个位置，我们在计算机图形学中使用顶点的空间包括二维的、三维的和四维的。我们利用定点来定义图形系统中可识别的基本几何图元。比如我们一个点，那它在空间中就需要一个顶点来定义；再比如一条线段，就需要2个空间中的顶点来定义等等。
+> “在OpenGL中一定区分“点”与“顶点”的含义。“顶点”是空间中的一个位置，我们在计算机图形学中使用顶点的空间包括二维的、三维的和四维的。我们利用定点来定义图形系统中可识别的基本几何图元。比如我们一个点，那它在空间中就需要一个顶点来定义；再比如一条线段，就需要2个空间中的顶点来定义等等。”  --《交互式计算机图形学》第六版
 
-###API
+### API
 
 既然OpenGL、D3x都是虚拟照相机模型下的图形系统，那么其API的设计就免不了下面7种类型：
 
@@ -49,18 +49,18 @@ tags: [计算机图形学 computer-graphics cg CG]
 |window System	|wgl|
 |mac	|agl|
 
-OpenGL扩展库(GLEW)：这是个与操作系统无关的库；
+OpenGL扩展库(GLEW)：这是个与操作系统无关的库，主要是一些函数、变量等的初始化。；
 
 OpenGL实用工具库\箱(GLUT：OpenGL Utility Toolkit)：提供了任何现代窗口系统所需的最小功能集；
 
-###图元的类型：
+### 图元的类型：
 
 * 几何图元(geometric primitive);
 * 图像图元\光栅图元(raster primitive)：光栅图元的一个例子是像素阵列，比如点阵字体，它不具有几何属性，我们不能像对几何图元那样对光栅图元进行几何操作。光栅图元需要经过另一条流水线的处理，这条流水线与几何流水线并行，终点也是帧缓存，如图2.6。
 
 ![Img][img_1]
 
-###OpenGL中的几何图元
+### OpenGL中的几何图元
 
 OpenGL中一共有7种图元：
 
@@ -82,9 +82,9 @@ OpenGL中一共有7种图元：
 
 这三种模式仅仅针对多边形，通过glPolygonMode函数来进行指定，具体参考官方[函数指南][url4]；点、线段、折线等图元无效。
 
->我们把用来描述对象如何被绘制的方式称为属性(atribute)。
+> “我们把用来描述对象如何被绘制的方式称为属性(atribute)。” --《交互式计算机图形学》第六版中文
 
-###颜色
+### 颜色
 
 {{site.blank}}目前常用的颜色是RGBA颜色，四个分量，每个8位，共32位。历史上出于帧缓存深度太小（比如只有8位），而出现过`索引颜色`模式，这里简单说下索引颜色模式。
 
@@ -94,7 +94,7 @@ OpenGL中一共有7种图元：
 
 {{site.blank}}第二章还简单说了下观察，这个我会在复习第四章的时候详细做笔记，暂时忽略，这章讲观察无非是为了更清楚的说明本章最终的镂垫程序中的点的坐标为什么被限制在-1到1范围。
 
-###与OS窗口系统的交互
+### 与OS窗口系统的交互
 
 {{site.blank}}前面的内容说了下glut库函数提供了任何现代窗口系统所需要的最小功能集，这就意味着当你需要更多更全面的与系统窗口交互的功能，需要自己写功能。无论如何glut对于一般应用那也是不二的选择，主要说下其提供的几个重要函数。
 
@@ -109,13 +109,13 @@ OpenGL中一共有7种图元：
 * glutDisplayFunc();
 * glutIdleFunc();
 
-**重点注意glutInitDisplayMode函数的参数之间是通过逻辑或结合起来的。**
+** 重点注意glutInitDisplayMode函数的参数之间是通过逻辑或结合起来的。**
 
-###传入顶点数据
+### 传入顶点数据
 
 {{site.blank}}书中是通过OpenGL显卡缓存的方式提交顶点的，这就是之前说的OpenGL提供的第三个方案，这部分内容我看在书后期基本没有再出现，不打算将其作为重点复习，而会在全新的链接中参考第五版蓝宝书第八章缓冲区对象的内容记录。先给出按照传统的glBegin()，glEnd()的方式传递顶点数据给OpenGL的代码，程序如下。
 
-{% highlight c++ %}
+{% highlight c++ linenos%}
 void render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glBegin(GL_POINTS);
@@ -145,16 +145,16 @@ void render() {
 };
 {% endhighlight %}
 
-###双缓存
+### 双缓存
 
 {{site.blank}}现代显卡帧缓存中的数据提交到显示器与应用程序刷新帧缓存是两个不同步的过程（部分设备有这样强制同步的机制），于是就产生一个明显的问题，比如帧缓存正在提交数据，而此时应用程序又刷新了帧缓存，那么最终呈现到监视器上的画面就是两部分，一般来说是上面一个画面，下面一个画面。双缓存的意义就在于帧缓存的两边各用一个缓存，应用程序所有的提交经过OpenGL后达到`后端缓存(back buffer)`，而监视器上显示的都是`前端缓存(front buffer)`的内容。程序员只需要在合适的时候调用glSwapBuffer()函数即可告知显卡将后端缓存中的内容提交到前端。
 
 
-##精简版谢尔并斯基镂垫程序
+## 精简版谢尔并斯基镂垫程序
 
 {{site.blank}}下面是程序的main函数，其中的render函数参见上面程序。
 
-{% highlight c++ %}
+{% highlight c++ linenos %}
 int main(int argc, char* argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA |GLUT_DOUBLE | GLUT_DEPTH);
@@ -181,15 +181,15 @@ int main(int argc, char* argv[]) {
 }
 {% endhighlight %}
 
-##着色器
+## 着色器
 
 {{site.blank}}说起着色器，最基本的两个便是顶点着色器、片元着色器，其他的着色器比如细分控制着色器、细分计算着色器、还有几何着色器。拿GLSL着色器语言来说，它也有自己的一套规范，扩展了C语言的数据类型（添加了矩阵和向量）。Edward在第二章首次介绍了着色器的基本用法，并且在镂垫程序中派上用场。
 
-###顶点着色器
+### 顶点着色器
 
 {{site.blank}}前面说过应用程序的数据在通过渲染管线的时候，几何图元中的顶点肯定要经过顶点处理模块，该模块会对经过的顶点经行矩阵变换从而将其坐标从物体坐标系下转换到照相机坐标系下。这是一般的情况，程序员完全可以不让其进行坐标变换或者随性乱变换，这都是可以的，而这些“想怎么着就怎么着”的做法就是在顶点着色器中进行的。
 
-{% highlight glsl%}
+{% highlight glsl linenos%}
 #version 430
 in vec4 vPosition;
 void main(){
@@ -199,7 +199,7 @@ void main(){
 
 {{site.blank}}上面是一个很简单的顶点着色器程序，其中我们申明了一个vec4类型的变量vPosition，同时用in修饰表示他是从流水线上游（并不一定是直接上游，见下图）提交过来的输入数据，gl_Position是顶点着色器内置的一个vec4实例的类型，不需要我们再次申明。**顶点着色器可以附带处理颜色数据，但是其最基本的作用就是要给流水线下游的模块输出顶点的新坐标，也就是内置的gl_Position必须在输出后至少有数据**。当然gl_Position不给他赋值的话一样可以编译通过，并且正常运行程序，就像下面代码，此时OpenGL会保证你看不见任何东西。
 
-{% highlight glsl%}
+{% highlight glsl linenos%}
 #version 430
 in vec4 vPosition;
 void main(){
@@ -208,7 +208,7 @@ void main(){
 
 现在新的问题出现了，如何映射用in修饰的变量与主程序中的数据？比如我有2个in修饰的上游变量，主程序也有2个数据提交，现在谁对应谁？什么类型？（因为OpenGL与GLSL是不同的语言，vec4可能OpenGL中没有，就算有也可是名字一样罢了）；还好OpenGL提供了获取GLSL代码中部分变量的函数glGetAttribLocation()，见下程序，我们获取了在顶点着色器中的变量vPosition，将它映射到了loc下，紧接着我们开启对这个变量内容的写入，第三条glVertexAttribPointer()函数是指明了我们传给着色器vec4变量的内容的格式。[参见官网函数手册][url4]
 
-{% highlight c++ %}
+{% highlight c++ linenos %}
 GLuint loc = glGetAttribLocation(program, "vPosition");
 glEnableVertexAttribArray(loc);
 glVertexAttribPointer(loc, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
@@ -216,11 +216,11 @@ glVertexAttribPointer(loc, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 
 更多的语法这里暂不提及。
 
-###片元着色器（片段着色器）
+### 片元着色器（片段着色器）
 
->光栅化模块输出位于视见体内部的每个图元的片元。每个片元都会被片元着色器处理。每次执行片元着色器时必须至少输出每个片元的颜色，除非这个片元在片元着色器中被标记为丢弃。
+> “光栅化模块输出位于视见体内部的每个图元的片元。每个片元都会被片元着色器处理。每次执行片元着色器时必须至少输出每个片元的颜色，除非这个片元在片元着色器中被标记为丢弃。”  --《交互式计算机图形学》第六版中文
 
-{% highlight glsl%}
+{% highlight glsl linenos%}
 #version 430
 void main(){
  gl_FragColor=vec4(1.0,0.0,0.0,1.0);
@@ -229,7 +229,7 @@ void main(){
 
 {{site.blank}}上面就是个简单的片元着色器程序，可以看出它有一个与gl_Position很相近的变量gl_FragColor。联想可知其做表达的应该是最终的片元颜色，没错。从OpenGL3.0开始片元颜色的输出也可以使用另一种形式，如下。
 
-{% highlight glsl%}
+{% highlight glsl linenos%}
 #version 430
 out vec4 fColor;
 void main(){
@@ -239,10 +239,9 @@ void main(){
 
 其中out修饰的便是输出变量，每个片元都经过上面程序处理后发现都输出了红色。片元变量从之前的gl_FragColor（固定的）到现在的随意起名的变量可以看出，OpenGl的发展是适应现代图像系统的“完全可编程”的理念的。
 
-###编译、连接着色器程序
+### 编译、连接着色器程序
 
 {{site.blank}}当程序员写完了各种着色器程序后，不能光在外部保存个文件或者在程序里面写完放着。我们需要编译每个着色器代码，然后连接到被称为`程序对象(Program Object)`的对象上才能使用。`把着色器连接到程序对象的过程中会产生一个表，着色器中的变量名会与表中的索引相关联。`首先利用glCreateShader(shader_type)方法创建一个`着色器对象(Shader Object)`，然后将着色器代码传入对象中，紧接着编译它（编译可能会失败，可以通过glGetShaderiv()获取一些失败的信息，方便调试），编译成功后将着色器对象附加到程序对象上，当全部你想要的着色器对象附加完成后，就可以尝试将程序对象连接到主程序中。
-
 
 {% highlight c++ lineons%}
 //创建程序对象
@@ -264,17 +263,17 @@ glAttachShader(program, fhader);
 glLinkProgram(program);
 {% endhighlight %}
 
-##注意
+## 注意
 
 * 交计图第五版书后面的着色器程序写好后，请务必用LF结尾保存，CR或者CRLF都不会顺利被着色器对象编译，这个问题暂时没有查到相关文章，期待解答。
 * 缺少glewExperimental = GL_TRUE;参考[OpenGL红宝书：第一个渲染程序Triangles常见问题归总][url3]
 
-##交计图中完整的示例程序
+## 交计图中完整的示例程序
 
 {{site.blank}}书中没有给出完整的程序，没准是大卸了八块，需要自己去拼凑，提供的网站可能也怪我没有深入搜索，其结果是空手而归。下面就贴出完整的实例程序。
 
 Source.cpp文件:
-{% highlight c++ %}
+{% highlight c++ linenos%}
 #include <Windows.h>
 #include <GL\glew.h>
 #include <GL\freeglut.h>
@@ -365,7 +364,7 @@ int main(int argc, char* argv[]) {
 {% endhighlight %}
 
 vec.h文件：
-{% highlight c++ %}
+{% highlight c++ linenos%}
 #pragma once
 #include "GL\glew.h"
 
@@ -385,10 +384,10 @@ struct vec2{
 
 typedef struct vec2 point2;
 
-{% endhighlight %}
+{% endhighlight linenos%}
 
 Angel.h文件：
-{% highlight c++ %}
+{% highlight c++ linenos%}
 #pragma once
 #include <iostream>
 #include "GL\glew.h"
@@ -471,7 +470,7 @@ namespace Angel{
 {% endhighlight %}
 
 顶点着色器文件vshader21.glsl：
-{% highlight glsl %}
+{% highlight glsl linenos%}
 #version 430
 in vec4 vPosition;
 void main(){
@@ -480,7 +479,7 @@ void main(){
 {% endhighlight %}
 
 片段着色器文件fshader21.glsl：
-{% highlight glsl %}
+{% highlight glsl linenos%}
 #version 430
 
 void main(){
@@ -490,9 +489,11 @@ void main(){
 
 ![img][img_2]
 
-##总结
+## 总结
 
 {{site.blank}}第二章是个相比第一章更加具体的章节，即便如此也没有深入讲解每一个模块的深入方面。本章用一个镂垫程序为引子，重点介绍了一个普通的OpenGL程序基本的结构、程序与OpenGL交互数据的基本方式方法，扩展说了下颜色、着色器等。从第三章开始正式进入顶点处理模块————几何变换，这才是图形学的开始。
+
+==EOF==
 
 [img_1]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg1_1.jpg
 [img_2]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg1_2.jpg
@@ -502,5 +503,4 @@ void main(){
 [url4]:https://www.opengl.org/sdk/docs/man/
 
 [url5]:http://www.xuebuyuan.com/839988.html
-==EOF==
 

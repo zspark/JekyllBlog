@@ -18,7 +18,7 @@ tags: [mirage,editor,UI,effect,2D,particle]
 
 {{site.blank}}于是我决定抛弃对结构文件的序列化支持，而采用自定义序列化过程。这里记录下各个编辑器最终文件的序列化结构，一方面整理下结构本身，二来好方便查阅。
 
-#MirageUIMaker
+# MirageUIMaker
 
 {{site.blank}}主体由许多“块”组成，每一个块即是一个显示对象，块中包含固定的一些数据，比如类型，成员变量的键值对，自己的编号，父容器编号，自己的id（**id与
 编号不是一个概念，编号主要用来映射谁是谁的父容器，id用来在运行时获取该显示实例**）；
@@ -38,7 +38,7 @@ tags: [mirage,editor,UI,effect,2D,particle]
 
 其中2到8是一个完整的块的内容，下面依次重复，循环n次；
 
-#MirageEffector
+# MirageEffector
 
 {{site.blank}}从效率与文件大小2个方面考虑的话，我决定去掉对2D粒子属性名（一个字符串）的记录，仅仅记录属性的值，映射过程是固定死了的，比如第一个读出来的数据固定就是粒子初始红色，第二个固定是初始绿色，以此类推；
 
@@ -106,7 +106,7 @@ uint第一个字节记录当前该文件的版本，与编辑器版本不同，�
 uint第二个字节第一位记录该文件是否为模板文件（1为模板文件，0反之），模板文件不允许通过编辑器正常保存途径保存，编辑后只可另存为；
 其他位带需求逐渐补充；
 
-#MirageAnimator
+# MirageAnimator
 
 {{site.blank}}Animator只有编辑文件没有显式的导出，编辑文件是能再次导入到编辑器中继续编辑的数据状态文件，而Animator最终导出的隐式文件全部只有一个（要么重新指定），它就是potato中MovieAsset类需要加载的动画配置文件，是个‘人可读’的txt文件；这里主要说下编辑文件（.mvd)。
 Animator没有大动，按原版继续。
@@ -119,13 +119,13 @@ Animator没有大动，按原版继续。
 
 
 
-##坑
+## 坑
 
 * 我序列化完毕的文件却不能显示出来，几番打印信息发现需要显示数字0的地方，有的显示0，有的显示0.00，马上意识到原数据可能是字符串，经过排查，问题就解决了，确实是字符串。
 
 * Adobe的AS3编译器有这样的bug，就是变量名如果与这个文件import的其他类所在的包名一样的话，编译器会报告
 ` Warning:(130, 0) [MirageAnimator]: Definition name is the same as an imported package name. Unqualified references to that name will resolve to the package and not the definition.`警告，此时编译是可以通过的，但是如果你后续逻辑是使用该变量的属性或者成员方法，编译器就会跑去那个包相关的地方找，然后就是报错了`Error:(131, 0) [MirageAnimator]: Call to a possibly undefined method xxx through a reference with static type Object.`，一个佐证就是在IDE中完全可以连接到正确的位置；
 
-#经验
+# 经验
 
 {{site.blank}}当一个引擎对焦点的支持只有一个的时候，在底层库框架的设计上就一定要注意鼠标划入触发的“焦点对象”与文本输入时的“框焦点”的对象两个概念。这两个概念不能混淆，可以想象当鼠标划入一个list后原来可输入的文本框焦点丢失是一种什么样的体验。

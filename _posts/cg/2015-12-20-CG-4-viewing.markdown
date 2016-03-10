@@ -1,6 +1,6 @@
 ---
 layout: post_with_wisdom_mathjax
-title:  "《交互式计算机图形学》复习笔记四-观察"
+title:  "《交互式计算机图形学》复习笔记-观察"
 date:   2016-01-13
 categories: jekyll CG
 published: true
@@ -12,7 +12,7 @@ subImgPath: cg\cg4_view\
 tags: [计算机图形学 computer-graphics cg CG]
 ---
 
-##观察
+## 观察
 平面几何投影：投影面是个平面并且投影线是直线
 
 * 平行投影；投影线彼此平行；
@@ -24,13 +24,13 @@ tags: [计算机图形学 computer-graphics cg CG]
 
 {{site.blank}}我读这一章总觉得应该抓住第三章的关键词“空间变换”去帮助理解。初学者可能很容易想到空间变换是诸如平移、缩放等等的变换，的确但同时比较狭隘。第四章的各种投影无非就是空间之间的变换，比如平行投影与透视投影都是将用户给定的视椎体变换到一个被称作`规范视椎体（CVV，canonical view volume）`的空间里面，目的就是为了在后期好进行裁剪、设备坐标系好映射。我读第四章始终觉得Edward没有强调这个概念，以至于读者难以从第三章平滑过渡到第四章。还有一点我觉得不太好的地方在于Edward在讲解透视规范化矩阵的时候，有点先结果后原因的意思，这也不利于读者对其进行最初的认知。如果能从那些图形学前辈如何慢慢形成现在的图形学科学的角度去讲，肯定是最好，因为这肯定符合认知过程。
 
-###平行投影
+### 平行投影
 平行正投影，可以到[这里][myPostUrl1]查看。
 
-###透视投影
+### 透视投影
 透视投影，可以到[这里][myPostUrl2]查看。
 
-###观察API
+### 观察API
 {{site.blank}}观察API就是用简单的方式指定照相机或者眼睛的位置与方位的函数，理论上只要能实现具体指定眼标架即可。书中特意说到了两个常用API：
 
 1. VRP、VPN、VUP：
@@ -39,19 +39,19 @@ tags: [计算机图形学 computer-graphics cg CG]
 	* VUP（view-up vector）：观察正向向量，就是照相机打算观察的区域正向；
 2. LookAt();
 
-##剔除、多边形偏移、阴影
+## 剔除、多边形偏移、阴影
 {{site.blank}} 三角形都有2个面，这就需要指定哪个是正面，哪个是反面，OpenGL默认使用逆时针方向为正：右手四指沿着给出三角形三个顶点的顺序握住，拇指向上所指便是正向。我们可以利用glFrontFace()函数来指定想要的顺序。OpenGL这么做的原因在于想给应用更多的灵活性。指定了三角面正向后，需要启用剔除功能glEnable(GL_CULL_FACE)，再使用glCullFace()，参数为GL_FRONT、GL_BACK、GL_FRONT_AND_BACK，具体指定要剔除的方向。
 
 > “一些图形系统利用在定义多边形时指定的前三个顶点自动计算出法向量。OpenGL没有这样做，把计算法向量的任务留给应用程序可以为应用光照模型提供更多的灵活性。” 摘自《计算机图形学》中文第三版。
 
 {{site.blank}}如果你既想给三角形涂纯色，又想给它描边（纯色与描边色不同），这就需要用到多边形偏移，否则会出现z冲突效果，见下图。使用的话依然需要先开启多边形偏移：glEnable(GL_POLYGON_OFFSET_X)，然后使用glPolygonOffset()函数指定必要的参数；
 
-![pic1][pic1] 图片来自[这里][url1]
+![pic1][pic1] 图片来自[zeuscmd][url1]
 
 阴影可以学习shadow volume、shadow map等技术。我尚未深入学习，无心得理解可记。
 
 
-##总结
+## 总结
 {{site.blank}}整个交计图的第四章利用第三章的空间变化为基础，逐步说明了如何将空间中指定大小、方向的立方体、平截椎体变换到指定的CVV下的计算过程。CVV是整个绘制流水线中连接顶点处理与光栅化、片元处理的中间节点，是对顶点位置的归一化呈现，便于后期处理，普通应用没有更多的用处，也没有什么好纠结为什么要转换到CVV下。章节中还介绍了几个观察API，书中安排的较前边一些，我第一次读感觉很糊涂，不能明确联系它与后面推导的关系，如果有前辈指导自然方便很多。后边还介绍了剔除面、多边形偏移与阴影，这些都对计图理论形成没有多少帮助，但在实际使用中非常必要。
 
 ==EOF==
@@ -59,7 +59,7 @@ tags: [计算机图形学 computer-graphics cg CG]
 
 [myPostUrl2]:{{site.basepath}}jekyll/cg/2015/07/26/perspective-projection-in-OpenGL.html
 [myPostUrl1]:{{site.basepath}}jekyll/cg/2015/07/25/parallel-projection-in-OpenGL.html
-[url1]:http://www.zeuscmd.com/tutorials/opengl/15-PolygonOffset.php,"blank"
+[url1]:http://www.zeuscmd.com/tutorials/opengl/15-PolygonOffset.php
 [pic1]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_Z_fighting.jpg
 
 

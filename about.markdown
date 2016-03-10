@@ -4,18 +4,18 @@ title: About
 permalink: /about/
 ---
 
-##Jerry Chaos
+## Jerry Chaos
 
-###Brief
+### Brief
 
 * major-at-college : Physics
-* major(future) : Physics-Collision-Detection Computer-Graphics
-* language-familiar: AS3 C++ GLSL
+* major(future) : Computer-Graphics Physics-Collision-Detection
+* language-familiar: C++ GLSL AS3 
 * personal-web : [www.zspark.net][1]
 * Github : [https://github.com/zSpark][2]
 * e-Mail : [z_Spark@163.com][3]
 
-###Recommended-sites
+### Recommended-sites
 
 * [http://gamedevelopment.tutsplus.com/][r1]
 * [http://www.iforce2d.net/][r2]

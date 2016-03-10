@@ -8,14 +8,16 @@ excerpt: ""
 wisdom: 知识最大的敌人不是无知，而是错觉。—— 斯蒂文·霍金（Stephen Hawking）
 meta: 
 author: 
-subImgPath: cg\cg4\
+subImgPath: cg\cg4_view\
 tags: [计算机图形学 computer-graphics cg CG]
 ---
+
 {{site.blank}}*我很欣赏霍金上面的名言，用中国大众语言表达出来就是“自以为是”，我这里想表达的不是“自以为是”在褒贬上的含义，而是直白的字面意思：自己觉得就是这个样子。相比无知，自以为是应该更加可怕，因为自以为是的人会大胆的做一些可怕的事情但浑然不知。*
 
 {{site.blank}}OpenGL中的投影至少有两种，一种平行投影，一种透视投影。所谓平行投影，就是投影线彼此平行，可以分为平行正投影与平行斜投影。下面记录下自己对OpenGL中平行投影的理解。
 
-##平行正投影
+## 平行正投影
+
 {{site.blank}}平行正投影表示不但投影线彼此要平行，还要与投影平面垂直。由于投影线彼此平行，因此不会相交，所投影的图像也不会产生“近大远小”的视觉效果，图1就是个平行正投影，远处的四边形投影到平面f上后是绿色线段n，近处的三角形投影后是蓝色的线段l（图像重叠，看的不是很清楚）。我们分析这张图可以知道物体上的顶点投影过去后，其y值不变，而x值变成了与平面f的x值相同的值。联想到三维空间，假如f是xoy平面，远处物体要平行投影，其结果应该会是物体的x，y值不变，而z值变成了0。
 
 ![img0][img0] 图1
@@ -51,7 +53,8 @@ $$
 
 现在问题集中在如何将定义的视见体（上面的范围）映射到CVV大小的空间与位置下。
 
-###平移与缩放
+### 平移与缩放
+
 {{site.blank}}首先通过平移将自定义视见体（后面用“视见体”表是自定义视见体，用CVV表示规范化视见体）的中心$$(\frac{left+right}{2} , \frac {bottom+top}{2} , \frac{near+far}{2})$$移动到眼标架原点。普通平移矩阵，大家应该很熟悉：
 
 $$
@@ -115,10 +118,10 @@ M=ST=
 \right ]
 $$
 
-{{site.blank}}大家以为这就完事了吗？还没有，还有最后一步，那就是，当我们将视见体转换到CVV的大小与位置后，我们的标架同样需要从眼空间转换到裁减空间下（CVV就是在裁剪空间下），而OpenGL中的裁剪空间是左手坐标系，下面引用《计算机图形学（第三版）》（中文版）中的原话与《计算机图形学（第四版）》（英文版）中的原话说明下为什么要从右手变成左手坐标系；
+{{site.blank}}大家以为这就完事了吗？还没有，还有最后一步，那就是，当我们将视见体转换到CVV的大小与位置后，我们的标架同样需要从眼空间转换到裁减空间下（CVV就是在裁剪空间下），而OpenGL中的裁剪空间是左手坐标系。
 
->“由于屏幕坐标经常指定为左手系，因此规范化观察体也常指定为左手系统。这样就可以将观察方向的正距离解释为离屏幕（观察平面）的距离。” P.298<br>
->“Because screen coordinates are often specified in a left-handed reference frame, normalized coordinates also are often specified in a left-handed system. This allows positive distances in the viewing direction to be directly interpreted as distances from the screen(the viewing plane). Thus, we can convert projection coordinates into positions within a left-handed normalized-coordinate reference frame, and these coordinate positions will then be transferred to left-handed screen coordianteds by the viewport transformation.” P. 344
+> “由于屏幕坐标经常指定为左手系，因此规范化观察体也常指定为左手系统。这样就可以将观察方向的正距离解释为离屏幕（观察平面）的距离。”  --《计算机图形学》中文第三版 P.298<br>
+“Because screen coordinates are often specified in a left-handed reference frame, normalized coordinates also are often specified in a left-handed system. This allows positive distances in the viewing direction to be directly interpreted as distances from the screen(the viewing plane). Thus, we can convert projection coordinates into positions within a left-handed normalized-coordinate reference frame, and these coordinate positions will then be transferred to left-handed screen coordianteds by the viewport transformation.” 《计算机图形学》英文第四版 P. 344
 
 {{site.blank}}可以知道这是为了以后流水线处理的方便，并没有太多需要解释的东西。这个变换是必须的，因为流水线后面阶段在判断z序的时候，是根据“z值越大越离照相机远”的逻辑来经行的，倘若不转换，成像的结果就是远处的物体在近处的前面，甚至物体本身后面也在自己的前面，what a mass！所以上面我们计算出来的矩阵$$M$$需要再右乘左右手的转换矩阵，最终OpenGL下的平行正投影变换矩阵$$M_{ortho}$$为：
 
@@ -143,10 +146,11 @@ M_{ortho}=
 $$
 
 
-###测试程序
+### 测试程序
+
 {{site.blank}}下面是个简单的测试程序。平面不在CVV里面，但是通过$$M_{ortho}$$变换后，落在了CVV里面，最终成像。
 
-{% highlight c++ %}
+{% highlight c++ linenos%}
 #include <Windows.h>
 #include <GL\glew.h>
 #include <GL\freeglut.h>
@@ -248,7 +252,7 @@ int main(int argc, char* argv[]) {
 
 这里是顶点与片元着色器：
 
-{% highlight glsl %}
+{% highlight glsl linenos%}
 //顶点着色器程序；
 #version 430
 in vec4 vPosition;
@@ -288,12 +292,13 @@ void main(){
 ![img_demo][img_demo] <br>图 平行正投影
 
 
-##平行斜投影
+## 平行斜投影
+
 {{site.blank}}平行斜投影就是投影线彼此平行，但投影线与投影平面不垂直的投影。下图就是一张平行斜投影的截图，从中可以简单的看出多边形ABCDE通过绿色投影线u投影到了平面f上，而我们处理它的方案是先将多边形ABCDE通过平行于f的方向错切到多边形A'B'C'D'E'的位置，然后再进行平行正投影。
 
 ![img3][img3] 图3 平行斜投影。
 
-![img1][img7] 图4 斜投影。(a)俯视图。(b)侧视图。（来自英文版本《交互式计算机图形学》）
+![img1][img7] <br>图4 斜投影。(a)俯视图。(b)侧视图。（来自英文版本《交互式计算机图形学》）
 
 {{site.blank}}所以我们将问题的核心集中在如何通过错切使ABCDE编程A'B'C'D'E'。从图4可以看出(x,z)是多边形上的任何一个点，假设为P点，它想要移动到正投影的角度，必须向x轴正方向移动$$(x_{p'}-x)$$的距离。而这个距离正好是$$cot\theta$$的长度（包括符号），所以错切后的点P的位置就应该是$$(x+cot\theta * z)$$，从图（b）中也可以看到错切后的y值应该是$$(y+cot\phi * z)$$，所以这个错切矩阵应该是下面这样：
 
@@ -311,7 +316,7 @@ $$
 这样一来，整个平行斜投影进一步变成了平行正投影，[这里][mysiteurl1]简单说了下OpenGL中的平行正投影。最后将整个矩阵级联起来就是了。
 
 下面是立方体的顶点数据；
-{% highlight c++ %}
+{% highlight c++ linenos%}
 const float SIZE = 4.5;
  const float SIZE2 = 3;
  vec4 vertices[8] = {
@@ -349,7 +354,7 @@ const float SIZE = 4.5;
 {% endhighlight %}
 
 这里是顶点与片段着色器：
-{% highlight glsl %}
+{% highlight glsl linenos%}
 //顶点着色器
 #version 430
 in vec4 vPosition;
@@ -391,7 +396,7 @@ void main(){
 }
 {% endhighlight %}
 
-###截图
+### 截图
 
 ![img8][img8]<br> 图 OpenGL中的平行斜投影
 

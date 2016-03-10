@@ -12,9 +12,15 @@ subImgPath: cg\perspective_projection\
 tags: [计算机图形学 computer-graphics cg CG]
 ---
 
+<div style="float:right; text-align:center">
+<img src="{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_pers_14.jpg" width="290" height="150" alt="" />
+<br />
+<span class="caption">An example of an asymmetric frustum</span>
+</div>
+
 {{site.blank}}下面记录下自己对OpenGL中透视投影的推导过程。透视投影就是大家常见的，投影后看起来很自然的有“近大远小”视觉效果的投影，远处的物体之所以投影后要变小，是因为距离相比其他物体要远（距离透视中心COP），这就给我们一个处理透视投影的思路：可以用距离来决定物体要缩放多小。
 
-##透视投影
+## 透视投影
 {{site.blank}}问题的核心依然是利用一个怎样的矩阵，可以将自定义的四棱台变换到CVV下（预备知识参考[这里][mysiteurl1]），不要忘记我们变换的重要思想：级联。所以我们完全可以这样推导：先尝试将四棱台变换成平行投影下的轴平行立方体，然后利用平行投影的知识级联得出结果。公式如下：
 
 $$M_{pers}=M_{ortho}N$$
@@ -22,6 +28,7 @@ $$M_{pers}=M_{ortho}N$$
 其中矩阵N就是我们想要求出的“尝试将四棱台变换成平行投影下的轴对齐立方体”的矩阵。
 
 假如应用程序规定了这样的四棱台，（注意near与far仅仅表示到COP的距离），参见图4.36
+
 
 ![img0][img0]
 
@@ -221,7 +228,7 @@ $$
 
 至此就算从级联的角度推导了透视投影的矩阵，可能有童鞋会说`透视除法`怎么没有，因为它就是个标量与矩阵的除法运算，什么时候都可以，不影响矩阵级联。网络上还有使用其他方式推导的，大家可自行google。
 
-##简单的测试
+## 简单的测试
 
 应用程序中的定点数据；
 {% highlight C++ linenos %}
@@ -295,7 +302,8 @@ void main(){
 }
 {% endhighlight %}
 
-###测试截图
+### 测试截图
+
 ![img14][img14]
 
 
