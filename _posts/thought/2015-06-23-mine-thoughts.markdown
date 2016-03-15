@@ -2,7 +2,7 @@
 layout: post
 title:  "思想火花"
 date:   2015-08-11
-categories: jekyll thought
+category: thought
 published: true
 excerpt: "想法，火花"
 wisdom: 计算机天生就是用来解决以前没有过的问题的。—— 比尔盖茨（Bill Gates）

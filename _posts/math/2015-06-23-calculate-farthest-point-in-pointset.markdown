@@ -2,7 +2,7 @@
 layout: post
 title:  "求点集中指定方向的最远点"
 date:   2015-06-23 11:55:15
-categories: jekyll CG
+category: math
 published: false
 tags: [cg,computer-graphics,pointset,farthest-point]
 ---

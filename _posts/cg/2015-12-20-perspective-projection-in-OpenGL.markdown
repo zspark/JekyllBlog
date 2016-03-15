@@ -2,7 +2,7 @@
 layout: post_with_wisdom_mathjax
 title:  "OpenGL中的透视投影"
 date:   2015-07-26
-categories: jekyll CG
+category: CG
 published: true
 excerpt: ""
 wisdom: 知识最大的敌人不是无知，而是错觉。—— 斯蒂文·霍金（Stephen Hawking）
@@ -12,33 +12,22 @@ subImgPath: cg\perspective_projection\
 tags: [计算机图形学 computer-graphics cg CG]
 ---
 
-<div style="float:right; text-align:center">
-<img src="{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_pers_14.jpg" width="290" height="150" alt="" />
-<br />
-<span class="caption">An example of an asymmetric frustum</span>
-</div>
-
 {{site.blank}}下面记录下自己对OpenGL中透视投影的推导过程。透视投影就是大家常见的，投影后看起来很自然的有“近大远小”视觉效果的投影，远处的物体之所以投影后要变小，是因为距离相比其他物体要远（距离透视中心COP），这就给我们一个处理透视投影的思路：可以用距离来决定物体要缩放多小。
 
 ## 透视投影
-{{site.blank}}问题的核心依然是利用一个怎样的矩阵，可以将自定义的四棱台变换到CVV下（预备知识参考[这里][mysiteurl1]），不要忘记我们变换的重要思想：级联。所以我们完全可以这样推导：先尝试将四棱台变换成平行投影下的轴平行立方体，然后利用平行投影的知识级联得出结果。公式如下：
+
+{% include image.html src="cg/perspective_projection/image_pers_0.jpg" caption="《交互式计算机图形学》英文版截图" width=400 align="right" %}
+{{site.blank}}问题的核心依然是利用一个怎样的矩阵，可以将自定义的四棱台变换到CVV下（预备知识参考[这里][mysiteurl1]），不要忘记我们变换的重要思想：**级联**。所以我们完全可以这样推导：先尝试将四棱台变换成平行投影下的轴平行立方体，然后利用平行投影的知识级联得出结果。公式如下：
 
 $$M_{pers}=M_{ortho}N$$
 
-其中矩阵N就是我们想要求出的“尝试将四棱台变换成平行投影下的轴对齐立方体”的矩阵。
+其中矩阵N就是我们想要求出的“尝试将四棱台变换成平行投影下的轴对齐立方体”的矩阵。假如应用程序规定了像右边这样的四棱台（注意near与far仅仅表示到COP的距离），我们先从其俯视图开始，参见图一。
 
-假如应用程序规定了这样的四棱台，（注意near与far仅仅表示到COP的距离），参见图4.36
+{% include image.html src="cg/perspective_projection/image_pers_10.jpg" caption="图一 四棱台俯视图" width=563 align="right" %}
 
+{{site.blank}}从程序给定的right、left等数据中，我们不能确定四棱台一定就是个正四棱台（z轴对称），但图中的顶点的基本数据我们可以通过三角形相关定理很容易的推导出来，我们的目的就是要将ABCD变成A'BCD'。拿图中普遍的顶点E来说，它需要变换到E'处，所要变化的只有x轴上的值（俯视图下，不考虑y数值），z轴不需要变化。变化的函数便是：
 
-![img0][img0]
-
-{{site.blank}}我们先从俯视图开始，参见图1
-
-![img10][img10]图 1：四棱台的俯视图。
-
-从程序给顶的right、left等数据中，我们不能确定四棱台一定就是个正四棱台（z轴对称），图中的顶点的基本数据我们可以通过三角形相关定理很容易的推导出来，我们的目的就是要将ABCD变成A'B'C'D'。拿图中普遍的顶点E来说，它需要变换到E'处，所要变化的只有x轴上的值（俯视图下，不考虑y数值），z轴不需要变化。变化的函数便是：
-
-$$x'=f(x)={\frac{x*near}{-z}}$$
+$$ x'=f(x)={\frac{x*near}{-z}} $$
 
 公式表明，只要我们将四棱台上的任何一个点进行这样的变化后，原来顶点所构成的四棱台就会变成一个四方体，而且还是轴对齐的四方体。这让我们非常开心，因为就只需要如此简单的一个计算整个透视投影就可以完成。我们现在尝试将变化写成矩阵的形式：
 $$
@@ -195,7 +184,7 @@ near,0,0,0\\
 \right]
 $$
 
-###级联$$M_{ortho}$$矩阵
+### 级联$$M_{ortho}$$矩阵
 {{site.blank}}现在级联起来平行投影矩阵$$M_{ortho}$$，
 
 $$
@@ -304,13 +293,10 @@ void main(){
 
 ### 测试截图
 
-![img14][img14]
+{% include image.html src="cg/perspective_projection/image_pers_14.jpg" caption="最后成像图" width=800 align="center" %}
 
 
 
 ==EOF==
 
-[img0]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_pers_0.jpg "img0"
-[img10]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_pers_10.jpg "img10"
-[img14]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_pers_14.jpg "img14"
 [mysiteurl1]:{{site.basepath}}jekyll/cg/2015/07/25/parallel-projection-in-OpenGL.html

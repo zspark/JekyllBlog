@@ -2,7 +2,7 @@
 layout: post_with_wisdom_mathjax
 title:  "关于坐标系变换的一些思考"
 date:   2015-06-23 16:29:15
-categories: jekyll thought
+category: thought
 published: true
 excerpt: "关于坐标系变换的一些思考"
 wisdom: 计算机天生就是用来解决以前没有过的问题的。—— 比尔盖茨（Bill Gates）

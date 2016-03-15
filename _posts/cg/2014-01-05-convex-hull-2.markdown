@@ -2,7 +2,7 @@
 layout: post_with_wisdom_mathjax
 title:  "凸包及其算法（二）"
 date:   2015-06-25
-categories: jekyll CG
+category: CG
 published: true
 excerpt: ""
 wisdom: 计算机科学就是有关计算机的，正如天文学就是有关望远镜的。—— 艾兹格·迪杰斯特拉（Edsger W. Dijkstra），荷兰计算机科学家，最短路径算法提出者
@@ -26,15 +26,15 @@ tags: [collision-detection Computer algorithm convex-hull quick-hull]
 
 我们还是使用前面的点集，来具体看一下快包算法的过程，点集如下所示。
 
-![Img][image4] 图 3
+{% include image.html src="convex-hull/image4.jpg" caption="图片来源：百度百科" width="423" height="361" align="center" %}
 
 首先计算出肯定在凸包上的2个点，比如是顶点H、E，它们构成初始边g，此时所有的其他顶点被分割成2部分：绿色与蓝色，见图4
 
-![Img][image_qh4] 图 4 
+{% include image.html src="convex-hull/image_qh4.jpg" caption="图片来源：百度百科" width="423" height="361" align="center" %}
 
 后边要做的就是2部分，一部分遍历绿色的点直到完毕，另一部分就是遍历蓝色的点直到完毕，就拿蓝色来说。先找到距离直线g最远的顶点F，F肯定也是在凸包上的点，这个计算完毕后，肯定形成2条新的边h与i，见图5
 
-![Img][image_qh5] 图 5 
+{% include image.html src="convex-hull/image_qh5.jpg" caption="图片来源：百度百科" width="423" height="361" align="center" %}
 
 后边的计算就与初始边的计算一样了，依次计算新的边对应的最远顶点，我们就得到了点C与B，至此蓝色点群遍历完毕；
 
@@ -50,14 +50,14 @@ tags: [collision-detection Computer algorithm convex-hull quick-hull]
 
 现在说下《实时碰撞检测算法技术》提到的第二条。见图6
 
-![Img][image_qh6] 图 6 
+{% include image.html src="convex-hull/image_qh6.jpg" caption="图片来源：百度百科" width="423" height="361" align="center" %}
 
 {{site.blank}}当我们为某条边（图中是边g）寻找最远点的时候，发现除了点F外还有M，K，L这三个点并驾最远，这时快包算法的策略是取距离这条边（边g）两个顶点（E，H）最近的点，从图中看出，距离E最近的是L，距离H最近的是M，此两者选其一即可。有朋友可能会想到如果点K，L与E的距离一样远怎么办，比如E位于K，L两点的垂直平分线上？
 稍微分析一下就知道这种情况不可能发生，如果有的话当初的点E就不可能被找到，代之的应该是L或者K了。专业点说就是当E，H确定了后，其他所有的点都肯定位于边g的面域中，而非点域。
 
 #### 具体实现（AS3）
 
-{% highlight as3 %}
+{% highlight as3 linenos%}
 
 {% endhighlight %}
 (暂略)
@@ -101,11 +101,6 @@ $$
 [urlpre]:http://www.zspark.net/jekyll/cg/2015/06/25/convex-hull-1.html
 [url1]:http://www.personal.kent.edu/~rmuhamma/Compgeometry/MyCG/ConvexHull/quickHull.htm
 [url2]:http://www.cnblogs.com/Booble/archive/2011/03/10/1980089.html
-
-[image4]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image4.jpg "image4"
-[image_qh4]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_qh4.jpg "image_qh4"
-[image_qh5]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_qh5.jpg "image_qh5"
-[image_qh6]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_qh6.jpg "image_qh6"
 
 
 

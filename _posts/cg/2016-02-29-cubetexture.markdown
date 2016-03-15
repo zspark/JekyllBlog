@@ -2,7 +2,7 @@
 layout: post_with_wisdom
 title: "OpenGL立方体纹理备忘"
 date:   2016-02-29
-categories: jekyll CG
+category: CG
 published: true
 excerpt: ""
 wisdom: “倘若代码和注释不一致，那么很可能两者都是错的。” —— Norm Schryer

@@ -104,17 +104,16 @@ a {
  * Blockquotes
  */
 blockquote {
+    background: url("img/blockquote.png") 0px 0px no-repeat;
     background-color: $quote-color;
     color: $grey-color;
-    border-left: 4px solid #2e7ac8;
-    padding-left: $spacing-unit / 2;
+    border-left: 4px solid #ABA6A6;
+    padding-left: 35px;
     font-size: 16px;
-    letter-spacing: -1px;
-    font-style: italic;
-
     > :last-child {
         margin-bottom: 0;
     }
+
 }
 
 
@@ -122,23 +121,25 @@ blockquote {
 /**
  * Code formatting
  */
-pre,
-code {
-    font-size: 15px;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: $code-color;
+pre,code {
+    font-family: Consolas;
+    background-color: #F0F8FF;
 }
 
 code {
+    border: 1px solid $grey-color-light;
+    border-radius: 3px;
     padding: 1px 5px;
 }
 
 pre {
     padding: 8px 12px;
     overflow-x: scroll;
+    background-color: $code-color;
 
     > code {
+        background-color: $code-color;
+        font-size: 0.9em;
         border: 0;
         padding-right: 0;
         padding-left: 0;

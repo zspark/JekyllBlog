@@ -2,7 +2,7 @@
 layout: post_with_wisdom_mathjax
 title:  "线性空间、仿射空间"
 date:   2015-12-30
-categories: jekyll math
+category: math
 published: true 
 excerpt: ""
 wisdom: 硬件令机器变快。软件则把快机器搞慢。—— Craig Bruce

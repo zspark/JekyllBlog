@@ -2,7 +2,7 @@
 layout: post
 title:  "MirageAnimator使用指南(0.8.2)"
 date:   2015-12-31
-categories: jekyll work
+category: work
 published: true
 excerpt: ""
 meta: 
@@ -103,14 +103,14 @@ addChild(m);
 
 ==EOF==
 
-[img_1]:{{site.basepath}}/img/Animator/image_animator1.jpg
-[img_2]:{{site.basepath}}/img/Animator/image_animator2.jpg
-[img_3]:{{site.basepath}}/img/Animator/image_animator3.jpg
-[img_4]:{{site.basepath}}/img/Animator/image_animator4.jpg
-[img_5]:{{site.basepath}}/img/Animator/image_animator5.jpg
-[img_6]:{{site.basepath}}/img/Animator/image_animator6.jpg
-[img_7]:{{site.basepath}}/img/Animator/image_animator7.jpg
-[img_8]:{{site.basepath}}/img/Animator/image_animator8.jpg
-[img_9]:{{site.basepath}}/img/Animator/image_animator9.jpg
-[img_11]:{{site.basepath}}/img/Animator/image_animator11.jpg
-[img_12]:{{site.basepath}}/img/Animator/image_animator12.jpg
+[img_1]:{{site.imgurl}}Animator/image_animator1.jpg
+[img_2]:{{site.imgurl}}Animator/image_animator2.jpg
+[img_3]:{{site.imgurl}}Animator/image_animator3.jpg
+[img_4]:{{site.imgurl}}Animator/image_animator4.jpg
+[img_5]:{{site.imgurl}}Animator/image_animator5.jpg
+[img_6]:{{site.imgurl}}Animator/image_animator6.jpg
+[img_7]:{{site.imgurl}}Animator/image_animator7.jpg
+[img_8]:{{site.imgurl}}Animator/image_animator8.jpg
+[img_9]:{{site.imgurl}}Animator/image_animator9.jpg
+[img_11]:{{site.imgurl}}Animator/image_animator11.jpg
+[img_12]:{{site.imgurl}}Animator/image_animator12.jpg

@@ -2,7 +2,7 @@
 layout: post
 title:  "visual studio 2015下搭建openGL开发环境"
 date:   2015-12-25
-categories: jekyll CG
+category: CG
 published: true
 excerpt: ""
 meta: 

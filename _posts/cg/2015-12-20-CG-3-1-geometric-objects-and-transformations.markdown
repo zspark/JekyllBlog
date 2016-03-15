@@ -2,7 +2,7 @@
 layout: post_with_wisdom_mathjax
 title:  "《交互式计算机图形学》复习笔记-几何变换（上）"
 date:   2016-01-01
-categories: jekyll CG
+category: CG
 published: true
 excerpt: ""
 wisdom: 如果你以为用户是白痴，那就只有白痴才用它。 —— 李纳斯·托沃兹（Linus Torvalds），LINUX之父
@@ -19,14 +19,14 @@ tags: [计算机图形学 computer-graphics cg CG]
 ### 三维图元
 {{site.blank}}二维图元比较简单，比如点、线段、三角形等，但毕竟我们生活在三维空间中，不可避免要涉及到三维图元的思考。在三维图元中，会遇到至少两个问题：
 
-> 1.三维图元的数学定义可能会很复杂；<br>
-> 2. 三位对象如此之多，我们也只能对图形系统能有效实现的对象感兴趣，现有的图形系统不能支持所有的三位对象，除非通过近似的方法；<br>
+1.三维图元的数学定义可能会很复杂；
+2. 三位对象如此之多，我们也只能对图形系统能有效实现的对象感兴趣，现有的图形系统不能支持所有的三位对象，除非通过近似的方法；
 
 图形学发展至今，前辈们选择了使用网格的形式描述三维对象。这些三位对象具有以下特征：
 
-> 1.可以通过其表面来描述外观，并且认为对象是中空的；<br>
-> 2.可以由三维空间中的一组定点来确定；<br>
-> 3.表面要么可以用平面（2D）凸多边形来组成，要么可以通过平面凸多边形来近似；<br>
+1. 可以通过其表面来描述外观，并且认为对象是中空的；
+2. 可以由三维空间中的一组定点来确定；
+3. 表面要么可以用平面（2D）凸多边形来组成，要么可以通过平面凸多边形来近似；
 
 ### 标架
 {{site.blank}}我们在中学开始接触的解析几何就是在三维空间中进行的，其中三维空间是建立在坐标系中。想想那个时候的坐标系有什么东西吧：一个被称为原点的点，外加3个互相垂直的向量，向量虽然没有位置的概念，但这里的三个向量必须要以原点为起始点去建立。标架的描述性定义于此类同但不限于刚才的描述，具体而言就是去掉“相互垂直”与“三维”这两个约束，即：一个指定的点（被称为原点）外加空间中的一个基（基的构建要以原点为起点）。至于标架与坐标系有什么关系，我觉得坐标系范围更广比如还有极坐标系，球面坐标系等等而且坐标系这个概念更通俗，就是哪个学科都能说“来，我们先建立个坐标系。”，而标架的概念应该更加专业，更加与具体的科学相关。
@@ -163,10 +163,9 @@ a,0,0,0\\
 $$
 
 #### 旋转
+
+{% include image.html src="cg/cg3/image_cg3_0.jpg" caption="图1 A点围绕x轴旋转到A'点 （注意x轴是垂直屏幕的）" width="250" height="240" align="right" %}
 {{site.blank}}旋转相对复杂，我们先针对物体仅仅围绕x轴的旋转来说明，想象空间中一个点，围绕其标架下的x轴旋转，此时只有该点的x轴上的分量不变化，而y、z轴上的分量都会发生变化。如下图所示，当点A(a,b)围绕x轴旋转了$$\beta$$角度之后到A'(c,d)位置，两点的坐标关系如下（其中L表示点与原点的距离）:
-
-![img][img0] 
-
 $$a=Lcos\alpha \\
 b=Lsin\alpha \\
 c=Lcos(\alpha+\beta)=Lcos\alpha cos\beta-Lsin\alpha sin\beta =acos\beta -bsin\beta \\
@@ -197,13 +196,12 @@ M=\left[
 \right]
 $$
 
-{{site.blank}}空间中物体围绕其标架的y轴、z轴旋转的情况如此类同，一样的推导就能得出。
+空间中物体围绕其标架的y轴、z轴旋转的情况如此类同，一样的推导就能得出。
 
 
 #### 错切（切变）
-{{site.blank}}错切变换好比对象自身将自己一层一层偏离了原来的地方，如图二所示。原来的物体是淡绿色方形，经过错切变换后成了淡粉色形状，D、C两点不变，A点移动到了A'，B点移动到了B'（其y坐标没有变化）。从图中我们明显能看到y值越大，其偏里原来坐标的程度就越强（参考F点的偏移量），现在写出A与A'的坐标关系： $$ (A')_x=A_x+A_ycot\alpha $$
-
-![img][img2] 图二
+{% include image.html src="cg/cg3/image_cg3_2.jpg" caption="图2 物体的错切变换" width="488" height="386" align="right" %}
+{{site.blank}}错切变换好比对象自身将自己一层一层偏离了原来的地方，如图2所示。原来的物体是淡绿色方形，经过错切变换后成了淡粉色形状，D、C两点不变，A点移动到了A'，B点移动到了B'（其y坐标没有变化）。从图中我们明显能看到y值越大，其偏里原来坐标的程度就越强（参考F点的偏移量），现在写出A与A'的坐标关系： $$ (A')_x=A_x+A_ycot\alpha $$
 
 写成矩阵的形式：
 
@@ -221,7 +219,7 @@ $$
 ### 变换的级联
 {{site.blank}}级联，就是将一系列基本变换合在一起达到组合表现的效果，级联需要注意的是前后变换矩阵的顺序。从图三中可以看出，点A先旋转$$\alpha$$角度后再平移a就是点C，而先平移再旋转就是点D。我们一般将矩阵写在左边（点A的左边），形如$$A'=TA$$，就是说点A进行T变化。变化后如果需要后续变化的话，继续写在左边（最左边），形如$$A'=RTA$$，意思就是，先进行T变化，再进行R变化。因为矩阵乘法满足结合律，所以我们可以先计算出RT相乘的结果M，然后再应用到A点，就像这样$$A'=(RT)A$$，别小看这么一个简单的优化，渲染管线中一个批次要处理少则几千几万，多则几十万甚至上百万的顶点，倘若每个顶点都先乘T再乘R，肯定比只乘M理论上慢一倍。而将矩阵R，T相乘试图在以后减少对顶点的变化次数，这个思想就是级联。
 
-![img][img7] 图三
+{% include image.html src="cg/cg3/image_cg3_7.jpg" caption="图3" width="450" height="311" align="center" %}
 
 ### 绕任意顶点的旋转
 {{site.blank}}初学矩阵变化的童鞋可能会犯这样的错误，就是将旋转矩阵
@@ -235,16 +233,15 @@ sin\theta,cos\theta\\
 $$
 的旋转当成了物体绕自己的旋转，这个一定要注意。
 
-![img][img9] 图 旋转变化是物体绕其标架原点的旋转
+{% include image.html src="cg/cg3/image_cg3_9.jpg" caption="旋转变化是物体绕其标架原点的旋转" width="386" align="center" %}
+{% include image.html src="cg/cg3/image_cg3_10.jpg" caption="物体绕其中心点旋转60度的情况（透明红色是旋转后的形状）" width="336" align="center" %}
 
-![img][img10] 图 物体绕其中心点旋转60度的情况（透明红色是旋转后的形状）
+{{site.blank}}但实际问题会涉及到大量的物体自旋的情况，比如RPG游戏中某个逗B玩家无聊打转转，再比如乒乓球游戏中模拟空中高速旋转的乒乓球等等。我们处理物体绕定点旋转的思路一般是先将物体的旋转中心平移回标架原点（连同物体），然后旋转，最后再平移回去。图 4.1中A是旋转中心，$$\Delta BCD$$是要旋转的物体，先将A平移回原点，图中可见其平移向量是$$u=(-2,-3)$$，$$\Delta B'C'D'$$就是原来物体平移u后的位置；然后旋转60度，物体旋转依然是围绕其原点的，见图4.2；第三步将旋转后的$$\Delta EFG$$再反向平移之前移动的向量，使其旋转中心回到原来的位置，见图4.3，这样就完成了物体绕任意点的旋转操作见图4.4。
 
-{{site.blank}}但实际问题会涉及到大量的物体自旋的情况，比如RPG游戏中某个逗B玩家无聊打转转，再比如乒乓球游戏中模拟空中高速旋转的乒乓球等等。我们处理物体绕定点旋转的思路一般是先将物体的旋转中心平移回标架原点（连同物体），然后旋转，最后再平移回去。图 4.1中A是旋转中心，$$\Delta BCD$$是要旋转的物体，现将A平移回原点，图中可见其平移向量是$$u=(-2,-3)$$，$$\Delta B'C'D'$$就是原来物体平移u后的位置；然后旋转60度，物体旋转依然是围绕其原点的，但此时原点与我们想要的旋转中心恰巧在一起，此时的旋转就是物体绕旋转中心的旋转，见图4.2；第三步将旋转后的$$\Delta EFG$$再反向平移之前移动的向量，使其旋转中心回到原来的位置，见图4.3，这样就完成了物体绕任意点的旋转操作见图4.4。
-
-![img][img_rotate_1] 图 4.1
-![img][img_rotate_2] 图 4.2
-![img][img_rotate_3] 图 4.3
-![img][img_rotate_4] 图 4.4
+{% include image.html src="cg/cg3/image_cg3_rotate_1.jpg" caption="图 4.1 先将旋转中心移回标架原点，图中就是将三角形BCD平移(-2,-3)的距离" width="430" align="center" %}
+{% include image.html src="cg/cg3/image_cg3_rotate_2.jpg" caption="图 4.2 正常旋转60度后的位置（透明黄色三角形）" width="430" align="center" %}
+{% include image.html src="cg/cg3/image_cg3_rotate_3.jpg" caption="图 4.3 将旋转后的三角形平移回原来的位置，也就是移动(2,3)的距离，移动后是深红色透明三角形" width="430" align="center" %}
+{% include image.html src="cg/cg3/image_cg3_rotate_4.jpg" caption="图 4.4 深红色透明三角形就是原三角形BCD围绕A点旋转60度后的位置" width="430" align="center" %}
 
 OpenGL中的物体是靠图元来定义的，而图元是由顶点来组成的，所以物体的变换其实质是组成物体的点的变换，因此变换物体就是变换顶点。我们将刚才的系列变化写成矩阵如下：
 
@@ -307,16 +304,6 @@ $$
 [url2]:https://github.com/opentk/opentk/issues/18
 [url3]:http://www.cnblogs.com/caster99/p/4752354.html
 [url4]:https://www.opengl.org/sdk/docs/man/
-
-[img0]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg3_0.jpg "img0"
-[img2]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg3_2.jpg "img2"
-[img7]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg3_7.jpg "img7"
-[img9]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg3_9.jpg "img9"
-[img10]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg3_10.jpg "img10"
-[img_rotate_1]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg3_rotate_1.jpg "img_rotate_1"
-[img_rotate_2]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg3_rotate_2.jpg "img_rotate_2"
-[img_rotate_3]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg3_rotate_3.jpg "img_rotate_3"
-[img_rotate_4]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg3_rotate_4.jpg "img_rotate_4"
 
 [url5]:http://www.xuebuyuan.com/839988.html 
 [url_frame_baidu]:http://baike.baidu.com/link?url=KQcj9hrh_YUsPeaY-KBuCtaLyp8yUINBk4YBxtcPOv3WyIazTUhNCmFXEhQBVwGACeoAgFhBgSfJtsQbVlimUK

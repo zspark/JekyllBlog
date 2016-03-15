@@ -2,12 +2,15 @@
  * Site header
  */
 .site-header {
-    border-top: 5px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
+   /** 
+   * border-top: 5px solid $grey-color-dark;
+    */
+    border-bottom: 5px solid $grey-color-dark;
     min-height: 56px;
 
     // Positioning context for the mobile navigation icon
     position: relative;
+	background-color: #FFB900;
 }
 
 .site-title {
@@ -99,7 +102,7 @@ b,strong {
  */
 .site-footer {
     border-top: 1px solid $grey-color-light;
-    background-color: #424242;
+    background-color: #FFFFFF;
     padding: $spacing-unit 0;
 }
 
@@ -216,7 +219,7 @@ b,strong {
     }
     h1 {
         font-size: 2em;
-        border-bottom:3px solid #DDDDDD;
+        border-top:3px solid #DDDDDD;
         line-height:1.6;
         margin-top:$spacing-unit;
 
@@ -226,7 +229,7 @@ b,strong {
     }
     h2 {
         font-size: 1.75em;
-        border-bottom:1px solid #DDDDDD;
+        border-top:1px solid #DDDDDD;
         line-height:1.5;
         margin-top:$spacing-unit;
 
@@ -289,3 +292,31 @@ td,th {
 .wrapper tr:nth-child(2n) {
   background-color: #f8f8f8;
 }
+
+ul.listing {
+	list-style-type: none;
+	margin-left: 0px;
+}
+
+ul.listing li.listing-seperator {
+	padding-top: 15px;
+	font-weight: bold;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 1.17em;
+}
+
+ul.listing li.listing-item time {
+
+	color: #333;
+	font-weight: 500;
+	text-transform: uppercase;
+	padding-right: 10px;
+}
+
+ul.listing li.listing-item a {
+	color: $clemson-purple;
+	font-weight: 400;
+	font-family: 'Titillium Web', sans-serif;
+}
+
+

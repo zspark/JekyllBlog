@@ -7,10 +7,9 @@
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   <meta name="keywords" content="{% if page.keywords %}{{ page.keywords | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.keywords }}{% endif %}">
 
-  <link rel="stylesheet" href=" {{site.basepath}}css/main.css"/>
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.basepath | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.basepath | prepend: site.url }}" />
-
-  <link rel="icon" href="{{site.basepath}}{{site.imgpath}}favicon.ico" mce_href="{{site.basepath}}{{site.imgpath}}favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="{{site.basepath}}{{site.imgpath}}favicon.ico" mce_href="{{site.basepath}}{{site.imgpath}}favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href=" {{site.baseurl}}/css/main.css"/>
+  <link rel="canonical" href="{{ site.baseurl | prepend: site.url }}/index.html" />
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.baseurl | prepend: site.url }}/feed.xml" />
+  <link rel="icon" href="{{ site.imgurl }}favicon.ico" mce_href="{{ site.imgurl }}favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ site.imgurl }}favicon.ico" mce_href="{{ site.imgurl }}favicon.ico" type="image/x-icon">
 </head>

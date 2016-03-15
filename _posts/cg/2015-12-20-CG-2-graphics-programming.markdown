@@ -2,7 +2,7 @@
 layout: post_with_wisdom
 title:  "《交互式计算机图形学》复习笔记-图形学编程"
 date:   2015-12-25
-categories: jekyll CG
+category: CG
 published: true 
 excerpt: ""
 wisdom: 如果你以为用户是白痴，那就只有白痴才用它。 —— 李纳斯·托沃兹（Linus Torvalds），LINUX之父
@@ -27,7 +27,7 @@ tags: [计算机图形学 computer-graphics cg CG]
 
 ### 点与顶点
 
-> “在OpenGL中一定区分“点”与“顶点”的含义。“顶点”是空间中的一个位置，我们在计算机图形学中使用顶点的空间包括二维的、三维的和四维的。我们利用定点来定义图形系统中可识别的基本几何图元。比如我们一个点，那它在空间中就需要一个顶点来定义；再比如一条线段，就需要2个空间中的顶点来定义等等。”  --《交互式计算机图形学》第六版
+> 在OpenGL中一定区分“点”与“顶点”的含义。“顶点”是空间中的一个位置，我们在计算机图形学中使用顶点的空间包括二维的、三维的和四维的。我们利用定点来定义图形系统中可识别的基本几何图元。比如我们一个点，那它在空间中就需要一个顶点来定义；再比如一条线段，就需要2个空间中的顶点来定义等等。  --《交互式计算机图形学》第六版
 
 ### API
 
@@ -58,7 +58,7 @@ OpenGL实用工具库\箱(GLUT：OpenGL Utility Toolkit)：提供了任何现代
 * 几何图元(geometric primitive);
 * 图像图元\光栅图元(raster primitive)：光栅图元的一个例子是像素阵列，比如点阵字体，它不具有几何属性，我们不能像对几何图元那样对光栅图元进行几何操作。光栅图元需要经过另一条流水线的处理，这条流水线与几何流水线并行，终点也是帧缓存，如图2.6。
 
-![Img][img_1]
+{% include image.html src="cg/cg1/image_cg1_1.jpg" caption="图2.6 简化了的OpenGL管线 来自《交互式计算机图形学》E文第六版 P.57" width="795" height="309" align="center" %}
 
 ### OpenGL中的几何图元
 
@@ -82,7 +82,7 @@ OpenGL中一共有7种图元：
 
 这三种模式仅仅针对多边形，通过glPolygonMode函数来进行指定，具体参考官方[函数指南][url4]；点、线段、折线等图元无效。
 
-> “我们把用来描述对象如何被绘制的方式称为属性(atribute)。” --《交互式计算机图形学》第六版中文
+> 我们把用来描述对象如何被绘制的方式称为属性(atribute)。  ---《交互式计算机图形学》第六版中文
 
 ### 颜色
 
@@ -218,7 +218,7 @@ glVertexAttribPointer(loc, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 
 ### 片元着色器（片段着色器）
 
-> “光栅化模块输出位于视见体内部的每个图元的片元。每个片元都会被片元着色器处理。每次执行片元着色器时必须至少输出每个片元的颜色，除非这个片元在片元着色器中被标记为丢弃。”  --《交互式计算机图形学》第六版中文
+> 光栅化模块输出位于视见体内部的每个图元的片元。每个片元都会被片元着色器处理。每次执行片元着色器时必须至少输出每个片元的颜色，除非这个片元在片元着色器中被标记为丢弃。   ---《交互式计算机图形学》第六版中文
 
 {% highlight glsl linenos%}
 #version 430
@@ -243,7 +243,7 @@ void main(){
 
 {{site.blank}}当程序员写完了各种着色器程序后，不能光在外部保存个文件或者在程序里面写完放着。我们需要编译每个着色器代码，然后连接到被称为`程序对象(Program Object)`的对象上才能使用。`把着色器连接到程序对象的过程中会产生一个表，着色器中的变量名会与表中的索引相关联。`首先利用glCreateShader(shader_type)方法创建一个`着色器对象(Shader Object)`，然后将着色器代码传入对象中，紧接着编译它（编译可能会失败，可以通过glGetShaderiv()获取一些失败的信息，方便调试），编译成功后将着色器对象附加到程序对象上，当全部你想要的着色器对象附加完成后，就可以尝试将程序对象连接到主程序中。
 
-{% highlight c++ lineons%}
+{% highlight c++ linenos%}
 //创建程序对象
 GLuint program = glCreateProgram();
 
@@ -487,7 +487,11 @@ void main(){
 }
 {% endhighlight %}
 
-![img][img_2]
+### 效果图
+
+{% include image.html src="cg/cg1/image_cg1_2.jpg" caption="二维谢尔并斯基镂垫图，来自demo绘制。" width=800 align="center" %}
+
+{% include image.html src="cg/cg1/image_cg1_3.jpg" caption="三维谢尔并斯基镂垫效果图，来自网络。" width=816 align="center" %}
 
 ## 总结
 
@@ -495,8 +499,6 @@ void main(){
 
 ==EOF==
 
-[img_1]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg1_1.jpg
-[img_2]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg1_2.jpg
 [vedio1]:[https://www.youtube.com/watch?v=8p76pJsUP44]
 [url2]:https://github.com/opentk/opentk/issues/18
 [url3]:http://www.cnblogs.com/caster99/p/4752354.html

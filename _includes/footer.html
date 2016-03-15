@@ -35,8 +35,7 @@
             </a>
           </li>
           {% endif %}
-           <iframe style="padding-top: 6px;" src="http://ghbtns.com/github-btn.html?user=zspark&repo=JekyllBlog&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
-            <iframe src="http://ghbtns.com/github-btn.html?user=zspark&repo=JekyllBlog&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
+           
         </ul>
       </div>
 
@@ -47,6 +46,7 @@
 
       <div class="footer-col  footer-col-3">
         <p class="text">{{ site.description }}</p>
+		{% include github.html repo="JekyllBlog" %}
       </div>
     </div>
   </div>

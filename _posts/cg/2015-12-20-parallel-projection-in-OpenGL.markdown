@@ -2,7 +2,7 @@
 layout: post_with_wisdom_mathjax
 title:  "OpenGL中的平行投影"
 date:   2015-07-25
-categories: jekyll CG
+category: CG
 published: true
 excerpt: ""
 wisdom: 知识最大的敌人不是无知，而是错觉。—— 斯蒂文·霍金（Stephen Hawking）
@@ -20,7 +20,7 @@ tags: [计算机图形学 computer-graphics cg CG]
 
 {{site.blank}}平行正投影表示不但投影线彼此要平行，还要与投影平面垂直。由于投影线彼此平行，因此不会相交，所投影的图像也不会产生“近大远小”的视觉效果，图1就是个平行正投影，远处的四边形投影到平面f上后是绿色线段n，近处的三角形投影后是蓝色的线段l（图像重叠，看的不是很清楚）。我们分析这张图可以知道物体上的顶点投影过去后，其y值不变，而x值变成了与平面f的x值相同的值。联想到三维空间，假如f是xoy平面，远处物体要平行投影，其结果应该会是物体的x，y值不变，而z值变成了0。
 
-![img0][img0] 图1
+{% include image.html align="center" caption="图1 平行正投影投影线示意图" src="cg/cg4_view/cg4_0.jpg" width="605" height="219" %}
 
 这种投影下的变换矩阵很简单：
 
@@ -39,9 +39,9 @@ $$
 
 {{site.blank}}从矩阵中看出变换后的点的z值不受原来点的任何分量的影响，一律是0.这也正是我们想要的结果。从数学的角度来看这样就完成了平行正投影的计算过程，但在我们的OpenGL来看，还差点火候。因为OpenGL渲染管线会在后期裁减掉`规范视见体（Canonical View Volume,CVV）`外面的任何顶点、线段、物体等，而我们在建模的时候基本不会把模型的大小限制在CVV大小的立方体（一个边长为2，且与轴平行，中心点与原点重合的立方体）里面去做，图2是个在3DMax下的模型顶点坐标。世界空间下的所有物体也不会恰巧全部与眼标架的z轴对称。所以解决这个问题的办法就是通过平移与缩放。
 
-![img5][img5] 图2
+{% include image.html align="center" caption="图2 3DMax下一模型顶点的坐标" src="cg/cg4_view/cg4_5.jpg" width="381" height="453" %}
 
-{{site.blank}}说平移与缩放的时候，我们需要先说下自定义视见体，视见体就是规定空间中什么范围内的物体最后要被呈现在显示器上，定义它的目的就是希望在该范围中的物体被成像，而不仅仅是在CVV中，显然这样一来我们的工作会大大提升自由度，比如建模师可以随意建模，应用程序也可以随意指定视见体大小。但是毕竟裁剪与后期的处理是管线固定了的，所以我们在获得高自动度之后就需要利用一个矩阵，将自定义视见体中的所有要显示的物体变换到CVV中，基本的思路就是：如果偏离了原点就平移回来，如果视见体比CVV大就缩小。比如我们前端程序设置了这样一个立方体：（**这里强调一句，一般我们在平行投影的时候，自定义视见体被定义成与轴垂直的长方体，而在透视投影的时候，定义为四棱台**）
+{{site.blank}}说平移与缩放的时候，我们需要先说下自定义视见体，视见体就是规定空间中什么范围内的物体最后要被呈现在显示器上，定义它的目的就是希望在该范围中的物体被成像，而不仅仅是在CVV中，显然这样一来我们的工作会大大提升自由度，比如建模师可以随意建模，应用程序也可以随意指定视见体大小。但是毕竟裁剪与后期的处理是管线固定了的，所以我们在获得高自动度之后就需要利用一个矩阵，将自定义视见体中的所有要显示的物体变换到CVV中，基本的思路就是：如果偏离了原点就平移回来，如果视见体比CVV大就缩小。比如我们前端程序设置了这样一个立方体：（**一般我们在平行投影的时候，自定义视见体被定义成与轴垂直的长方体，而在透视投影的时候，定义为四棱台**）
 
 $$
 \begin{align}
@@ -120,8 +120,8 @@ $$
 
 {{site.blank}}大家以为这就完事了吗？还没有，还有最后一步，那就是，当我们将视见体转换到CVV的大小与位置后，我们的标架同样需要从眼空间转换到裁减空间下（CVV就是在裁剪空间下），而OpenGL中的裁剪空间是左手坐标系。
 
-> “由于屏幕坐标经常指定为左手系，因此规范化观察体也常指定为左手系统。这样就可以将观察方向的正距离解释为离屏幕（观察平面）的距离。”  --《计算机图形学》中文第三版 P.298<br>
-“Because screen coordinates are often specified in a left-handed reference frame, normalized coordinates also are often specified in a left-handed system. This allows positive distances in the viewing direction to be directly interpreted as distances from the screen(the viewing plane). Thus, we can convert projection coordinates into positions within a left-handed normalized-coordinate reference frame, and these coordinate positions will then be transferred to left-handed screen coordianteds by the viewport transformation.” 《计算机图形学》英文第四版 P. 344
+> 由于屏幕坐标经常指定为左手系，因此规范化观察体也常指定为左手系统。这样就可以将观察方向的正距离解释为离屏幕（观察平面）的距离。  --《计算机图形学》中文第三版 P.298<br>
+Because screen coordinates are often specified in a left-handed reference frame, normalized coordinates also are often specified in a left-handed system. This allows positive distances in the viewing direction to be directly interpreted as distances from the screen(the viewing plane). Thus, we can convert projection coordinates into positions within a left-handed normalized-coordinate reference frame, and these coordinate positions will then be transferred to left-handed screen coordianteds by the viewport transformation.   ---《计算机图形学》英文第四版 P. 344
 
 {{site.blank}}可以知道这是为了以后流水线处理的方便，并没有太多需要解释的东西。这个变换是必须的，因为流水线后面阶段在判断z序的时候，是根据“z值越大越离照相机远”的逻辑来经行的，倘若不转换，成像的结果就是远处的物体在近处的前面，甚至物体本身后面也在自己的前面，what a mass！所以上面我们计算出来的矩阵$$M$$需要再右乘左右手的转换矩阵，最终OpenGL下的平行正投影变换矩阵$$M_{ortho}$$为：
 
@@ -289,16 +289,15 @@ void main(){
 {% endhighlight %}
 
 最终的成像：
-![img_demo][img_demo] <br>图 平行正投影
+{% include image.html src="cg/cg4_view/cg4_parallel_projection.jpg" caption="图 平行正投影Demo截图" width="800" height="630" align="center" %}
 
 
 ## 平行斜投影
 
 {{site.blank}}平行斜投影就是投影线彼此平行，但投影线与投影平面不垂直的投影。下图就是一张平行斜投影的截图，从中可以简单的看出多边形ABCDE通过绿色投影线u投影到了平面f上，而我们处理它的方案是先将多边形ABCDE通过平行于f的方向错切到多边形A'B'C'D'E'的位置，然后再进行平行正投影。
 
-![img3][img3] 图3 平行斜投影。
-
-![img1][img7] <br>图4 斜投影。(a)俯视图。(b)侧视图。（来自英文版本《交互式计算机图形学》）
+{% include image.html align="center" caption="图3 平行斜投影投影线示意图" src="cg/cg4_view/cg4_oblique_projection.jpg" width="434" height="410" %}
+{% include image.html align="center" caption="图4 (a)俯视图 (b)侧视图 图片来自《交互式计算机图像学》" src="cg/cg4_view/cg4_7.jpg" width="531" height="352" %}
 
 {{site.blank}}所以我们将问题的核心集中在如何通过错切使ABCDE编程A'B'C'D'E'。从图4可以看出(x,z)是多边形上的任何一个点，假设为P点，它想要移动到正投影的角度，必须向x轴正方向移动$$(x_{p'}-x)$$的距离。而这个距离正好是$$cot\theta$$的长度（包括符号），所以错切后的点P的位置就应该是$$(x+cot\theta * z)$$，从图（b）中也可以看到错切后的y值应该是$$(y+cot\phi * z)$$，所以这个错切矩阵应该是下面这样：
 
@@ -398,24 +397,11 @@ void main(){
 
 ### 截图
 
-![img8][img8]<br> 图 OpenGL中的平行斜投影
-
-
+{% include image.html align="center" caption="OpenGL中的平行斜投影Demo截图" src="cg/cg4_view/cg4_8.jpg" width="800" height="630" %}
 
 
 
 
 ==EOF==
-
-
-
-[img0]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg4_0.jpg "img0"
-[img3]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg4_oblique_projection.jpg "img3"
-[img5]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg4_5.jpg "img5"
-[img7]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg4_7.jpg "img7"
-[img8]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg4_8.jpg "img8"
-[img_demo]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cg4_parallel_projection.jpg "img_parallel_projection"
-
-
 
 

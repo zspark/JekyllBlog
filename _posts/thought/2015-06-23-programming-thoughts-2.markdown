@@ -2,7 +2,7 @@
 layout: post_with_wisdom
 title:  "编程心得(二)"
 date:   2015-06-23 11:40:33
-categories: jekyll thought
+category: thought
 published: true
 excerpt: "编程心得"
 wisdom: 维护别人的代码就像是进入一栋设计得很漂亮的建筑，你一边逛一边景仰着，并盘算着加个侧厅或者重新装修一下什么的。不过这种情况太罕见了，更常见的是感觉是像被倒栽葱地一把扔进了又脏又臭的垃圾堆里。 —— 比尔·文纳斯（Bill Venners），《Programming in Scala》联合作者

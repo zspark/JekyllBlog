@@ -2,7 +2,7 @@
 layout: post
 title:  "编辑器开发日志"
 date:   2015-11-26 15:01
-categories: jekyll work
+category: work
 published: true
 tags: [mirage,editor,UI,effect,2D,particle]
 ---

@@ -2,7 +2,7 @@
 layout: post
 title:  "MirageEffector使用指南(0.8.3)"
 date:   2015-12-29
-categories: jekyll work
+category: work
 published: true
 excerpt: ""
 meta: 
@@ -92,15 +92,15 @@ addChild(ps);
 
 ==EOF==
 
-[img_1]:{{site.basepath}}/img/Effector/image_effector1.jpg
-[img_2]:{{site.basepath}}/img/Effector/image_effector6.jpg
-[img_3]:{{site.basepath}}/img/Effector/image_effector3.jpg
-[img_4]:{{site.basepath}}/img/Effector/image_effector9.jpg
-[img_5]:{{site.basepath}}/img/Effector/image_effector5.jpg
-[img_6]:{{site.basepath}}/img/Effector/image_effector10.jpg
-[img_7]:{{site.basepath}}/img/Effector/image_effector12.jpg
-[img_8]:{{site.basepath}}/img/Effector/image_effector14.jpg
-[img_9]:{{site.basepath}}/img/Effector/image_effector15.jpg
-[img_10]:{{site.basepath}}/img/Effector/image_effector17.jpg
-[img_11]:{{site.basepath}}/img/Effector/image_effector18.jpg
-[img_12]:{{site.basepath}}/img/Effector/image_effector19.jpg
+[img_1]:{{site.imgurl}}Effector/image_effector1.jpg
+[img_2]:{{site.imgurl}}Effector/image_effector6.jpg
+[img_3]:{{site.imgurl}}Effector/image_effector3.jpg
+[img_4]:{{site.imgurl}}Effector/image_effector9.jpg
+[img_5]:{{site.imgurl}}Effector/image_effector5.jpg
+[img_6]:{{site.imgurl}}Effector/image_effector10.jpg
+[img_7]:{{site.imgurl}}Effector/image_effector12.jpg
+[img_8]:{{site.imgurl}}Effector/image_effector14.jpg
+[img_9]:{{site.imgurl}}Effector/image_effector15.jpg
+[img_10]:{{site.imgurl}}Effector/image_effector17.jpg
+[img_11]:{{site.imgurl}}Effector/image_effector18.jpg
+[img_12]:{{site.imgurl}}Effector/image_effector19.jpg

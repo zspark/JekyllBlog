@@ -2,7 +2,7 @@
 layout: post_with_wisdom_mathjax
 title:  "《交互式计算机图形学》复习笔记-图形系统和模型"
 date:   2015-12-20
-categories: jekyll CG
+category: CG
 published: true
 excerpt: ""
 wisdom: 如果你以为用户是白痴，那就只有白痴才用它。 —— 李纳斯·托沃兹（Linus Torvalds），LINUX之父
@@ -32,7 +32,7 @@ tags: [计算机图形学 computer-graphics cg CG]
 * 存储器；
 * 帧缓存；
 
-> “所有现代图形系统都是基于光栅的。”  ---《计算机图形学》第三版
+> 所有现代图形系统都是基于光栅的。  ---《计算机图形学》第三版
 
 ## 呈像模型
 

@@ -2,7 +2,7 @@
 layout: post_with_wisdom
 title:  "Git学习、复习随笔"
 date:   2013-12-27 21:51:15
-categories: jekyll cs
+category: CS
 published: true
 excerpt: "Git学习、复习随笔"
 wisdom: 学而时习之，不亦说乎。 —— 孔子
@@ -11,7 +11,7 @@ author:
 tags: [git,version-control]
 ---
 
-*这篇文章是在我2013年博文[《Git安装随笔》][1]的基础上修改完成的，此时的我肯定更加熟悉Git。*
+*这篇文章是在我2013年博文《Git安装随笔》的基础上修改完成的，没有大动，整理时候调整了用词、术语等。*
 
 ##  概括
 
@@ -56,7 +56,6 @@ tags: [git,version-control]
 
 ==EOF==
 
-[1]:http://www.zspark.net/?post=12
 [2]:http://git-scm.com/
 [3]:http://tortoisegit.org/
 

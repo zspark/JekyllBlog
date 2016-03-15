@@ -2,7 +2,7 @@
 layout: post_with_wisdom_mathjax
 title:  "微分方程（二）"
 date:   2015-11-11 21:47:48
-categories: jekyll math
+category: math
 published: true
 excerpt: ""
 wisdom: 如果你以为用户是白痴，那就只有白痴才用它。 —— 李纳斯·托沃兹（Linus Torvalds），LINUX之父

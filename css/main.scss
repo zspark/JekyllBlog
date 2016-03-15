@@ -14,10 +14,12 @@ $base-line-height: 1.5;
 $spacing-unit:     30px;
 
 $quote-color:		#E2F1FF;
-$code-color:		#F2F9FF;
+$code-color:		#272822;
 $text-color:       #111;
 $background-color: #FFFFFF;
 $brand-color:      #2a7ae2;
+$clemson-purple:      #522d80;
+$clemson-orange:      #f66733;
 
 $grey-color:       #828282;
 $grey-color-light: #bababa;
@@ -50,5 +52,6 @@ $on-laptop:        800px;
 @import
         "base",
         "layout",
-        "syntax-highlighting"
+        "syntax-highlighting",
+	"fancy-image"
 ;

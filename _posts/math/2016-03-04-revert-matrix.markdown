@@ -2,7 +2,7 @@
 layout: post_with_mathjax
 title:  "群聊天逆矩阵记录"
 date:   2016-03-04 10:27
-categories: jekyll math
+category: math
 published: true
 excerpt: ""
 meta: 
