@@ -3,7 +3,7 @@ layout: post_with_wisdom
 title:  "参与过的项目"
 date:   2015-10-27
 category: jekyll
-published: true
+published: false
 excerpt: ""
 wisdom: 计算机科学就是有关计算机的，正如天文学就是有关望远镜的。—— 艾兹格·迪杰斯特拉（Edsger W. Dijkstra），荷兰计算机科学家，最短路径算法提出者
 meta: 
@@ -31,11 +31,6 @@ tags: [work]
 * 计算机图形学学习demo
 
 
-
-
-
-
-[1]http://www.61-6.com/
 
 ==EOF==
 

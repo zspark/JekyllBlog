@@ -67,8 +67,7 @@ glUniform1i(samperLocation,1);
 1. 立方体纹理不必设置立方体8个顶点的纹理坐标，只需要将指定的8个顶点在空间中的正常坐标（三维的），通过顶点着色器传递给片元着色器后，使用texture函数采样即可；
 2. 给纹理类型填充纹理数据时不要混乱，可以熟记那个横放的十字架图（见下图），交点位置自己确定后，其他5个面顺序也就固定了；
 
-![cube_texture][img_cube_texture] <br>图片来自[维基百科][site_url]
-
+{% include image_click.html href="https://en.wikipedia.org/wiki/Cube_mapping" caption="图片来自维基百科" src="cg/image_cube_texture.jpg" align="center" width="640" %}
 
 {% highlight glsl linenos%}
 //顶点着色器：
@@ -96,5 +95,3 @@ void main(){
 
 ==EOF==
 
-[img_cube_texture]:{{site.basepath}}{{site.imgpath}}{{page.subImgPath}}image_cube_texture.jpg "cube_texture"
-[site_url]:https://en.wikipedia.org/wiki/Cube_mapping
