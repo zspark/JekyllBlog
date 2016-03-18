@@ -31,28 +31,29 @@ tags: [ecs,ECS,collision-detection,entity-component-system]
 
 ### 重要概念
 
-1. Component
-要说明ECS中三个字母依次代表的含义，我觉得需要先说C`Component`；
+#### 1.Component
 
 {{site.blank}}ECS中的字母C`Component`是英语‘组件’的含义。说起组件可能我们更加倾向于想到按钮、单选框、文本等，这两种“组件”虽然在含义上有出入，但究其在各自框架结构中扮演的角色却是相同的：**他们都是一个更大系统的组成部分**。
 
 {{site.blank}}设想一个按钮组件，我们可以想到它会有caption/label属性，正常情况下它也一定可以被点击，有一定的外形。但是我们绝不会想到正常情况下的按钮组件会有列表List的功能、播放动画的功能等等。联系到ECS中的组件也是一样的：**一个组件会有一项具体的的功能，但绝对不会有系统全部的功能。**
 
 {{site.blank}}我们继续分析按钮组件。一个按钮会被点击，从而触发一些应用逻辑，这是说按钮有部分逻辑存在；同样当我们设置按钮的状态为不可点击时，它会一直被渲染成类似灰色的样子是因为其记录了一些数据。这样看来按钮组件就可以被定义为一个具有被点击功能的逻辑与数据的合体。这种对按钮组件的抽象并不适合ECS中的组件定义，结合之前所说ECS是面相数据的，于是更加准确的CES组件定义便是：
-**一个具体的、性质相对单一的一组数据的集合**
+**一个具体的、性质相对单一的一组数据的集合。**
 
 > Component: the raw data for one aspect of the object, and how it interacts with the world. "Labels the Entity as possessing this particular aspect". Implementations typically use Structs, Classes, or Associative Arrays.  --摘wiki
 
 {{site.blank}}了解了`Component`的基本思想后，我们可以将上面树妖的简单数据分成三个组件，componentA包含了成长相关的数据，componentB包含攻击相关的数据。componentC包含行走相关的数据。一般情况下我们会再创建一个新的结构或者类，用它去组合componentA与componentB，如此一来，ECS中的E`Entity`便登场了。
 
-2. Entity
+#### 2.Entity
+
 {{site.blank}}ECS中的字母E`Entity`就是“实体”的意思。这个实体是数据实体，并不是对象实体（因为前面说过他是面相数据的，并且它是由各种Component组合而成的）。究竟是如何组合的呢？想想我们的树妖，能走能攻击还能生长，那我们就创建一个树妖实体，让他组合了上面A，B，C三种组件，这不就包含了一切需要的数据嘛，倘若是个普通怪物，仅仅组合B，C即可。普通树的话就只有A了。这就是Entity：**由各种必要Component组合而成的另一个对象。**
 
 > Entity: The entity is a general purpose object. Usually, it only consists of a unique id. They "tag every coarse gameobject as a separate item". Implementations typically use a plain integer for this.  --摘自wiki
 
 > Entity - A container into which components can be added, usually hierarchical (any Entity can have sub-Entities).  --摘自wiki
 
-3. System
+#### 3.System
+
 {{site.blank}}ECS中的字母S`System`是逻辑的躯体。它们（游戏里面可能有好多System）驱动着添加进来的所有同一类型组件C`Component`做出指定的逻辑运算。有的System需要的Component不止一种。比如系统要渲染Bitmap到屏幕，至少需要知道BitmapData的数据（绘制什么东西）、Bitmap的坐标、旋转、缩放，父容器（绘制到哪里）才行，如果我们用PositionComponent记录坐标、旋转与缩放的话，那肯定还需要另外一个记录着BitmapData数据的Compnent。再拿上面的树妖做比，树妖要攻击敌人，其ComponentB组件虽然保存有攻击力、暴击率、暴击伤害、攻击速度等一套数据，但也仅仅是一堆数据而已，他们如何计算？如何依赖？，我们需要将该组件以类似参数的形式传递给攻击系统（姑且叫做SystemAttack），攻击系统经过逻辑运算得出了本次攻击的具体伤害数值。而树妖实体E`Entity`的另外一个组件ComponentA则被传递给了成长系统（SystemGrow）得到了具体的成长值。其他树妖组件同此逻辑；**System是用来执行游戏逻辑，计算组件数据，驱动数据流的进行。**
 
 可以看出一个S`System`并不是针对一个具体的Entity而执行逻辑，而是根据E中更小的C来执行；
@@ -60,11 +61,9 @@ tags: [ecs,ECS,collision-detection,entity-component-system]
 > System: "Each System runs continuously (as though each System had its own private thread) and performs global actions on every Entity that possesses a Component of the same aspect as that System."  --摘自wiki
 
 ### Extra
-{{site.blank}}有的开发者将一个具体的System用到的所有Component封装到一个被称为Node的全新类里面，方便每次System驱动的时候只需要一种对象Node实例，而不是一堆组件实例；
+{{site.blank}}有的开发者将一个具体的System用到的所有Component封装到一个被称为Node的全新类里面，方便每次System驱动的时候只需要一种对象Node实例，而不是一堆组件实例；ECS架构还有一个称作SystemManager的类，这个其实就是集中管理所有System实体，整体驱动、停止等；
 
-{{site.blank}}ECS架构还有一个称作SystemManager的类，这个其实就是集中管理所有System实体，整体驱动、停止等；
-
-{{site.blank}}有了ECS这种将复杂对象的一组相关属性封装成组件存储，而将逻辑统一由System处理的架构思想，上面传统对象继承存在的问题迎刃而解，树怪实体（Entity）可以包含基类树与基类怪的所有Component，外带自己独特的Component，将他们各自推进针对不同Component处理的System逻辑处理器里面执行。这就是ECS的核心：**尽可能抽象对象，分裂对象，分裂到具体程序要求的最低级别，然后用各自独立的系统去批处理相同定义的数据块，屏蔽实体对系统的多样化要求，进而简化程序开发复杂度。**
+{{site.blank}}有了ECS这种将复杂对象的一组相关属性封装成组件存储，而将逻辑统一由System处理的架构思想，上面传统对象继承存在的问题迎刃而解，树怪实体（Entity）可以包含基类树与基类怪的所有Component，外带自己独特的Component，将他们各自推进针对不同Component处理的System逻辑处理器里面执行。这就是ECS的核心：**尽可能抽象对象，分裂对象，分裂到具体要求的最低级别，然后用各自独立的系统去批处理相同定义的数据块，屏蔽实体对系统的多样化要求，进而简化程序开发复杂度。**
 
 ### 引擎目前不支持的常用功能
 
