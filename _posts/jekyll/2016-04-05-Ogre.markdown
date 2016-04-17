@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "Ogre此前电子笔记的拾零性整理"
+date:   2016-04-04
+category: jekyll
+published: false
+excerpt: 
+meta: 
+author: 
+tags: [Ogre orge]
+---
+
+> 这种扁平化的架构思路让我想到了Ogre引擎对场景图的设计，基本上市面上已知的任意一款游戏引擎都有场景图这个概念，场景图用于管理场景中所有的对象（这里的对象不要与flash中的‘显示对象’联系起来），比如模型，粒子系统，公告板，地形等。场景图的设计一般都是多叉树的结构，就是一个根节点，挂载相应的一堆一级子节点，一级子节点又挂载二级子节点...。在非Ogre引擎的设计中，开发人员使用的Mesh类必须继承自子节点类，这样层次关系就会比较长，不便与程序重构、调整与功能的变化，因为变动跟节点相关的逻辑难免牵扯到Mesh及其子孙类的行为，同时在设计层面上也不合理，仔细琢磨Mesh与子节点类的关系，难道就因为Mesh要在场景中放置就必须要继承子节点？其次子节点的方法与属性跟Mesh基本没有任何关系，何不将他们拆分，互不影响，用组合设计模式将他们关联起来呢？Ogre引擎就是这么干的，整个设计就是扁平化的，更加合理，也容易扩展。
+
+{% include image.html src="js/img01.jpg" caption="《JavaScript权威指南》学习笔记一" width="100%" height="237" align="center" %}
+{% include image.html src="js/img02.jpg" caption="《JavaScript权威指南》学习笔记二" width="100%" height="237" align="center" %}
+{% include image.html src="js/img03.jpg" caption="《JavaScript权威指南》学习笔记三" width="100%" height="237" align="center" %}
+{% include image.html src="js/img04.jpg" caption="《JavaScript权威指南》学习笔记四" width="100%" height="237" align="center" %}
+{% include image.html src="js/img05.jpg" caption="《JavaScript权威指南》学习笔记五" width="100%" height="237" align="center" %}
+
+
+
+
+
+==TBC==
+
+
+

@@ -21,9 +21,6 @@ permalink: /about/
 * Github : [https://github.com/zSpark][2]
 * e-Mail : [z_Spark@163.com][3]
 
-#### Resume
-
-{% include embedpdf.html width="100" height="1600" %}
 
 [1]:http://www.zspark.net
 [4]:http://www.zspark.me
