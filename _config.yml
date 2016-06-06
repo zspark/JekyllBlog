@@ -17,6 +17,7 @@ assetsurl: "/assets/"
 imgurl: "/assets/img/"
 swfurl: "/assets/swf/"
 posturl: "/post/"
+libsurl: "/libs/"
 
 #屏蔽目录或文件
 exclude: [exclude]

@@ -12,11 +12,11 @@ permalink: /about/
 
 {{site.b}}很显然，我对自己未来专业的方向确定在了图形图像与物理碰撞检测两个方面，也就是游戏引擎相关的开发。好些朋友与同事不太看好，毕竟商业级游戏引擎都在慢慢开源，而且数量众多，我给他们的回答便是：总得有人做吧，我便是其中一个。
 
-#### Brief
+#### BRIEF
 
 * major-at-college : Physics
 * major(future) : Computer-Graphics Physics-Collision-Detection
-* language-familiar: C++ GLSL AS3 
+* language-familiar: C++ AS3 JS GLSL 
 * personal-web : [www.zspark.net][1]
 * Github : [https://github.com/zSpark][2]
 * e-Mail : [z_Spark@163.com][3]

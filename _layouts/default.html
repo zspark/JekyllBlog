@@ -2,6 +2,10 @@
 <html>
 
   {% include head.html %}
+  <!--
+<script type="text/javascript" src="/libs/Three.js"/>
+<script type="text/javascript" src="/libs/jquery-2.2.3.min.js"/>
+-->
 
 <!--Google Analytics -->
 <script>
@@ -15,16 +19,18 @@
 </script>
 
   <body>
+  <!--
+  <div id="WebGL-output" width="700" height="500" style="position:absolute; left:0px ;top:0px"></div>
+-->
 
     {% include header.html %}
 
-    <div class="page-content">
+    <div class="page-content" style="position:relative">
       <div class="wrapper">
         {{ content }}
       <p><img src="{{site.imgurl}}Running_cow.gif" title="can't you see ,i am running!" /></p>
       </div>
     </div>
-
 
     <!--
     {% include footer.html %}

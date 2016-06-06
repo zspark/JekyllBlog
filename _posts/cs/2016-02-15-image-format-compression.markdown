@@ -61,6 +61,7 @@ tags: [image,format,compression]
 ### 离散余弦变换
 这个压缩算法没有细看，仅作了了解。
 
+
 ==EOF==
 
 [url_huffman]:[http://blog.jobbole.com/20091/]
