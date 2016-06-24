@@ -2,7 +2,7 @@
 layout: post_with_wisdom
 title:  "正则表达式"
 date:   2016-05-31
-category: cs
+category: CS
 published: true
 excerpt: ""
 wisdom: 软件就像熵：难以把握，没有重量，服从热力学第二定律；比如说，它总是在增长。 —— 诺曼·奥古斯丁（ Norman Augustine），洛克希德马丁公司前总裁

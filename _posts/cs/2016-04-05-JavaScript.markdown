@@ -2,7 +2,7 @@
 layout: post
 title:  "JavaScript权威指南学习笔记[update]"
 date:   2016-04-05
-category: cs
+category: CS
 published: true
 excerpt: 
 meta: 

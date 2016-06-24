@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>WebGL</title>
+	<script type="text/javascript" src="./libs/external/PrototypeJS.js"></script>
+</head>
+<body>
+<ul id="apples">
+	<li>Mutsu</li>
+	<li>McIntosh</li>
+	<li>Ida Red</li>
+</ul>
+<div id="div" > </div>
+<div id="rectangle" style="font-size: 40px; width: 20em; height: 10em;background-color: aqua">Hello World!</div>
+
+<script type="text/javascript">
+	window.onload = init;
+	function init(){
+//		var a = new Element('a', { 'class': 'foo', href: '/foo.html' }).update("Next page");
+//		var a=new Element('a',{"class":'foo',href:"sfsfsf.html"}).update("Hello World");
+//		$("div").appendChild(a);
+//		a.addClassName("sfsfsf")
+//		var element = $('apples');
+//		element.cleanWhitespace();
+//		console.log(element.firstChild.innerHTML);
+//		var dimensions = $('rectangle').getDimensions();
+// -> {width: 200, height: 100}
+// -> 200
+//		console.log(dimensions.width);
+//		console.log(dimensions.height);
+//		var a=document.getElementsByTagName('li');
+
+//		var b=fn.argumentNames();
+		//-> ['foo', 'bar']
+
+		var that="thataa";
+
+		window.setTimeout(function(){
+			console.log(this.that);
+			console.log(that);
+			debugger;
+		},1000);
+
+	}
+	function fn(foo, bar) {
+		return foo + bar;
+	}
+</script>
+</body>
+</html>
+
