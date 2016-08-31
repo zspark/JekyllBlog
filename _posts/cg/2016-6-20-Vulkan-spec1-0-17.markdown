@@ -681,7 +681,5 @@ void vkDestroyShaderModule(
 
 
 ==TBC==
-[1]:https://www.khronos.org/registry/spir-v/specs/1.0/SPIRV.html
 
-{% highlight c %}
-{% endhighlight %}
+[1]:https://www.khronos.org/registry/spir-v/specs/1.0/SPIRV.html

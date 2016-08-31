@@ -1,18 +1,18 @@
 # Site settings
-title: "Jerry Chaos"
+title: "z_Spark's-Notes"
 email: "z_Spark@163.com"
-description: "任何正常智商的成熟人类个体都能无障碍理解人类全部的智慧。"
+description: "任何正常智商的成熟人类个体都能无障碍理解全部的智慧。"
 baseurl:  # the subpath of your site, e.g. /blog
 url: "http://www.zspark.net" # the base hostname & protocol for your site
 github_username:  "zSpark"
 
-#格式
+# formatting
 blank: "&nbsp; &nbsp; "
 b: "&nbsp; &nbsp; "
 #paginate: 3
 #paginate_path: "page:num"
 
-#目录配置
+# directory configurations
 assetsurl: "/assets/"
 imgurl: "/assets/img/"
 swfurl: "/assets/swf/"
@@ -29,7 +29,4 @@ openFeed: true
 highlighter: pygments 
 markdown: kramdown
 permalink: /post/:categories/:title.html
-
-
-
 

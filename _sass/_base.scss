@@ -9,11 +9,11 @@ dl, dd, ol, ul, figure {
 }
 
 
-
 /**
  * Basic styling
  */
 body {
+    background-image: url('img/body.png');
     font-family: $base-font-family;
     font-size: $base-font-size;
     line-height: $base-line-height;
