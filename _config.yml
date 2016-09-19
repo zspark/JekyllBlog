@@ -21,7 +21,7 @@ posturl: "/post/"
 libsurl: "/libs/"
 
 #屏蔽目录或文件
-exclude: [exclude,webgl/mongoose-free-6.4.exe]
+exclude: [exclude,webgl/mongoose-free-6.4.exe,.git]
 
 #custom value;
 openFeed: false
