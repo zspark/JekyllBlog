@@ -1,0 +1,86 @@
+/* Literal.Number.Integer.Long */
+.wp-caption {
+  background-color: #f3f3f3;
+  text-align: center;
+  border: 1px dotted #522d80;
+  font-size: 0.90em;
+  overflow: hidden;
+  position: relative; }
+
+.wp-caption dd {
+  color: #808080;
+  background-color: #f3f3f3;
+  font-size: .9em;
+  padding: 2px 8px 3px 8px;
+  margin: 1px 0 0 0; }
+
+.wp-caption dt {
+  margin: 0; }
+
+.wp-caption img {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+.alignleft,
+.alignright {
+  display: block;
+  margin-top: 4px; }
+
+.alignleft {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 15px; }
+
+.alignright {
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 15px; }
+
+.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+
+figure {
+  margin: 0;
+  padding: 0; 
+}
+
+pre {
+	padding: 8px 12px;
+	overflow-x: scroll;
+}
+pre > code {
+	font-size: 0.9em;
+	border: 0;
+	padding-right: 0;
+	padding-left: 0; 
+}
+
+/* Pygments via Jekyll */
+.highlight {
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+.highlight pre {
+  margin-bottom: 0;
+}
+
+.highlight .lineno {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none; 
+	display: inline-block;
+	padding: 0 5px;
+}
+
+ul.listing li.listing-seperator {
+  padding-top: 15px;
+  font-weight: bold;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 1.17em; 
+}
+

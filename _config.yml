@@ -1,9 +1,11 @@
 # Site settings
-title: "z_Spark's-Notes"
+title: "zSpark"
+tagline: ''
 email: "z_Spark@163.com"
 description: "任何正常智商的成熟人类个体都能无障碍理解全部的智慧。"
-baseurl:  # the subpath of your site, e.g. /blog
+# the subpath of your site, e.g. /blog
 url: "http://www.zspark.net" # the base hostname & protocol for your site
+baseurl:  / 
 github_username:  "zSpark"
 
 # formatting
@@ -23,10 +25,24 @@ libsurl: "/libs/"
 exclude: [exclude,webgl/mongoose-free-6.4.exe]
 
 #custom value;
-openFeed: true
+openFeed: false
 
 # Build settings
 highlighter: pygments 
 markdown: kramdown
+  
+# Permalinks
 permalink: /post/:categories/:title.html
+# permalink:        pretty
+#relative_permalinks: true
 
+# from hyde
+author:
+  name:           'Mark Otto'
+  url:            https://twitter.com/mdo
+
+# Custom vars
+version:          0.8.0
+
+github:
+  repo:           https://github.com/z_spark/sssssss

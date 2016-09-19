@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Time
+title: Archieve(time)
 permalink: /time/
 ---
 
