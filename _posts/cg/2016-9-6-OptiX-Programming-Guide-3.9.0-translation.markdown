@@ -12,7 +12,12 @@ subImgPath: cg\OptiX\
 tags: [计算机图形学 computer-graphics cg CG Optix OptiX optix 射线追踪 CUDA]
 ---
 
-*Hello，翻译NVIDIA官方OptiX编程指南3.9并有意谋划，而是突然的想法，旨在进一步加强自己对OptiX的理解与记忆，虽然仅有95页的pdf文档，但在翻译过程中着实体会到天下译者的辛劳，难怪译本的封面也要印刷译者的名字————我承认此前确实比较纳闷。翻译过程中有的直译有的意译，极少不太确定的部分是待译，不过附有原文。我会坚持将文档翻译完毕，从目前的进度来看尚需要二十天左右。翻译必然会存在理解上或者表达上的错误，一经发现，立即改正提交。2016年09月17日家*
+*Hello everyone!，翻译NVIDIA官方OptiX编程指南3.9并非有意谋划，而是突然的想法，旨在进一步加强自己对OptiX的理解与记忆，虽然仅有95页的pdf文档，但在翻译过程中着实体会到天下译者的辛劳，难怪译本的封面也要印刷译者的名字————我承认此前确实比较纳闷。翻译过程中有的直译有的意译，极少不太确定的部分是待译，不过附有原文。我会坚持将文档翻译完毕，从目前的进度来看尚需要二十天左右。翻译必然会存在理解上或者表达上的错误，一经发现，立即改正提交。欢迎任何意见、建议、想法等。*
+
+<p align="right"><em>2016年09月17日家 </em></p>
+
+<br/>
+--------以下是译文--------
 
 NVIDIA OptiX 射线追踪引擎
 
@@ -109,6 +114,7 @@ Version 3.9
 {{site.b}}当射线生成程式被调用后，一个特殊的语义变量（semantic variable）可能会被查询用来定位运行时的射线生成程式。举例来说，一个常规的用法是执行（launch）一个二维程式，其高宽符合将要被渲染的图像的像素尺寸。参见4.3.2节获取更多信息。
 
 # 第三章 客户端API
+
 ## 3.1 上下文
 {{site.b}}一个OptiX的上下文控制着射线追踪引擎的装配与后序的工作。上下文通过rtContextCreate函数创建。上下文对象封装了所有OptiX的资源————纹理，几何体，用户定义的程式等等，上下文的销毁通过调用rtContextDestroy函数，它会销毁所有资源并且将这些资源的句柄失效。
 
@@ -135,7 +141,7 @@ rtContextDestroy( context );
 * All SM 1.1 and 1.0 devices can only be run in single-GPU configurations.
 
 ### 3.1.1 接入点
-{{site.b}}每一个上下文可能含有多个计算接入点。一个接入点被关联在一个的射线生成程式与一个（可选的）异常程式上。一个上下文可以通过rtContextSetEntryPointCount设置接入点的数量。接入点关联程式的设定与获取通过函数： rtContext{Set|Get}RayGenerationProgram, rtContext{Set|Get}ExceptionProgram 每一个接入点在使用的时候必须关联一个射线生成程式，异常程式是可选的。多接入点的机制允许在不同的渲染算法之间切换，也方便在一个OptiX上下文上进行多通道渲染技术的实现。
+{{site.b}}每一个上下文可能含有多个计算接入点。一个接入点被关联在一个的射线生成程式与一个（可选的）异常程式上。一个上下文可以通过rtContextSetEntryPointCount设置接入点的数量。接入点关联程式的设定与获取通过函数： rtContext{Set\|Get}RayGenerationProgram, rtContext{Set\|Get}ExceptionProgram 每一个接入点在使用的时候必须关联一个射线生成程式，异常程式是可选的。多接入点的机制允许在不同的渲染算法之间切换，也方便在一个OptiX上下文上进行多通道渲染技术的实现。
 
 {% highlight c++ %}
 RTcontext context = ...;
@@ -162,13 +168,14 @@ rtContextSetExceptionProgram( context, 1, exception);
 
 {{site.b}}夹带（数据）是一种用户定义的数据结构用于关联到各个射线。比如，通常的用法是保存一个返回的颜色，射线的递归深度，阴影的衰减系数等。它可以看成是射线追踪结束后的返回数据。它也可以用于在递归期间在不同的射线生成程式中保存、发布数据。
 
-{{site.b}}指派给材质的最近碰撞与任意碰撞程式好比传统渲染系统中的着色器：它们会在射线与几何图元发生相交时调用。因为这些程式指派给材质是区分射线类型的，所以并不是所有的射线类型都必须有这两种程式。参见4.5，4.6节以获取更多细节。丢失程式是在追踪的光线确定没有与任何集合体相撞的时候调用的。丢失程式可以用来返回一个常量以表示天空的颜色或者返回从环境贴图中采样的颜色。表格1 可以作为一个Whitted风格的递归射线追踪器的示例，目的是展示如何使用射线类型。
+{{site.b}}指派给材质的最近碰撞与任意碰撞程式好比传统渲染系统中的着色器：它们会在射线与几何图元发生相交时调用。因为这些程式指派给材质是区分射线类型的，所以并不是所有的射线类型都必须有这两种程式。参见4.5，4.6节以获取更多细节。丢失程式是在追踪的光线确定没有与任何集合体相撞的时候调用的。丢失程式可以用来返回一个常量以表示天空的颜色或者返回从环境贴图中采样的颜色。表1 可以作为一个Whitted风格的递归射线追踪器的示例，目的是展示如何使用射线类型：
 
-表格1
 |Ray Type|Payload|Closest Hit|Any Hit|Miss|
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|Radiance|RadiancePL|计算颜色、继续追踪递归深度|n/a|环境贴图查询|
+|:---:|:---:|:---:|:---:|:---:|
+|Radiance|RadiancePL|计算颜色，继续追踪递归深度|n/a|环境贴图查询|
 |Shadow|ShadowPL|n/a|计算阴影衰减，如果对象不透明则终止追踪|n/a|
+
+表1
 
 上表中的夹带数据结构可能会是这样的：
 
@@ -240,7 +247,7 @@ rtContextGetAttribute( context, RT_CONTEXT_ATTRIBUTE_USED_HOST_MEMORY, sizeof(RT
 
 可以通过RT_CONTEXT_CPU_NUM_THREADS设置CPU线程数量，用于多种任务比如构建加速结构体（以后简称加速体），通过RT_CONTEXT_ATTRIBUTE_GPU_PAGING_FORCE_OFF禁用大内存分页，其他的属性是只可读的。
 
-{{site.b}}为了支持递归调用，OptiX使用一小块堆栈关联每一个线程的执行。rtContext{Get|Set}StackSize可以设置或者查询这块堆栈的大小。堆栈大小的设置一定要小心，过大的堆栈将会导致性能的降级而过小的堆栈将会导致堆栈溢出。堆栈溢出错误可以通过用户定义的异常程式经行处理。
+{{site.b}}为了支持递归调用，OptiX使用一小块堆栈关联每一个线程的执行。rtContext{Get\|Set}StackSize可以设置或者查询这块堆栈的大小。堆栈大小的设置一定要小心，过大的堆栈将会导致性能的降级而过小的堆栈将会导致堆栈溢出。堆栈溢出错误可以通过用户定义的异常程式经行处理。
 
 {{site.b}}可以通过像C风格下的printf函数一样的rtContextSetPrint\*函数集开启OptiX程式的打印功能，允许这些程式更加容易被调试。CUDA C函数rtContextSetPrintEnabled可以开启或者关闭打印全部（程式），而rtContextSetPrintLaunchIndex可以针对具体的计算网格进行打印。全局打印状态被关闭的时候，打印语句不会对性能有一点损害，默认状态是关闭的。
 
@@ -252,7 +259,7 @@ rtContextSetPrintEnabled( context, 1 );
 rtContextSetPrintBufferSize( context, 4096 );
 {% endhighlight %}
 
-在OptiX程式中，rtPrintf函数像C语言下的printf一样工作。对rtPrintf的调用会自动将（数据）保存进输出缓冲区中。**但是同一个线程的分次调用或者不同线程的调用其输出会是相互交错的。（译注：多线程的输出交错能理解，单线程的多次调用怎么还会任意交错输出？）**
+{{site.b}}在OptiX程式中，rtPrintf函数像C语言下的printf一样工作。对rtPrintf的调用会自动将（数据）保存进输出缓冲区中。但是同一个线程的分次调用或者不同线程的调用其输出会是相互交错的。（译注：多线程的输出交错能理解，单线程的多次调用怎么还会任意交错输出？）
 
 {% highlight c++%}
 rtDeclareVariable(uint2, launch_idx ,rtLaunchIndex,);
@@ -266,9 +273,7 @@ RT_PROGRAM void any_hit() {
 
 {{site.b}}可以在装配过程的任意时刻调用rtContextValidate来检测上下文状态与关联对象的有效性与合法性。也会一起检测已存在的必要程式（比如一个相交程式）的内部状态与关联的外部变量的合法性。合法性检测总会在上下文执行的时候隐性的被调用。
 
-{{site.b}}执行rtContextCompile会明确的请求计算内核与关联的上下文对象的编译。当场景参数或者程式变化后并不需要严格的调用rtContextCompile，因为在下次调用rtContextLaunch的时候会触发编译。rtContextCompile允许用户控制编译的时间，但是尽量在编译之前设置完毕所有的上下文内容，因为后续的改动会导致rtContextLaunch在调用时重新编译。
-
-{{site.b}}（译注：待译，原文：rtContextSetTimeoutCallback specifies a callback function of type RTtimeoutcallback that is called at a specified maximum frequency from OptiX API calls that can run long, such as acceleration structure builds, compilation, and kernel launches. ）这就允许应用程序更新它的接口或者执行其他任务。回调函数也可以要求OptiX停止当前的工作并将控制权返回给应用程序，这个请求是被立即执行的。（待译，原文： Output buffers expected to be written to by an rtContextLaunch are left in an undefined state, but otherwise OptiX tracks what tasks still need to be performed and resumes cleanly in subsequent API calls.） 
+{{site.b}}执行rtContextCompile会明确的请求计算内核与关联的上下文对象的编译。当场景参数或者程式变化后并不需要严格的调用rtContextCompile，因为在下次调用rtContextLaunch的时候会触发编译。rtContextCompile允许用户控制编译的时间，但是尽量在编译之前设置完毕所有的上下文内容，因为后续的改动会导致rtContextLaunch在调用时重新编译。（待译，原文：rtContextSetTimeoutCallback specifies a callback function of type RTtimeoutcallback that is called at a specified maximum frequency from OptiX API calls that can run long, such as acceleration structure builds, compilation, and kernel launches. ）这就允许应用程序更新它的接口或者执行其他任务。回调函数也可以要求OptiX停止当前的工作并将控制权返回给应用程序，这个请求是被立即执行的。（待译，原文： Output buffers expected to be written to by an rtContextLaunch are left in an undefined state, but otherwise OptiX tracks what tasks still need to be performed and resumes cleanly in subsequent API calls.） 
 
 {% highlight c++%}
 // Return 1 to ask for abort, 0 to continue.
@@ -298,7 +303,7 @@ rtContextSetTimeoutCallback( context, CBFunc, 0.1 );
 * RT_BUFFER_LAYERED：当缓冲区是用来作为纹理缓冲区时，它的深度信息表示层的数量而非3D缓冲区中的深度；
 * RT_BUFFER_CUBEMAP：深度作为立方体的面来使用，而不是3D缓冲区中的深度；
 
-{{site.b}}在使用一个缓冲区之前，它的大小、纬度、数据的格式必须先被指定。数据格式可以通过函数rtBuffer{Get|Set|}Fomart设置，格式是RTformat枚举类型的，是为C、CUDA C的数据类型而设计的，比如unsigned int 、float3等。可以使用RT_FORMAT_USER来指定任意类型的数据。通过rtBufferSetElementSize函数指定元素的大小。通过rtBufferSetSize{1,2,3}D来指定缓冲区的大小，同样他们也指定了缓冲区的纬度。通过调用rtBufferGetMipLevelSize{1,2,3}D函数并且传入mip层，可以获取到纹理缓冲区中mip层的大小。
+{{site.b}}在使用一个缓冲区之前，它的大小、纬度、数据的格式必须先被指定。数据格式可以通过函数rtBuffer{Get\|Set\|}Fomart设置，格式是RTformat枚举类型的，是为C、CUDA C的数据类型而设计的，比如unsigned int 、float3等。可以使用RT_FORMAT_USER来指定任意类型的数据。通过rtBufferSetElementSize函数指定元素的大小。通过rtBufferSetSize{1,2,3}D来指定缓冲区的大小，同样他们也指定了缓冲区的纬度。通过调用rtBufferGetMipLevelSize{1,2,3}D函数并且传入mip层，可以获取到纹理缓冲区中mip层的大小。
 
 {% highlight c++%}
 RTcontext context = ...;
@@ -367,7 +372,7 @@ buffers[0] = inputBuffer0->getId();
 inputBuffers->unmap();
 {% endhighlight %}
 
-{{site.b}}>在G端来的话，ID缓冲区使用模板形参为rtBufferId的参数进行申明。在缓冲区中的保存的标识符被隐式的转化为缓冲期句柄。下面的示例创建了一个一维缓冲区，它的元素就是它们自己————一个一维的存储了整型变量的缓冲区。（译注：bufferId与buffer在本质上相同的，参见OptiX_API_Reference_3.0.0.pdf P.98）
+{{site.b}}在G端来的话，ID缓冲区使用模板形参为rtBufferId的参数进行申明。在缓冲区中的保存的标识符被隐式的转化为缓冲期句柄。下面的示例创建了一个一维缓冲区，它的元素就是它们自己————一个一维的存储了整型变量的缓冲区。（译注：bufferId与buffer在本质上相同的，参见OptiX_API_Reference_3.0.0.pdf P.98）
 
 {% highlight c++%}
 rtBuffer<rtBufferId<int,1>,1> input_buffers;
@@ -479,7 +484,7 @@ float2 tex_coord = ...;
 float4 value = tex2D( t, tex_coord.x, tex_coord.y );
 {% endhighlight %}
 
-OptiX3.0版本支持‘非绑定’纹理（bindless）。非绑定纹理允许OptiX程式直接引用纹理而不通过变量绑定，这是通过纹理ID来实现的。使用非绑定纹理可以动态的在多纹理之间切换而不需要明确的申明变量，也不需要手工实现切换代码。要切换的纹理可以拥有不同的属性，比如缠绕方式、纹理尺寸等，提供了比纹理数组更多的灵活性。为了从已存在纹理采样器中获取设备句柄，可以使用rtTextureSamplerGetId函数：
+{{site.b}}OptiX3.0版本支持‘非绑定’纹理（bindless）。非绑定纹理允许OptiX程式直接引用纹理而不通过变量绑定，这是通过纹理ID来实现的。使用非绑定纹理可以动态的在多纹理之间切换而不需要明确的申明变量，也不需要手工实现切换代码。要切换的纹理可以拥有不同的属性，比如缠绕方式、纹理尺寸等，提供了比纹理数组更多的灵活性。为了从已存在纹理采样器中获取设备句柄，可以使用rtTextureSamplerGetId函数：
 
 {% highlight c++%}
 RTtexturesampler tex_sampler = ...;
@@ -543,6 +548,8 @@ v = rtTex2DLayeredGrad<float4>( tex, uv.x, uv.y, tex_layer, dpdx, dpdy );
 |Selector|GeometryGroup,Group,Selector,Transform|
 |Acceleration|-none-|
 
+表2
+
 ### 3.4.1 几何体
 {{site.b}}几何体节点是表述几何体对象（一个集合了用户定义的图元，用来与射线相交）的基础节点。几何体节点所包含的图元数量通过rtGeometrySetPrimitiveCount函数设置，为了定义图元，就需要通过函数rtGeometrySetIntersectionProgram指派给几何体相交程式（译注：图元的定义完全在于C端，OptiX完全不知道也没有枚举值定义各种图元的类型，所以与用户定义的图元是否相交完全在于用户定义的相交程式，所以这就是原文中图元的定义是通过相交程式给出的含义）。输入的参数一个是图元的索引（index），一个是射线，相交程式的工作就是去判断它两之间的相交情况。结合程式的变量这就提供了一种必要的机制去定义任意图元类型与射线相交。一个常用的示例是个三角网格，相交程式从传入的顶点数据缓冲区中读取必要的三角面数据然后进行射线-三角形相交。
 
@@ -598,7 +605,7 @@ rtGeometryGroupSetChildCount( geomgroup, 1 );
 rtGeometryGroupSetChild( geomgroup, 0, geometry_instance );
 {% endhighlight %}
 
-{{site.b}}多个几何组之间可以共享孩子，这就意味着几何实例可以是好几个几何组的孩子。
+多个几何组之间可以共享孩子，这就意味着几何实例可以是好几个几何组的孩子。
 
 ### 3.4.5 组
 {{site.b}}组在节点图中代表一个集合其他对象的更高级节点。它们用来编译节点图结构，然后传递给rtTrace进行射线相交。一个组可以容纳任意数量的子节点，这些子节点必须是rtGroup、rtGeometryGroup、trTransform与rtSelector对象。通过rtGroupSetChildCount函数指定子节点数量，通过rtGroupSetChild指派具体的子节点对象。每一个组必须通过rtGroupSetAcceleration函数指派一个加速体。
@@ -618,11 +625,12 @@ rtGeometryGroupSetChild( geomgroup, 0, geometry_instance );
 RTtransform transform;
 const float x=10.0f, y=20.0f, z=30.0f;
 // Matrices are row-major.
-const float m[16] = 
-	{ 1, 0, 0, x,
-		0, 1, 0, y,
-		0, 0, 1, z,
-		0, 0, 0, 1 };
+const float m[16] = { 
+	1, 0, 0, x,
+	0, 1, 0, y,
+	0, 0, 1, z,
+	0, 0, 0, 1 
+};
 rtTransformCreate( context, &transform );
 rtTransformSetMatrix( transform, 0, m, 0 );
 {% endhighlight %}
@@ -663,7 +671,7 @@ rtGeometryGroupSetAcceleration( geomgroup, accel );
 
 （译注：具体内容待译）；
 |Builder/Traverser|Description|
-|:---:|:----|
+|:---:|:----:|
 |Trbvh/Bvh||
 |Sbvh/Bvh or BvhCompact||
 |Bvh/Bvh or BvhCompact||
@@ -771,7 +779,7 @@ rtGroutSetAcceleration( grout3,accel);
 
 {{site.b}}这些PTX文件然后通过C端API绑定到程式对象上。程式对象可以用在任何OptiX程式类型上，后面章节会讨论它们。
 
-### 管理程式对象
+### 4.1.1 管理程式对象
 {{site.b}}OptiX提供了两种创建程式对象的入口点：rtProgramCraeteFromPTXString，与rtProgramCreateFromPTXFile。第一种从PTX源码组成的字符串中穿件程式对象。后者从磁盘的PTX文件中创建。
 
 {% highlight c++%}
@@ -832,6 +840,184 @@ rtDeclareVariable( float, shininess, , “The shininess of the sphere” );
 {{site.b}}变量注解是rtDeclareVariable函数的第四个参数，紧接着变量的语音形式可选参数。C端程序可以通过rtVariableGetAnnotation函数查询变量的注释。
 
 ### 4.1.3 内部提供的语义形式
+{{site.b}}OptiX提供了5个内部语义形式以供程式变量的绑定。表5总结了它们在哪种程式中是可用的附带他们的可读写性，以及它们含义的简介。
+
+|Name|rtLaunchIndex|rtCurrentRay|rtPayload|rtIntersectionDistance|rtSubframeIndex|
+|:---:|:---:|:---:|:---:|:---:|:----:|
+|Access|read only|read only|read/write|read only|read only|
+|Description|由rtContextLaunch{1\|2\|3}D确定的统一线程索引|当前射线的状态|当前射线的夹带|当前射线的原点到目前已发现的最近点的参数距离|（待译）|
+|Ray Generation|Y|N|N|N|Y|
+|Exception|Y|N|N|N|Y|
+|Closest Hit|Y|Y|Y|Y|Y|
+|Any Hit|Y|Y|Y|Y|Y|
+|Miss|Y|Y|Y|N|Y|
+|Intersection|Y|Y|N|Y|Y|
+|Bounding Box|N|N|N|N|N|
+|Visit|Y|Y|Y|Y|Y|
+
+表5 语义变量形式
+
+### 4.1.4 属性变量
+{{site.b}}除了OptiX提供的语义形式之外，变量还可以用用户定义的语义形式申明，用户定义的语义形式叫做属性（attributes）。不同于内建的语义形式，这种方式定义的变量必须由程序员自己管理。属性变量提供了一种相交程式与渲染程式（比如：表面法线，纹理坐标）之间的数据通行机制（译注：渲染程式包括最近碰撞、任意碰撞、失效程式三种）。属性变量只能在相交程式的rtPotentialIntersection与rtReportIntersection函数之间写值。虽然OptiX不能找到射线方向所有物体的相交情况，但是当最近碰撞程式被调用的时候，属性变量的值会被保证是在最近相交处的相关值。为此，程式应该使用属性变量（不同于夹带数据）来为相交与渲染程式之间的本地碰撞点做通信。
+{{site.b}}下面的示例申明了一个float3形式的属性变量normal。与之关联的语义形式是用户定义的名normal_vec。这个名字是随意的（译注：是指normal），并且是这里申明的属性与最近碰撞程式里面申明的属性的连接。这两个变量不需要同名只要他们的属性名一样即可。
+
+{% highlight c++%}
+rtDeclareVariable( float3 , normal, attribute normal_vec,);
+{% endhighlight %}
+
+### 4.1.5 程式变量的作用域
+{{site.b}}OptiX的程式变量可以用2中方式定义其变量：静态的初始化与（普遍使用的）依附到API对象的变量申明。静态初始化申明的变量如果没有依附于API对象将会一直使用那个值（译注：初始化时候的值）。静态初始化申明这样写：
+
+{% highlight c++%}
+rtDeclareVariable( float, x, ,) = 5.0f;
+{% endhighlight %}
+
+{{site.b}}OptiX变量的作用域规则提供了一种值继承的机制，这种机制被设计用来将材质与对象参数捆绑在一起。为了这样做，每一个程式类型都有一个有序的列表，通过该列表顺序查找变量的定义。举个例子，一个最近碰撞程式引用一个名叫color的变量将会依次查找程式、几何实例、材质、上下文这些通过rt\*DeclareVariable函数定义的API对象。类似编程语言中的作用域规则（译注：比如JS的变量作用域），一个作用域内的变量会遮住在其他作用域中的同名变量。下面是每一种类型程式查找变量时的作用域。
+
+|Program type|first|second|third|fourth|
+|:---:|:---:|:---:|:---:|:---:|
+|Ray Generation|Program|Context|n/a|n/a|
+|Exception|Program|Context|n/a|n/a|
+|Closest Hit|Program|GeometryInstance|Material|Context|
+|Any Hit|Program|GeometryInstance|Material|Context|
+|Miss|Program|Context|n/a|n/a|
+|Intersection|Program|GeometryInstance|Material|Context|
+|Bounding Box|Program|GeometryInstance|Material|Context|
+|Visit|Progaram|Node|n/a|n/a|
+
+表6 每种程式作用域查找顺序（从左至右）
+
+{{site.b}}程式依赖不同场合被调用从而变量有不同的定义是有可能的。比如，最近碰撞程式可能依附到不同的材质对象上并且有个变量叫shininess（译注：高光），我们可以依附一个变量的定义到材质对象，而该材质对象又绑定到对应的几何实例对象上。（译注：意思就是程式中的变量shininess会去查找不同材质里面定义的不同值）。
+
+{{site.b}}在执行几何实例上的最近碰撞程式的时候（译注：最近碰撞程式是绑定到材质的，而材质是绑定到几何实例的，原文说的简单）。shininess变量的值依赖于特定的几何实例是否有这个变量的定义：如果有的话，其值就会被使用。否则变量的值就需要继续在材质对象上查询。从表6中你可以看到，程式查找几何实例作用域是在材质作用域之前。在多个作用域内定义的变量被认为是动态的并且可能会引起性能上的惩罚，动态变量最好谨慎使用。
+
+### 4.1.6 程式变量的变换
+{{site.b}}回忆当射线遍历到变换节点的时候，它会进行一次投影变换。变换后了的射线被称为是在对象空间中（object space），原始射线是在世界空间中（world space）。程式访问rtCurrentRay语义形式时所在空间总结见表7：
+
+|Ray type|spaces|
+|:---:|:-------:|
+|Ray Generation|World|
+|Closest Hit|World|
+|Any Hit|Object|
+|Miss|World|
+|Intersection|Object|
+|Visit|Object|
+
+表7 每种射线类型中rtCurrentRay语义形式所在的空间
+
+{{site.b}}为了使变量从一个空间到另一个空间的变换更加方便，OptiX的CUDA C API提供了一系列如下函数：
+
+{% highlight c++%}
+__device__ float3 rtTransformPoint( RTtransformkind kind, const float3& p )
+__device__ float3 rtTransformVector( RTtransformkind kind, const float3& v )
+__device__ float3 rtTransformNormal( RTtransformkind kind, const float3& n )
+__device__ void rtGetTransform( RTtransformkind kind, float matrix[16] )
+{% endhighlight %}
+
+{{site.b}}前面3个函数变换float3类型的变量，比如一个点，向量，或者法线，从物体空间到世界空间，反之亦然，这取决于第一个参数的值。rtGetTransform返回一个当前变换的4X4矩阵（视第一个参数而定）。为了最好的性能，尽量使用rtTransform\*函数比实现自己的矩阵乘法好。
+
+{{site.b}}通常变量变换发生在从相交程式到最近碰撞程式的属性转化上。相交程式通常产生属性的值，比如物体空间下的法线。最近碰撞程式如果希望用到这个属性的话，它经常必须将属性从物体空间转化到世界空间下：
+
+{% highlight c++%}
+float3 n = rtTransformNormal( RT_OBJECT_TO_WORLD, normal);
+{% endhighlight %}
+
+## 4.2 程式所支持的OptiX调用
+{{site.b}}并不是所有的OptiX调用都会被各种类型的自定义程式所支持。比如，在相交程式里面产生一个新的射线没有意义，所以这个行为（译注：产生射线的行为）被禁止调用。下面是个完整的G端函数是否被允许调用的表格（译注：简写了一些单词，CH：closest hit、AH：any hit、Inter.:interaction、BB：bounding box）。
+
+|functions|RayGen|Exception|CH|AH|Miss|Inter.|BB|Visit|Bindless Callable|
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|rtTransform\*|X|X|O|O|O|O|O|O|X|
+|rtTrace|O|X|O|X|O|X|X|X|X|
+|rtThrow|O|X|O|O|O|O|O|O|O|
+|rtPrint|O|O|O|O|O|O|O|O|O|
+|rtTerminateRay|X|X|X|O|X|X|X|X|X|
+|rtIgnoreIntersection|X|X|X|O|X|X|X|X|X|
+|rtIntersectChild|X|X|X|X|X|X|X|O|X|
+|rtPotentialIntersection|X|X|X|X|X|O|X|X|X|
+|rtReportIntersection|X|X|X|X|X|O|X|X|X|
+|Callable Program|O|O|O|O|O|O|O|O|O|
+
+表8 G端API函数作用域
+
+## 4.3 射线生成程式
+{{site.b}}射线生成程式是rtContextLaunch{1\|2\|3}D调用后第一个进入点。于是它就像C程序中的main函数一样。任何后续的内核计算比如射线转换、读写缓存等都是从射线生成程式中引发的。然而，不同于严格的C程序，一个OptiX射线生成程式会被并行的执行许多次————每个线程一次（线程启动等暗含于rtContextLaunch{1\|2\|3}D的参数中）。
+
+{{site.b}}每个线程被指派一个唯一的rtLaunchIndex。该变量的值可用于区分彼此而用在一些比如写入rtBuffer的特定位置这样的目的中：
+
+{% highlight c++%}
+rtBuffer<float, 1> output_buffer;
+rtDeclareVariable( unsigned int, index, rtLaunchIndex, );
+...;
+float result = ...;
+output_buffer[index] = result;
+{% endhighlight %}
+
+{{site.b}}这个例子中，输出的结果被写入输出缓冲区的特定位置。普遍来说，射线生成程式可以写入缓冲区的任何位置，只要注意避免缓存之间的写入竞争条件就好。
+
+### 4.3.1 入口点索引
+{{site.b}}为了配置射线追踪内核的执行（launch），程序员需要指定自己的射线生成程式所使用的入口点索引（entry point index）。上下文入口点的数量通过函数rtContextSetEntryPointCount指定：
+
+{% highlight c++%}
+RTcontext context = ...;
+unsigned int num_entry_points = ...;
+rtContextSetEntryPointCount( context, num_entry_points );
+{% endhighlight %}
+
+{{site.b}}OptiX要求用这种方式创建的入口点必须关联一个射线生成程式。一个射线生成程式可能与多个入口点关联。使用rtContextSetRayGenerationProgram函数关联射线生成程式，入口点索引需要在区间[0,num_entry_points]之内。
+
+{% highlight c++%}
+RTprogram prog = ...;
+// index is >= 0 and < num_entry_points
+unsigned int index = ...;
+rtContextSetRayGenerationProgram( context, index, prog );
+{% endhighlight %}
+
+### 4.3.2 执行一个射线生成程式（Launching a Ray Genenration Program)
+{{site.b}}rtContextLaunch{1\|2\|3}D函数需要一个入口点索引为参数才能执行，如果rtContextLaunch{1\|2\|3}D的入口点参数没有关联射线生成程式，执行将会失败。
+
+{% highlight c++%}
+RTsize width = ...;
+rtContextLaunch1D( context, index, width );
+{% endhighlight %}
+
+
+### 4.3.3 射线生成程式的函数签名
+{{site.b}}在CUDA C中，射线生成程式返回void并且不需要参数。与其他OptiX程式一样，射线生成程式用CUDA C编写必须指定RT_PROGRAM限定符。下面是射线生成程式函数的原型：
+
+{% highlight c++%}
+RT_PROGRAM void ray_generation_program(void);
+{% endhighlight %}
+
+### 4.3.4 射线生成程式示例
+{{site.b}}下面示例实现了一个渲染应用中的针孔相机模型射线生成程式。示例说明射线生成程式利用rtTrace函数初始化遍历、将结果保存进输出缓存来作为射线追踪计算的关口。注意变量eye，U，V与W。这4个变量利用C端API去指定相机的位置与朝向。
+
+{% highlight c++%}
+rtBuffer<uchar4, 2> output_buffer;
+rtDeclareVariable( uint2, index, rtLaunchIndex, );
+rtDeclareVariable( rtObject, top_object, , );
+rtDeclareVariable(float3, eye, , );
+rtDeclareVariable(float3, U, , );
+rtDeclareVariable(float3, V, , );
+rtDeclareVariable(float3, W, , );
+
+struct Payload {
+	uchar4 result;
+};
+
+RT_PROGRAM void pinhole_camera( void ) {
+	uint2 screen = output_buffer.size();
+	float2 d = make_float2( index ) / make_float2( screen ) * 2.f - 1.f;
+	float3 origin = eye;
+	float3 direction = normalize( d.x*U + d.y*V + W );
+	optix::Ray ray = optix::make_Ray( origin, direction, 0, 0.05f, RT_DEFAULT_MAX );
+	Payload payload;
+	rtTrace( top_object, ray, payload );
+	output_buffer[index] = payload.result;
+}
+{% endhighlight %}
+
+## 4.4 异常程式
 
 {% highlight c++%}
 {% endhighlight %}
@@ -852,7 +1038,7 @@ __device__ bool rtPotentialIntersection(float t);
 __device__ bool rtReportIntersection(unsigned int material);
 {% endhighlight %}
 
-rtPotentialIntersection需要相交的t值作为参数。如果在当前的遍历中t值能够成为潜在的最近碰撞点的话，函数就会缩小t区间（t-interval）并且返回true。如果t值在区间外函数就会返回false，随后相交程式就会结束（译注：官方在这里的表达过于具体化，调用了rtPotentialIntersection后返回false，用户在程序里面不返回继续做些其他什么逻辑也是可以的）。
+{{site.b}}rtPotentialIntersection需要相交的t值作为参数。如果在当前的遍历中t值能够成为潜在的最近碰撞点的话，函数就会缩小t区间（t-interval）并且返回true。如果t值在区间外函数就会返回false，随后相交程式就会结束（译注：官方在这里的表达过于具体化，调用了rtPotentialIntersection后返回false，用户在程序里面不返回继续做些其他什么逻辑也是可以的）。
 
 {{site.b}}如果rtPotentialIntersection返回了true，相交程式就可以设置属性变量（attribute variables）的值并且调用rtReportIntersection函数。rtReportIntersection函数需要给传入一个代表材质索引的unsigned int值（材质必须与最近碰撞与任意碰撞程式关联）。材质索引可以用来支持单个几何体的不同材质需求。管线马上调用对应的任意碰撞程式。如果任意碰撞程式视本次碰撞为无效可调用rtIgnoreIntersection函数，如此一来rtReportIntercetion就会返回false，相反的话就是true。
 
@@ -898,7 +1084,7 @@ RT_PROGRAM void intersect_sphere( int prim_index ) {
 }
 {% endhighlight %}
 
-注意到我们在这段相交程式里面忽略了prim_index参数，它代表该几何体只有一个图元；并且将材质索引0传给了rtReportIntersection函数（译注：它代表几何实例的0号材质）。包围盒程式非常简单：
+{{site.b}}注意到我们在这段相交程式里面忽略了prim_index参数，它代表该几何体只有一个图元；并且将材质索引0传给了rtReportIntersection函数（译注：它代表几何实例的0号材质）。包围盒程式非常简单：
 
 {% highlight c++%}
 RT_PROGRAM void bound_sphere( int, float result[6] ) {
@@ -920,7 +1106,7 @@ RT_PROGRAM void bound_sphere( int, float result[6] ) {
 
 ## 4.9 选择程式
 
-
+==TBC==
 
 
 

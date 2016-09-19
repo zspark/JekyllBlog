@@ -4,12 +4,14 @@ layout: default
 
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
-  <span class="post-date">{{ page.date | date_to_string }}</span>
+	<span class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</span>
   {{ content }}
 </div>
 
+<p><img src="/assets/img/Running_cow.gif" title="can't you see ,i am running!" /></p>
+
 <div class="related">
-  <h2>Related Posts</h2>
+  <h2>相关文章</h2>
   <ul class="related-posts">
     {% for post in site.related_posts limit:3 %}
       <li>

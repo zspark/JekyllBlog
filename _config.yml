@@ -1,8 +1,7 @@
 # Site settings
 title: "zSpark"
-tagline: ''
 email: "z_Spark@163.com"
-description: "任何正常智商的成熟人类个体都能无障碍理解全部的智慧。"
+description: "任何正常智商的成熟人类个体都能无障碍理解全部的人类智慧。"
 # the subpath of your site, e.g. /blog
 url: "http://www.zspark.net" # the base hostname & protocol for your site
 baseurl:  / 
@@ -36,13 +35,5 @@ permalink: /post/:categories/:title.html
 # permalink:        pretty
 #relative_permalinks: true
 
-# from hyde
-author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
-
 # Custom vars
 version:          0.8.0
-
-github:
-  repo:           https://github.com/z_spark/sssssss

@@ -1,27 +1,37 @@
 /* Literal.Number.Integer.Long */
 .wp-caption {
-  background-color: #f3f3f3;
+  background-color: rgba(5, 5, 5, 0.11);
   text-align: center;
   border: 1px dotted #522d80;
   font-size: 0.90em;
   overflow: hidden;
-  position: relative; }
+  position: relative;
+}
 
 .wp-caption dd {
   color: #808080;
-  background-color: #f3f3f3;
   font-size: .9em;
   padding: 2px 8px 3px 8px;
-  margin: 1px 0 0 0; }
+  margin: 1px 0 0 0; 
+}
 
 .wp-caption dt {
-  margin: 0; }
+  margin: 0;
+}
+
+
+img {
+  display: block;
+  max-width: 100%;
+  margin: 0 0 1rem;
+  border-radius: 5px;
+}
 
 .wp-caption img {
-  display: block;
   margin: 0;
   padding: 0;
-  border: 0; }
+  border: 0; 
+}
 
 .alignleft,
 .alignright {
@@ -49,15 +59,34 @@ figure {
   padding: 0; 
 }
 
-pre {
-	padding: 8px 12px;
-	overflow-x: scroll;
+/* Code */
+code {
+  padding: .25em .5em;
+  font-size: 85%;
+  color: #bf616a;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
 }
-pre > code {
-	font-size: 0.9em;
-	border: 0;
-	padding-right: 0;
-	padding-left: 0; 
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: .9rem;
+  padding-top: .9rem;
+  padding-left: .1rem;
+  font-size: .8rem;
+  line-height: 1.4;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+	background-color: rgba(5, 5, 5, 0.11);
+}
+pre code {
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+  background-color: transparent;
 }
 
 /* Pygments via Jekyll */
@@ -84,3 +113,32 @@ ul.listing li.listing-seperator {
   font-size: 1.17em; 
 }
 
+/* Tables */
+table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse;
+}
+td,
+th {
+  padding: .25rem .5rem;
+  border: 1px solid #e5e5e5;
+}
+tbody tr:nth-child(odd) td,
+tbody tr:nth-child(odd) th {
+  background-color: rgba(5, 5, 5, 0.11);
+}
+
+/* Quotes */
+blockquote {
+  padding: .5rem 1rem;
+  margin: .8rem 0;
+  color: #7a7a7a;
+  border-left: .5rem solid #aaaaaa;
+  font-style: italic;
+  background-color: rgba(5, 5, 5, 0.11);
+}
+blockquote p:last-child {
+  margin-bottom: 0;
+}
