@@ -116,7 +116,7 @@ html {
     left:   1rem;
   }
   .content {
-    max-width: 50rem;
+    max-width: 80rem;
     margin-left: 20rem;
     margin-right: 2rem;
   }
@@ -159,7 +159,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   font-weight: bold;
   line-height: 1.25;
-  color: #313131;
+  color: #d47820;
   text-rendering: optimizeLegibility;
 }
 h1 {
@@ -306,11 +306,12 @@ abbr[title] {
 .page-title,
 .post-title,
 .post-title a {
-  color: #303030;
+  color: #d47820;
 }
 .page-title,
 .post-title {
-  margin-top: 0;
+	margin-top: 0;
+  font-size: 3rem;
 }
 
 /* Meta data line below post title */
@@ -391,15 +392,13 @@ a.pagination-item:hover {
 	background-color: #353535;
 }
 
-
 /* Sidebar links */
 .sidebar a {
-  color: #e1ddc9;
+  color: #d47820;
 }
 
 /* About section */
 .sidebar-about h1 {
-  color: #fff;
   margin-top: 0;
   font-family: "Abril Fatface", serif;
   font-size: 3.25rem;

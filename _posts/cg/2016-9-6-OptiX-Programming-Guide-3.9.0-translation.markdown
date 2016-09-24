@@ -170,12 +170,11 @@ rtContextSetExceptionProgram( context, 1, exception);
 
 {{site.b}}指派给材质的最近碰撞与任意碰撞程式好比传统渲染系统中的着色器：它们会在射线与几何图元发生相交时调用。因为这些程式指派给材质是区分射线类型的，所以并不是所有的射线类型都必须有这两种程式。参见4.5，4.6节以获取更多细节。丢失程式是在追踪的光线确定没有与任何集合体相撞的时候调用的。丢失程式可以用来返回一个常量以表示天空的颜色或者返回从环境贴图中采样的颜色。表1 可以作为一个Whitted风格的递归射线追踪器的示例，目的是展示如何使用射线类型：
 
+{% include table.html caption="表1 Whitted风格示例" %}
 |Ray Type|Payload|Closest Hit|Any Hit|Miss|
 |:---:|:---:|:---:|:---:|:---:|
 |Radiance|RadiancePL|计算颜色，继续追踪递归深度|n/a|环境贴图查询|
 |Shadow|ShadowPL|n/a|计算阴影衰减，如果对象不透明则终止追踪|n/a|
-
-表1
 
 上表中的夹带数据结构可能会是这样的：
 
@@ -303,7 +302,7 @@ rtContextSetTimeoutCallback( context, CBFunc, 0.1 );
 * RT_BUFFER_LAYERED：当缓冲区是用来作为纹理缓冲区时，它的深度信息表示层的数量而非3D缓冲区中的深度；
 * RT_BUFFER_CUBEMAP：深度作为立方体的面来使用，而不是3D缓冲区中的深度；
 
-{{site.b}}在使用一个缓冲区之前，它的大小、纬度、数据的格式必须先被指定。数据格式可以通过函数rtBuffer{Get\|Set\|}Fomart设置，格式是RTformat枚举类型的，是为C、CUDA C的数据类型而设计的，比如unsigned int 、float3等。可以使用RT_FORMAT_USER来指定任意类型的数据。通过rtBufferSetElementSize函数指定元素的大小。通过rtBufferSetSize{1,2,3}D来指定缓冲区的大小，同样他们也指定了缓冲区的纬度。通过调用rtBufferGetMipLevelSize{1,2,3}D函数并且传入mip层，可以获取到纹理缓冲区中mip层的大小。
+{{site.b}}在使用一个缓冲区之前，它的大小、纬度、数据的格式必须先被指定。数据格式可以通过函数rtBuffer{Get\|Set}Fomart设置，格式是RTformat枚举类型的，是为C、CUDA C的数据类型而设计的，比如unsigned int 、float3等。可以使用RT_FORMAT_USER来指定任意类型的数据。通过rtBufferSetElementSize函数指定元素的大小。通过rtBufferSetSize{1,2,3}D来指定缓冲区的大小，同样他们也指定了缓冲区的纬度。通过调用rtBufferGetMipLevelSize{1,2,3}D函数并且传入mip层，可以获取到纹理缓冲区中mip层的大小。
 
 {% highlight c++%}
 RTcontext context = ...;
@@ -537,6 +536,7 @@ v = rtTex2DLayeredGrad<float4>( tex, uv.x, uv.y, tex_layer, dpdx, dpdy );
 
 {{site.b}}表2 说明了那些节点可以作为其他节点的子节点，包括与加速提节点的关联。
 
+{% include table.html caption="表2 可包含的子节点" %}
 |Node type| Children nodes allowed|
 |:---:|:---:|
 |Geometry|-none-|
@@ -547,8 +547,6 @@ v = rtTex2DLayeredGrad<float4>( tex, uv.x, uv.y, tex_layer, dpdx, dpdy );
 |Transform|GeometryGroup,Group,Selector,Transform|
 |Selector|GeometryGroup,Group,Selector,Transform|
 |Acceleration|-none-|
-
-表2
 
 ### 3.4.1 几何体
 {{site.b}}几何体节点是表述几何体对象（一个集合了用户定义的图元，用来与射线相交）的基础节点。几何体节点所包含的图元数量通过rtGeometrySetPrimitiveCount函数设置，为了定义图元，就需要通过函数rtGeometrySetIntersectionProgram指派给几何体相交程式（译注：图元的定义完全在于C端，OptiX完全不知道也没有枚举值定义各种图元的类型，所以与用户定义的图元是否相交完全在于用户定义的相交程式，所以这就是原文中图元的定义是通过相交程式给出的含义）。输入的参数一个是图元的索引（index），一个是射线，相交程式的工作就是去判断它两之间的相交情况。结合程式的变量这就提供了一种必要的机制去定义任意图元类型与射线相交。一个常用的示例是个三角网格，相交程式从传入的顶点数据缓冲区中读取必要的三角面数据然后进行射线-三角形相交。
@@ -669,7 +667,7 @@ rtGeometryGroupSetAcceleration( geomgroup, accel );
 ### 3.5.2 构建器与遍历器
 {{site.b}}一个rtAcceleration对象是由一个构建器（builder）与一个遍历器（traverser）组成的。构建器的责任就是收集输入的几何体（注意：在大多数情况下，这里的“几何体”是由包围盒程式生成的轴对齐几何体）并且计算加速体中的值以便遍历器加速射线场景的相交查询。构建器与遍历器不是应用程序定义的程式，而是需要应用从表3中选择恰当的构建器与遍历器。
 
-（译注：具体内容待译）；
+{% include table.html caption="表3 支持的构建器与遍历器 （译注：具体内容待译）" %}
 |Builder/Traverser|Description|
 |:---:|:----:|
 |Trbvh/Bvh||
@@ -679,7 +677,6 @@ rtGeometryGroupSetAcceleration( geomgroup, accel );
 |Lvh/Bvh or BvhCompact||
 |TriangleKdTree/KdTree||
 |NoAccel/NoAccel|
-表3 支持的构建器与遍历器
 
 {{site.b}}表3展示了OptiX目前支持的构建器与遍历器。构建器通过rtAccelerationSetBuilder设置，对应的遍历器（一定要兼容相应的构建器）通过rtAccelerationSetTraverser设置。构建器与遍历器可以随时改动；改变一个构建器会导致加速体被标记从而重新构建。这个示例展示了一个典型的加速对象的初始化；
 
@@ -692,6 +689,8 @@ rtAccelerationSetTraverser( accel, "Bvh" );
 
 ### 3.5.3 属性
 {{site.b}}针对不同情况精调加速体的构建过程是有好处的。为了这个目的，构建器暴露了一些变量（被称作属性）见表4：
+
+{% include table.html caption="表4 加速体属性" %}
 |Property|Available in Builder|Description|
 |:---:|:---:|:---:|
 |refine|Bvh Lbvh MedianBvh|传递给BVH的改进次数，用以改善BVH的品质。默认“0”|
@@ -702,7 +701,6 @@ rtAccelerationSetTraverser( accel, "Bvh" );
 |index_buffer_stride|Sbvh Trbvh TriangleKdTree|默认“0”|
 |chunk_size|Trbvh||
 |builde_type|Trbvh||
-表4 加速体属性
 
 {{site.b}}属性通过rtAccelerationSetProperty函数设置。他们的值是通过字符串形式给出的（会被OptiX解析）。只有当加速体实际上重新构建的时候，属性才会起作用。设置或者改变属性并不会令加速体自动标志为“重新构建”，如果做见下节。不能被构建器识别的属性会静默的忽视。
 
@@ -842,6 +840,7 @@ rtDeclareVariable( float, shininess, , “The shininess of the sphere” );
 ### 4.1.3 内部提供的语义形式
 {{site.b}}OptiX提供了5个内部语义形式以供程式变量的绑定。表5总结了它们在哪种程式中是可用的附带他们的可读写性，以及它们含义的简介。
 
+{% include table.html caption="表5 语义变量形式" %}
 |Name|rtLaunchIndex|rtCurrentRay|rtPayload|rtIntersectionDistance|rtSubframeIndex|
 |:---:|:---:|:---:|:---:|:---:|:----:|
 |Access|read only|read only|read/write|read only|read only|
@@ -854,8 +853,6 @@ rtDeclareVariable( float, shininess, , “The shininess of the sphere” );
 |Intersection|Y|Y|N|Y|Y|
 |Bounding Box|N|N|N|N|N|
 |Visit|Y|Y|Y|Y|Y|
-
-表5 语义变量形式
 
 ### 4.1.4 属性变量
 {{site.b}}除了OptiX提供的语义形式之外，变量还可以用用户定义的语义形式申明，用户定义的语义形式叫做属性（attributes）。不同于内建的语义形式，这种方式定义的变量必须由程序员自己管理。属性变量提供了一种相交程式与渲染程式（比如：表面法线，纹理坐标）之间的数据通行机制（译注：渲染程式包括最近碰撞、任意碰撞、失效程式三种）。属性变量只能在相交程式的rtPotentialIntersection与rtReportIntersection函数之间写值。虽然OptiX不能找到射线方向所有物体的相交情况，但是当最近碰撞程式被调用的时候，属性变量的值会被保证是在最近相交处的相关值。为此，程式应该使用属性变量（不同于夹带数据）来为相交与渲染程式之间的本地碰撞点做通信。
@@ -874,6 +871,7 @@ rtDeclareVariable( float, x, ,) = 5.0f;
 
 {{site.b}}OptiX变量的作用域规则提供了一种值继承的机制，这种机制被设计用来将材质与对象参数捆绑在一起。为了这样做，每一个程式类型都有一个有序的列表，通过该列表顺序查找变量的定义。举个例子，一个最近碰撞程式引用一个名叫color的变量将会依次查找程式、几何实例、材质、上下文这些通过rt\*DeclareVariable函数定义的API对象。类似编程语言中的作用域规则（译注：比如JS的变量作用域），一个作用域内的变量会遮住在其他作用域中的同名变量。下面是每一种类型程式查找变量时的作用域。
 
+{% include table.html caption="表6 每种程式作用域查找顺序（从左至右）" %}
 |Program type|first|second|third|fourth|
 |:---:|:---:|:---:|:---:|:---:|
 |Ray Generation|Program|Context|n/a|n/a|
@@ -885,8 +883,6 @@ rtDeclareVariable( float, x, ,) = 5.0f;
 |Bounding Box|Program|GeometryInstance|Material|Context|
 |Visit|Progaram|Node|n/a|n/a|
 
-表6 每种程式作用域查找顺序（从左至右）
-
 {{site.b}}程式依赖不同场合被调用从而变量有不同的定义是有可能的。比如，最近碰撞程式可能依附到不同的材质对象上并且有个变量叫shininess（译注：高光），我们可以依附一个变量的定义到材质对象，而该材质对象又绑定到对应的几何实例对象上。（译注：意思就是程式中的变量shininess会去查找不同材质里面定义的不同值）。
 
 {{site.b}}在执行几何实例上的最近碰撞程式的时候（译注：最近碰撞程式是绑定到材质的，而材质是绑定到几何实例的，原文说的简单）。shininess变量的值依赖于特定的几何实例是否有这个变量的定义：如果有的话，其值就会被使用。否则变量的值就需要继续在材质对象上查询。从表6中你可以看到，程式查找几何实例作用域是在材质作用域之前。在多个作用域内定义的变量被认为是动态的并且可能会引起性能上的惩罚，动态变量最好谨慎使用。
@@ -894,6 +890,7 @@ rtDeclareVariable( float, x, ,) = 5.0f;
 ### 4.1.6 程式变量的变换
 {{site.b}}回忆当射线遍历到变换节点的时候，它会进行一次投影变换。变换后了的射线被称为是在对象空间中（object space），原始射线是在世界空间中（world space）。程式访问rtCurrentRay语义形式时所在空间总结见表7：
 
+{% include table.html caption="表7 每种射线类型中rtCurrentRay语义形式所在的空间" %}
 |Ray type|spaces|
 |:---:|:-------:|
 |Ray Generation|World|
@@ -902,8 +899,6 @@ rtDeclareVariable( float, x, ,) = 5.0f;
 |Miss|World|
 |Intersection|Object|
 |Visit|Object|
-
-表7 每种射线类型中rtCurrentRay语义形式所在的空间
 
 {{site.b}}为了使变量从一个空间到另一个空间的变换更加方便，OptiX的CUDA C API提供了一系列如下函数：
 
@@ -925,6 +920,7 @@ float3 n = rtTransformNormal( RT_OBJECT_TO_WORLD, normal);
 ## 4.2 程式所支持的OptiX调用
 {{site.b}}并不是所有的OptiX调用都会被各种类型的自定义程式所支持。比如，在相交程式里面产生一个新的射线没有意义，所以这个行为（译注：产生射线的行为）被禁止调用。下面是个完整的G端函数是否被允许调用的表格（译注：简写了一些单词，CH：closest hit、AH：any hit、Inter.:interaction、BB：bounding box）。
 
+{% include table.html caption="表8 G端API函数作用域" %}
 |functions|RayGen|Exception|CH|AH|Miss|Inter.|BB|Visit|Bindless Callable|
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 |rtTransform\*|X|X|O|O|O|O|O|O|X|
@@ -937,8 +933,6 @@ float3 n = rtTransformNormal( RT_OBJECT_TO_WORLD, normal);
 |rtPotentialIntersection|X|X|X|X|X|O|X|X|X|
 |rtReportIntersection|X|X|X|X|X|O|X|X|X|
 |Callable Program|O|O|O|O|O|O|O|O|O|
-
-表8 G端API函数作用域
 
 ## 4.3 射线生成程式
 {{site.b}}射线生成程式是rtContextLaunch{1\|2\|3}D调用后第一个进入点。于是它就像C程序中的main函数一样。任何后续的内核计算比如射线转换、读写缓存等都是从射线生成程式中引发的。然而，不同于严格的C程序，一个OptiX射线生成程式会被并行的执行许多次————每个线程一次（线程启动等暗含于rtContextLaunch{1\|2\|3}D的参数中）。
