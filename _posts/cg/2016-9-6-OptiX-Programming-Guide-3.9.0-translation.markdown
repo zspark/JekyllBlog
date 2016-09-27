@@ -1099,6 +1099,32 @@ RT_PROGRAM void bound_sphere( int, float result[6] ) {
 {% endhighlight %}
 
 ## 4.9 选择程式
+{{site.b}}在射线遍历过程中遇到选择节点的话就会调用选择器的访问程式，就是选择哪个子节点会被射线访问。访问程式靠rtIntersectChild函数将当前射线派发给特定的子节点。传递给rtIntersectChild的参数是选择子节点的索引，范围在[0,N)区间，其中N是通过函数rtSelectorSetChildCount函数指定的。
+
+### 4.9.1 选择器访问程式的函数签名
+{{site.b}}在CUDA C中，访问程式返回void并且不需要参数，使用RT_PROGRAM限定符。下面是访问程式的函数原型：
+
+{% highlight c++%}
+RT_PROGRAM void visit_program(void);
+{% endhighlight %}
+
+### 4.9.2 访问程式示例
+{{site.b}}访问程式可以实现复杂的Lod系统或者基于射线方向的简单选择器。下面的示例展示了访问程式对于两个子节点的选择是基于当前射线方向的。
+
+{% highlight c++%}
+rtDeclareVariable( optix::Ray, ray, rtCurrentRay, );
+RT_PROGRAM void visit( void ) {
+	unsigned int index = (unsigned int)( ray.direction.y < 0 );
+	rtIntersectChild( index );
+}
+{% endhighlight %}
+
+## 4.10 可调用程式
+{{site.b}}可调用程式允许额外的在OptiX程式标准集中的可编程性。C端通过RTvariableds或者RTbuffers设置的句柄引用可调用程式。这就允许在运行时改变目标函数，比如，根据用户的输入而选择不同的渲染效果或者根据场景的设置自定义更加通用的程式。另外，如果你节点图中许多不同的地方需要调用一个函数，那么让该函数成为RT_CALLABLE_PROGRAM可以减少代码复制与编译时间，并且潜在的通过增加类似工具函数的方式改善运行时性能。（原文： and potentially improve runtime through increased warp utilization.）
+
+{{site.b}}可调用程式有三部分，第一是一个你希望调用的程式。第二是一个用来调用“可调用程式”的代理函数。第三就是C端代码用来关联“可调用程式”与代理函数（将会在OptiX节点图中被调用）。
+
+{{site.b}}可调用程式有两种存在方式，绑定与非绑定。
 
 ==TBC==
 
