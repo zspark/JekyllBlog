@@ -70,7 +70,7 @@ $$L_s^{'}=\frac {1}{a+bd+cd^2}k_sL_s  max(({\hat {\mathbf r} \cdot \hat {\mathbf
 最基本的phong光照模型就是这三种光的线性组合，公式见下。因为公式中使用了不符合物理规律的地方（比如距离衰减），所以我们将其称作经验公式。
 
 $$
-L=\frac {1}{a+bd+cd^2}(k_dL_d  max(\hat {\mathbf u} \cdot \hat {\mathbf n},0)+ max(({\hat {\mathbf r} \cdot \hat {\mathbf v}})^\alpha,0))+k_aL_a
+L=\frac {1}{a+bd+cd^2}(k_dL_d  max(\hat {\mathbf u} \cdot \hat {\mathbf n},0)+ k_sL_smax(({\hat {\mathbf r} \cdot \hat {\mathbf v}})^\alpha,0))+k_aL_a
 $$
 
 {% include image.html src="cg/cg5_lighting/lights_3.jpg" caption="图3 三种不同光线对物体的贡献。第三张图高光白亮的地方与周围有明显的边界（而不是渐变过度），这就是明显的&alpha;>1时候的效果，因为在&theta;到达一定角度后戛然而止，于是出现了明显的高光效果。图片来自维基百科" width="650" height="176" align="center" %}
