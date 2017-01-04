@@ -1124,11 +1124,11 @@ RT_PROGRAM void visit( void ) {
 
 # 第五章 搭建OptiX
 ## 5.1 库
-<<>>OptiX提供了一些头文件与支持的库文件，基本上是optix与optixu。在Windows系统上，这些库是静态的连接到C运行时库，并且适用与任何版本的VS（虽然发布文件中只列出了一些测试过的子版本）。（待译：If you wish to distribute the OptiX libraries with your application, the VS redistributables are not required by our DLL.）
+{{site.b}}OptiX提供了一些头文件与支持的库文件，基本上是optix与optixu。在Windows系统上，这些库是静态的连接到C运行时库，并且适用与任何版本的VS（虽然发布文件中只列出了一些测试过的子版本）。（待译：If you wish to distribute the OptiX libraries with your application, the VS redistributables are not required by our DLL.）
 
-<<>>OptiX库并不是由发布版编号，而是由二进制的兼容性。增加这个编号意味着库将不会代替更早的版本（比如，optix.2.dll将不会在需要optix.1.dll的地方正常工作）。在Linux系统上，你会看到liboptix.so是liboptix.so.1的软连接，而后者又是liboptix.so.X.Y.Z的软连接，而liboptix.so.X.Y.Z才是真实的OptiX库文件。liboptix.so.1是与optix.1.dll在二进制上兼容的编号。在MacOS X系统上，liboptix.X.Y.Z.dylib是真实的库文件，同样你也可以找到一个名叫liboptix.1.dylib或者liboptix.dylib的软连接文件（再次说明，数字1代表二进制兼容性的级别）。
+{{site.b}}OptiX库并不是由发布版编号，而是由二进制的兼容性。增加这个编号意味着库将不会代替更早的版本（比如，optix.2.dll将不会在需要optix.1.dll的地方正常工作）。在Linux系统上，你会看到liboptix.so是liboptix.so.1的软连接，而后者又是liboptix.so.X.Y.Z的软连接，而liboptix.so.X.Y.Z才是真实的OptiX库文件。liboptix.so.1是与optix.1.dll在二进制上兼容的编号。在MacOS X系统上，liboptix.X.Y.Z.dylib是真实的库文件，同样你也可以找到一个名叫liboptix.1.dylib或者liboptix.dylib的软连接文件（再次说明，数字1代表二进制兼容性的级别）。
 
-<<>>除了OptiX的库文件外，安装（文件）还包括用于VCA远程渲染功能的网络库，视屏、图形解码库。主要的网络库是libdice。如果应用程序不使用远程渲染，那么没有必要发布这些库。参见 VCA上的渲染 章节获取更多信息。
+{{site.b}}除了OptiX的库文件外，安装（文件）还包括用于VCA远程渲染功能的网络库，视屏、图形解码库。主要的网络库是libdice。如果应用程序不使用远程渲染，那么没有必要发布这些库。参见 VCA上的渲染 章节获取更多信息。
 
 ## 5.2 头文件
 

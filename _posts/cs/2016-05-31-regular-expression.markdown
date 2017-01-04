@@ -1,17 +1,17 @@
 ---
+title: 正则表达式
 layout: post_with_wisdom
-title:  "正则表达式"
-date:   2016-05-31
+date: '2016-05-31'
 category: CS
 published: true
-excerpt: ""
 wisdom: 软件就像熵：难以把握，没有重量，服从热力学第二定律；比如说，它总是在增长。 —— 诺曼·奥古斯丁（ Norman Augustine），洛克希德马丁公司前总裁
 meta: 
 author: 
-tags: [regexp,regular expression,正则表达式]
+tags:
+- regexp
+- regular expression
+- 正则表达式
 ---
-
-*有人说会正则的程序员比较神秘，也有人说使用vim的程序员更加牛逼，于是我觉得自己好普通，因为我既会正则又熟练使用vim。*
 
 {{site.b}}正则表达式可能对大部分初学程序的朋友而言是陌生的，因为用不到，用到了也有其他方法变通的解决，其次就是比较少见，实在需要的话也是网上搜搜或者请教前辈。网上有很多优秀的正则表达式讲解，有的非常不错，比如[这篇][url1]。我主要说说以下几点，目的依然简单：我需要通过一字一字的记录来加强记忆与理解：
 

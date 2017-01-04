@@ -1,39 +1,25 @@
-# Site settings
-title: "zSpark"
-email: "z_Spark@163.com"
-description: "任何正常智商的成熟人类个体都能无障碍理解全部的人类智慧。"
-# the subpath of your site, e.g. /blog
-url: "http://www.zspark.net" # the base hostname & protocol for your site
-baseurl:  / 
-github_username:  "zSpark"
-
-# formatting
+---
+title: zSpark
+email: z_Spark@163.com
+description: 任何正常智商的成熟人类个体都能无障碍理解全部的人类智慧。
+url: http://www.zspark.net
+baseurl: "/"
+github_username: zSpark
 blank: "&nbsp; &nbsp; "
 b: "&nbsp; &nbsp; "
-#paginate: 3
-#paginate_path: "page:num"
-
-# directory configurations
 assetsurl: "/assets/"
 imgurl: "/assets/img/"
 swfurl: "/assets/swf/"
 posturl: "/post/"
 libsurl: "/libs/"
-
-#屏蔽目录或文件
-exclude: [exclude,webgl/mongoose-free-6.4.exe,.git]
-
-#custom value;
+exclude:
+- exclude
+- webgl/mongoose-free-6.4.exe
+- ".git"
 openFeed: false
-
-# Build settings
-highlighter: pygments 
+highlighter: pygments
 markdown: kramdown
-  
-# Permalinks
-permalink: /post/:categories/:title.html
-# permalink:        pretty
-#relative_permalinks: true
-
-# Custom vars
-version:          0.8.0
+permalink: "/post/:categories/:title.html"
+gems:
+- jekyll-admin
+version: 0.8.1
