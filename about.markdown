@@ -1,7 +1,7 @@
 ---
-layout: page
 title: About
-permalink: /about/
+layout: page
+permalink: "/about/"
 ---
 
 {% include image.html src="me_2016_03_06.jpg" caption="摄于荟铭家中 201603061429" width=400 align="right" %}

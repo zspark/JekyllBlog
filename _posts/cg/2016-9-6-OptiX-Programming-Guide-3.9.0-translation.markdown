@@ -1283,6 +1283,38 @@ RT_PROGRAM void bound_sphere( int, float result[6] ) {
 {% endhighlight %}
 
 ## 4.9 选择程式
+{{site.b}}在射线遍历过程中遇到选择节点的话就会调用选择器的访问程式，就是选择哪个子节点会被射线访问。访问程式靠rtIntersectChild函数将当前射线派发给特定的子节点。传递给rtIntersectChild的参数是选择子节点的索引，范围在[0,N)区间，其中N是通过函数rtSelectorSetChildCount函数指定的。
+
+### 4.9.1 选择器访问程式的函数签名
+{{site.b}}在CUDA C中，访问程式返回void并且不需要参数，使用RT_PROGRAM限定符。下面是访问程式的函数原型：
+
+{% highlight c++%}
+RT_PROGRAM void visit_program(void);
+{% endhighlight %}
+
+### 4.9.2 访问程式示例
+{{site.b}}访问程式可以实现复杂的Lod系统或者基于射线方向的简单选择器。下面的示例展示了访问程式对于两个子节点的选择是基于当前射线方向的。
+
+{% highlight c++%}
+rtDeclareVariable( optix::Ray, ray, rtCurrentRay, );
+RT_PROGRAM void visit( void ) {
+	unsigned int index = (unsigned int)( ray.direction.y < 0 );
+	rtIntersectChild( index );
+}
+{% endhighlight %}
+
+## 4.10 可调用程式
+（待译）
+
+# 第五章 搭建OptiX
+## 5.1 库
+{{site.b}}OptiX提供了一些头文件与支持的库文件，基本上是optix与optixu。在Windows系统上，这些库是静态的连接到C运行时库，并且适用与任何版本的VS（虽然发布文件中只列出了一些测试过的子版本）。（待译：If you wish to distribute the OptiX libraries with your application, the VS redistributables are not required by our DLL.）
+
+{{site.b}}OptiX库并不是由发布版编号，而是由二进制的兼容性。增加这个编号意味着库将不会代替更早的版本（比如，optix.2.dll将不会在需要optix.1.dll的地方正常工作）。在Linux系统上，你会看到liboptix.so是liboptix.so.1的软连接，而后者又是liboptix.so.X.Y.Z的软连接，而liboptix.so.X.Y.Z才是真实的OptiX库文件。liboptix.so.1是与optix.1.dll在二进制上兼容的编号。在MacOS X系统上，liboptix.X.Y.Z.dylib是真实的库文件，同样你也可以找到一个名叫liboptix.1.dylib或者liboptix.dylib的软连接文件（再次说明，数字1代表二进制兼容性的级别）。
+
+{{site.b}}除了OptiX的库文件外，安装（文件）还包括用于VCA远程渲染功能的网络库，视屏、图形解码库。主要的网络库是libdice。如果应用程序不使用远程渲染，那么没有必要发布这些库。参见 VCA上的渲染 章节获取更多信息。
+
+## 5.2 头文件
 
 ==TBC==
 
